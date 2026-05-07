@@ -1,11 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import NetworkBackground from '@/components/NetworkBackground';
 
 export default function Home() {
   return (
     <div className="container" style={{ paddingTop: '4rem', paddingBottom: '4rem', position: 'relative' }}>
-      <NetworkBackground />
       
       {/* Hero Section */}
       <section style={{ textAlign: 'center', marginBottom: '8rem' }}>
