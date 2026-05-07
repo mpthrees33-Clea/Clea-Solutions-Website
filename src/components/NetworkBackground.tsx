@@ -14,11 +14,11 @@ export default function NetworkBackground() {
     let particlesArray: Particle[] = [];
     
     // Configuration
-    const numberOfParticles = 120; // Adjust for density
-    const baseColor = 'rgba(0, 70, 40, 0.4)'; // Dim dark green
-    const activeColor = 'rgba(0, 145, 80, 0.9)'; // Darker emerald green
-    const connectionDistance = 150;
-    const mouseInfluenceDistance = 200;
+    const numberOfParticles = 250; // Increased for density
+    const baseColor = 'rgba(0, 145, 80, 0.5)'; // Brighter dark green
+    const activeColor = 'rgba(0, 255, 130, 1)'; // Brightest emerald green
+    const connectionDistance = 250; // Increased connection distance
+    const mouseInfluenceDistance = 300; // Increased influence radius
 
     // Mouse coordinates
     let mouse = {
@@ -62,10 +62,10 @@ export default function NetworkBackground() {
         this.y = Math.random() * (canvas?.height || window.innerHeight);
         this.baseX = this.x;
         this.baseY = this.y;
-        this.size = Math.random() * 2 + 1;
+        this.size = Math.random() * 2 + 1.5;
         this.density = (Math.random() * 30) + 1;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
+        this.vx = (Math.random() - 0.5) * 0.8;
+        this.vy = (Math.random() - 0.5) * 0.8;
       }
 
       update() {
@@ -91,9 +91,9 @@ export default function NetworkBackground() {
 
         if (distance < mouseInfluenceDistance) {
           currentColor = activeColor;
-          currentSize = this.size * 2; // Swell when active
-          ctx.shadowBlur = 15;
-          ctx.shadowColor = '#009150';
+          currentSize = this.size * 2.5; // Swell when active
+          ctx.shadowBlur = 20;
+          ctx.shadowColor = '#00ff82';
         } else {
           ctx.shadowBlur = 0;
         }
@@ -131,14 +131,14 @@ export default function NetworkBackground() {
             
             if (isNearMouse) {
               opacityValue = 1 - (distance / connectionDistance);
-              ctx.strokeStyle = `rgba(0, 145, 80, ${opacityValue})`;
-              ctx.lineWidth = 1.5;
-              ctx.shadowBlur = 10;
-              ctx.shadowColor = '#009150';
+              ctx.strokeStyle = `rgba(0, 255, 130, ${opacityValue})`; // BRIGHT ACTIVE
+              ctx.lineWidth = 2.0;
+              ctx.shadowBlur = 15;
+              ctx.shadowColor = '#00ff82';
             } else {
-              opacityValue = 0.2 * (1 - (distance / connectionDistance));
-              ctx.strokeStyle = `rgba(10, 74, 43, ${opacityValue})`;
-              ctx.lineWidth = 0.5;
+              opacityValue = 0.3 * (1 - (distance / connectionDistance));
+              ctx.strokeStyle = `rgba(0, 145, 80, ${opacityValue})`; // BASE COLOR
+              ctx.lineWidth = 0.8;
               ctx.shadowBlur = 0;
             }
 
@@ -190,7 +190,7 @@ export default function NetworkBackground() {
         left: 0,
         width: '100%',
         height: '100%',
-        zIndex: -1, // Keep it securely behind everything
+        zIndex: 0, // Above background, below text
         pointerEvents: 'none', // Allow clicks to pass through
       }}
     />
