@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import NetworkBackground from '@/components/NetworkBackground';
 
@@ -10,11 +9,6 @@ export default function Home() {
         
         {/* Hero Section */}
         <section style={{ textAlign: 'center', marginBottom: '8rem' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-            <div style={{ position: 'relative', width: '300px', height: '200px' }}>
-              <Image src="/clea_logo.png" alt="Clea Solutions Eye" fill style={{ objectFit: 'contain' }} />
-            </div>
-          </div>
           <h1 className="glow-text text-gradient" style={{ fontSize: '4rem', marginBottom: '1rem', lineHeight: 1.1 }}>
             True Agentic AI.<br />Beyond the Chatbot.
           </h1>
