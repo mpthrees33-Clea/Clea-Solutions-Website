@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={spaceGrotesk.className}>
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative', overflowX: 'hidden', width: '100%' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
           <div className="glow-orb" style={{ top: '-100px', left: '-100px' }}></div>
           <div className="glow-orb" style={{ bottom: '-100px', right: '-100px' }}></div>
           <Navbar />
