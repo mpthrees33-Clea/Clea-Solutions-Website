@@ -21,10 +21,10 @@ export default function Home() {
         </section>
 
         {/* Vision Section */}
-        <section className="glass-panel" style={{ padding: '4rem', marginTop: '2rem' }}>
+        <section className="glass-panel glass-panel-content" style={{ marginTop: '2rem' }}>
           <h2 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>Our Philosophy</h2>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '3rem' }}>
+          <div className="responsive-grid">
             
             <div>
               <h3 style={{ fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>

@@ -79,7 +79,8 @@ export default function NetworkBackground() {
 
     const init = () => {
       particlesArray = [];
-      for (let i = 0; i < numberOfParticles; i++) {
+      const numParticles = window.innerWidth < 768 ? 60 : numberOfParticles;
+      for (let i = 0; i < numParticles; i++) {
         particlesArray.push(new Particle());
       }
     };
