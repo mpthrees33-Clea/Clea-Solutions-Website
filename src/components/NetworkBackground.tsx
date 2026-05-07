@@ -20,24 +20,7 @@ export default function NetworkBackground() {
     const connectionDistance = 250; // Increased connection distance
     const mouseInfluenceDistance = 300; // Increased influence radius
 
-    // Mouse coordinates
-    let mouse = {
-      x: -1000,
-      y: -1000,
-    };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
-    };
-
-    const handleMouseLeave = () => {
-      mouse.x = -1000;
-      mouse.y = -1000;
-    };
-
-    window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('mouseout', handleMouseLeave);
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -81,22 +64,10 @@ export default function NetworkBackground() {
       draw() {
         if (!ctx) return;
         
-        // Check distance to mouse to determine if it should "light up"
-        const dx = mouse.x - this.x;
-        const dy = mouse.y - this.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
         let currentColor = baseColor;
         let currentSize = this.size;
 
-        if (distance < mouseInfluenceDistance) {
-          currentColor = activeColor;
-          currentSize = this.size * 2.5; // Swell when active
-          ctx.shadowBlur = 20;
-          ctx.shadowColor = '#00ff82';
-        } else {
-          ctx.shadowBlur = 0;
-        }
+        ctx.shadowBlur = 0;
 
         ctx.fillStyle = currentColor;
         ctx.beginPath();
@@ -123,24 +94,10 @@ export default function NetworkBackground() {
           const distance = Math.sqrt(dx * dx + dy * dy);
 
           if (distance < connectionDistance) {
-            // Check if either node is influenced by mouse
-            const distMouseA = Math.sqrt(Math.pow(mouse.x - particlesArray[a].x, 2) + Math.pow(mouse.y - particlesArray[a].y, 2));
-            const distMouseB = Math.sqrt(Math.pow(mouse.x - particlesArray[b].x, 2) + Math.pow(mouse.y - particlesArray[b].y, 2));
-            
-            const isNearMouse = distMouseA < mouseInfluenceDistance || distMouseB < mouseInfluenceDistance;
-            
-            if (isNearMouse) {
-              opacityValue = 1 - (distance / connectionDistance);
-              ctx.strokeStyle = `rgba(0, 255, 130, ${opacityValue})`; // BRIGHT ACTIVE
-              ctx.lineWidth = 2.0;
-              ctx.shadowBlur = 15;
-              ctx.shadowColor = '#00ff82';
-            } else {
-              opacityValue = 0.3 * (1 - (distance / connectionDistance));
-              ctx.strokeStyle = `rgba(0, 145, 80, ${opacityValue})`; // BASE COLOR
-              ctx.lineWidth = 0.8;
-              ctx.shadowBlur = 0;
-            }
+            opacityValue = 0.4 * (1 - (distance / connectionDistance));
+            ctx.strokeStyle = `rgba(0, 145, 80, ${opacityValue})`;
+            ctx.lineWidth = 1.0;
+            ctx.shadowBlur = 0;
 
             ctx.beginPath();
             ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
@@ -174,8 +131,7 @@ export default function NetworkBackground() {
     animate();
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('mouseout', handleMouseLeave);
+
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animationFrameId);
     };
