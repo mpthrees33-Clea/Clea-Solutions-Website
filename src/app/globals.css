@@ -2,8 +2,8 @@
   --bg-color: #050505;
   --text-primary: #f3f4f6;
   --text-secondary: #9ca3af;
-  --accent-green: #65a30d; /* Bright army/hunter green */
-  --accent-green-glow: rgba(101, 163, 13, 0.4);
+  --accent-green: #2a524c; /* Dark muted blue-green */
+  --accent-green-glow: rgba(42, 82, 76, 0.4);
   --glass-bg: rgba(20, 20, 20, 0.6);
   --glass-border: rgba(255, 255, 255, 0.08);
 }
