@@ -9,7 +9,7 @@ export default function Home() {
       <section style={{ textAlign: 'center', marginBottom: '8rem' }}>
         <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
           <div style={{ position: 'relative', width: '200px', height: '200px', borderRadius: '50%', overflow: 'hidden', border: '2px solid var(--accent-green)', boxShadow: '0 0 30px var(--accent-green-glow)' }}>
-            <Image src="/clea_logo.png" alt="Clea Solutions Eye" fill style={{ objectFit: 'cover' }} />
+            <Image src="/clea_logo.jpg" alt="Clea Solutions Eye" fill style={{ objectFit: 'cover' }} />
           </div>
         </div>
         <h1 className="glow-text text-gradient" style={{ fontSize: '4rem', marginBottom: '1rem', lineHeight: 1.1 }}>
