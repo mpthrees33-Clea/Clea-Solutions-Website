@@ -15,8 +15,8 @@ export default function NetworkBackground() {
     
     // Configuration
     const numberOfParticles = 120; // Adjust for density
-    const baseColor = 'rgba(10, 74, 43, 0.4)'; // Dim green
-    const activeColor = 'rgba(0, 223, 129, 0.9)'; // Jewel emerald
+    const baseColor = 'rgba(0, 70, 40, 0.4)'; // Dim dark green
+    const activeColor = 'rgba(0, 145, 80, 0.9)'; // Darker emerald green
     const connectionDistance = 150;
     const mouseInfluenceDistance = 200;
 
@@ -93,7 +93,7 @@ export default function NetworkBackground() {
           currentColor = activeColor;
           currentSize = this.size * 2; // Swell when active
           ctx.shadowBlur = 15;
-          ctx.shadowColor = '#00df81';
+          ctx.shadowColor = '#009150';
         } else {
           ctx.shadowBlur = 0;
         }
@@ -131,10 +131,10 @@ export default function NetworkBackground() {
             
             if (isNearMouse) {
               opacityValue = 1 - (distance / connectionDistance);
-              ctx.strokeStyle = `rgba(0, 223, 129, ${opacityValue})`;
+              ctx.strokeStyle = `rgba(0, 145, 80, ${opacityValue})`;
               ctx.lineWidth = 1.5;
               ctx.shadowBlur = 10;
-              ctx.shadowColor = '#00df81';
+              ctx.shadowColor = '#009150';
             } else {
               opacityValue = 0.2 * (1 - (distance / connectionDistance));
               ctx.strokeStyle = `rgba(10, 74, 43, ${opacityValue})`;

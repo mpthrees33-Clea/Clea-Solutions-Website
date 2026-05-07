@@ -1,11 +1,11 @@
 :root {
-  --bg-color: #050505;
+  --bg-color: #2a2a2a; /* Dark grey */
   --text-primary: #f3f4f6;
-  --text-secondary: #9ca3af;
-  --accent-green: #00df81; /* Bright jewel emerald green */
-  --accent-green-glow: rgba(0, 223, 129, 0.4);
-  --glass-bg: rgba(20, 20, 20, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-secondary: #d1d5db;
+  --accent-green: #009150; /* Darker emerald green */
+  --accent-green-glow: rgba(0, 145, 80, 0.4);
+  --glass-bg: rgba(30, 30, 30, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.1);
 }
 
 * {
