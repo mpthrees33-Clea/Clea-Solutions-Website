@@ -8,7 +8,8 @@ export default function Navbar() {
       </Link>
       <div style={{ display: 'flex', gap: '2rem' }}>
         <Link href="/">Vision</Link>
-        <Link href="/work">Our Work</Link>
+        <Link href="/work" style={{ fontWeight: '500' }}>Our Work</Link>
+        <Link href="/contact" style={{ fontWeight: '500' }}>Contact Us</Link>
       </div>
     </nav>
   );
