@@ -1,10 +1,8 @@
 import Link from 'next/link';
-import NetworkBackground from '@/components/NetworkBackground';
 
 export default function Home() {
   return (
     <div style={{ position: 'relative', minHeight: '100vh' }}>
-      <NetworkBackground />
       <div className="container" style={{ paddingTop: '4rem', paddingBottom: '4rem', position: 'relative', zIndex: 1 }}>
         
         {/* Hero Section */}
