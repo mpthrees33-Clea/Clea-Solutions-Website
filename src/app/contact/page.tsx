@@ -1,3 +1,5 @@
+"use client";
+
 export default function Contact() {
   return (
     <div className="container" style={{ paddingTop: '6rem', paddingBottom: '6rem', position: 'relative', zIndex: 1 }}>
