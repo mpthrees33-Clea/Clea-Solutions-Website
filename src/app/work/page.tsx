@@ -9,13 +9,13 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    name: 'FilmViz AI',
+    name: 'Film Estimation Tool',
     description:
-      'AI-powered architectural visualization for flooring and surface film. Upload site photos, apply finishes with smart masking, and export photorealistic renders for client presentations.',
-    language: 'JavaScript / React',
-    href: 'https://visualizer-test-97214.web.app',
+      'Next-gen architectural film material estimation tool. Calculate linear footage, rolls, and costs for doors, walls, columns, and custom surfaces with smart templates and waste-factor logic.',
+    language: 'TypeScript / Next.js',
+    href: 'https://mpthrees33-clea.github.io/Architectual-film-estimation/',
     isLiveDemo: true,
-    sourceUrl: 'https://github.com/mpthrees33-clea',
+    sourceUrl: 'https://github.com/mpthrees33-clea/Architectual-film-estimation',
   },
   {
     name: 'Sales Hub',
