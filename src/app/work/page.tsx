@@ -9,6 +9,15 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
+    name: 'FilmViz AI',
+    description:
+      'AI-powered architectural visualization for flooring and surface film. Upload site photos, apply finishes with smart masking, and export photorealistic renders for client presentations.',
+    language: 'JavaScript / React',
+    href: 'https://visualizer-test-97214.web.app',
+    isLiveDemo: true,
+    sourceUrl: 'https://github.com/mpthrees33-clea',
+  },
+  {
     name: 'Sales Hub',
     description:
       'Field-ready sales workspace for flooring distributor reps — voice-first AI assistant, multi-step sample orders, CRM kanban, and private-label price crossover lookup.',
