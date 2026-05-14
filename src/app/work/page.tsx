@@ -9,6 +9,15 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
+    name: 'Private Label Brochure Generator',
+    description:
+      'AI-powered tool that scrapes factory product pages and generates Trinity-branded PDF brochures with color crossover lists in under 60 seconds. Built for flooring sales reps who need instant, professional collateral.',
+    language: 'TypeScript / Next.js',
+    href: 'https://private-label-brochure-generator.vercel.app',
+    isLiveDemo: true,
+    sourceUrl: 'https://github.com/mpthrees33-clea/private-label-brochure-generator',
+  },
+  {
     name: 'Film Estimation Tool',
     description:
       'Next-gen architectural film material estimation tool. Calculate linear footage, rolls, and costs for doors, walls, columns, and custom surfaces with smart templates and waste-factor logic.',
