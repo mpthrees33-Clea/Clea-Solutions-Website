@@ -13,7 +13,7 @@ const PROJECTS: Project[] = [
     description:
       'AI-powered tool that scrapes factory product pages and generates Trinity-branded PDF brochures with color crossover lists in under 60 seconds. Built for flooring sales reps who need instant, professional collateral.',
     language: 'TypeScript / Next.js',
-    href: 'https://private-label-brochure-generator.vercel.app',
+    href: 'https://brochures.clea-solutions.ai',
     isLiveDemo: true,
     sourceUrl: 'https://github.com/mpthrees33-clea/private-label-brochure-generator',
   },
