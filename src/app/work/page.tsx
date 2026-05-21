@@ -9,6 +9,15 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
+    name: 'PO IDP — Zero-Hallucination Document Intelligence',
+    description:
+      'Enterprise IDP that turns inbound purchase-order PDFs into validated sales orders. Seven independent anti-hallucination layers: every value traces to verbatim source text, two models must agree, math reconciles to the cent.',
+    language: 'Python · FastAPI · Gemini · Ollama',
+    href: '/po-idp',
+    isLiveDemo: true,
+    sourceUrl: 'https://github.com/mpthrees33-clea/po-idp',
+  },
+  {
     name: 'Private Label Brochure Generator',
     description:
       'AI-powered tool that scrapes factory product pages and generates Trinity-branded PDF brochures with color crossover lists in under 60 seconds. Built for flooring sales reps who need instant, professional collateral.',
@@ -57,12 +66,14 @@ export default function WorkPage() {
       </p>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
-        {PROJECTS.map((p) => (
+        {PROJECTS.map((p) => {
+          const isInternal = p.href.startsWith('/');
+          return (
           <a
             key={p.name}
             href={p.href}
-            target="_blank"
-            rel="noopener noreferrer"
+            target={isInternal ? undefined : '_blank'}
+            rel={isInternal ? undefined : 'noopener noreferrer'}
             className="glass-panel project-card"
             style={{ position: 'relative' }}
           >
@@ -98,7 +109,8 @@ export default function WorkPage() {
               </span>
             </div>
           </a>
-        ))}
+          );
+        })}
       </div>
 
       <p style={{ textAlign: 'center', marginTop: '3rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>

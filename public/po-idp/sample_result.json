@@ -1,0 +1,582 @@
+{
+  "primary": {
+    "document_recognized": true,
+    "document_type_reason": "The document contains a PO number, date, buyer information, line items with quantities and prices, and a totals section, indicating it is a purchase order.",
+    "header": {
+      "po_number": {
+        "value": "PO-87421",
+        "source_quote": "PO-87421",
+        "bbox": {
+          "page": 1,
+          "x0": 78.0,
+          "y0": 79.0,
+          "x1": 123.0,
+          "y1": 89.0
+        },
+        "confidence": 0.99
+      },
+      "po_date": {
+        "value": "2026-05-18",
+        "source_quote": "2026-05-18",
+        "bbox": {
+          "page": 1,
+          "x0": 76.0,
+          "y0": 91.0,
+          "x1": 127.0,
+          "y1": 101.0
+        },
+        "confidence": 0.99
+      },
+      "buyer_name": {
+        "value": "Acme Construction LLC",
+        "source_quote": "Acme Construction LLC",
+        "bbox": null,
+        "confidence": 1.0
+      },
+      "buyer_address": null,
+      "ship_to": {
+        "value": "4400 Industrial Way, Houston TX 77001",
+        "source_quote": "4400 Industrial Way, Houston TX 77001",
+        "bbox": null,
+        "confidence": 1.0
+      },
+      "bill_to": null,
+      "payment_terms": {
+        "value": "Net 30",
+        "source_quote": "Net 30",
+        "bbox": null,
+        "confidence": 1.0
+      },
+      "requested_ship_date": null
+    },
+    "lines": [
+      {
+        "line_no": 1,
+        "customer_sku": {
+          "value": "FLR-OAK-7X48",
+          "source_quote": "FLR-OAK-7X48",
+          "bbox": {
+            "page": 1,
+            "x0": 100.0,
+            "y0": 172.0,
+            "x1": 170.0,
+            "y1": 182.0
+          },
+          "confidence": 0.99
+        },
+        "description": {
+          "value": "Oak engineered plank 7x48",
+          "source_quote": "Oak engineered plank 7x48",
+          "bbox": null,
+          "confidence": 1.0
+        },
+        "quantity": {
+          "value": "250",
+          "source_quote": "250",
+          "bbox": {
+            "page": 1,
+            "x0": 402.0,
+            "y0": 172.0,
+            "x1": 419.0,
+            "y1": 182.0
+          },
+          "confidence": 0.99
+        },
+        "unit_price": {
+          "value": "$4.75",
+          "source_quote": "$4.75",
+          "bbox": {
+            "page": 1,
+            "x0": 451.0,
+            "y0": 172.0,
+            "x1": 476.0,
+            "y1": 182.0
+          },
+          "confidence": 0.99
+        },
+        "extended_price": {
+          "value": "$1,187.50",
+          "source_quote": "$1,187.50",
+          "bbox": {
+            "page": 1,
+            "x0": 504.0,
+            "y0": 172.0,
+            "x1": 548.0,
+            "y1": 182.0
+          },
+          "confidence": 0.99
+        },
+        "uom": null
+      },
+      {
+        "line_no": 2,
+        "customer_sku": {
+          "value": "TLE-MAR-12X24",
+          "source_quote": "TLE-MAR-12X24",
+          "bbox": {
+            "page": 1,
+            "x0": 100.0,
+            "y0": 190.0,
+            "x1": 176.0,
+            "y1": 200.0
+          },
+          "confidence": 0.99
+        },
+        "description": {
+          "value": "Marble look porcelain 12x24",
+          "source_quote": "Marble look porcelain 12x24",
+          "bbox": null,
+          "confidence": 1.0
+        },
+        "quantity": {
+          "value": "400",
+          "source_quote": "400",
+          "bbox": {
+            "page": 1,
+            "x0": 402.0,
+            "y0": 190.0,
+            "x1": 419.0,
+            "y1": 200.0
+          },
+          "confidence": 0.99
+        },
+        "unit_price": {
+          "value": "$3.20",
+          "source_quote": "$3.20",
+          "bbox": {
+            "page": 1,
+            "x0": 451.0,
+            "y0": 190.0,
+            "x1": 476.0,
+            "y1": 200.0
+          },
+          "confidence": 0.99
+        },
+        "extended_price": {
+          "value": "$1,280.00",
+          "source_quote": "$1,280.00",
+          "bbox": {
+            "page": 1,
+            "x0": 504.0,
+            "y0": 190.0,
+            "x1": 548.0,
+            "y1": 200.0
+          },
+          "confidence": 0.99
+        },
+        "uom": null
+      },
+      {
+        "line_no": 3,
+        "customer_sku": {
+          "value": "GRT-EPX-1G",
+          "source_quote": "GRT-EPX-1G",
+          "bbox": {
+            "page": 1,
+            "x0": 100.0,
+            "y0": 208.0,
+            "x1": 161.0,
+            "y1": 218.0
+          },
+          "confidence": 0.99
+        },
+        "description": {
+          "value": "Epoxy grout 1 gallon",
+          "source_quote": "Epoxy grout 1 gallon",
+          "bbox": null,
+          "confidence": 1.0
+        },
+        "quantity": {
+          "value": "6",
+          "source_quote": "6",
+          "bbox": {
+            "page": 1,
+            "x0": 413.0,
+            "y0": 208.0,
+            "x1": 419.0,
+            "y1": 218.0
+          },
+          "confidence": 0.99
+        },
+        "unit_price": {
+          "value": "$58.00",
+          "source_quote": "$58.00",
+          "bbox": {
+            "page": 1,
+            "x0": 446.0,
+            "y0": 208.0,
+            "x1": 476.0,
+            "y1": 218.0
+          },
+          "confidence": 0.99
+        },
+        "extended_price": {
+          "value": "$348.00",
+          "source_quote": "$348.00",
+          "bbox": {
+            "page": 1,
+            "x0": 512.0,
+            "y0": 208.0,
+            "x1": 548.0,
+            "y1": 218.0
+          },
+          "confidence": 0.99
+        },
+        "uom": null
+      }
+    ],
+    "totals": {
+      "subtotal": {
+        "value": "$2,815.50",
+        "source_quote": "$2,815.50",
+        "bbox": {
+          "page": 1,
+          "x0": 512.0,
+          "y0": 236.0,
+          "x1": 557.0,
+          "y1": 246.0
+        },
+        "confidence": 0.99
+      },
+      "tax": {
+        "value": "$175.97",
+        "source_quote": "$175.97",
+        "bbox": {
+          "page": 1,
+          "x0": 521.0,
+          "y0": 254.0,
+          "x1": 557.0,
+          "y1": 264.0
+        },
+        "confidence": 0.99
+      },
+      "shipping": {
+        "value": "$175.00",
+        "source_quote": "$175.00",
+        "bbox": {
+          "page": 1,
+          "x0": 521.0,
+          "y0": 272.0,
+          "x1": 557.0,
+          "y1": 282.0
+        },
+        "confidence": 0.99
+      },
+      "total": {
+        "value": "$3,166.47",
+        "source_quote": "$3,166.47",
+        "bbox": {
+          "page": 1,
+          "x0": 512.0,
+          "y0": 290.0,
+          "x1": 557.0,
+          "y1": 300.0
+        },
+        "confidence": 0.99
+      }
+    },
+    "notes": null
+  },
+  "grounding": {
+    "header.po_number": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "header.po_date": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "header.buyer_name": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "header.ship_to": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "header.payment_terms": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[0].customer_sku": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[0].description": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[0].quantity": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[0].unit_price": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[0].extended_price": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[1].customer_sku": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[1].description": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[1].quantity": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[1].unit_price": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[1].extended_price": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[2].customer_sku": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[2].description": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[2].quantity": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[2].unit_price": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "lines[2].extended_price": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "totals.subtotal": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "totals.tax": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "totals.shipping": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    },
+    "totals.total": {
+      "passed": true,
+      "severity": "info",
+      "reason": "grounded"
+    }
+  },
+  "report": {
+    "job_id": "96473fe7989c",
+    "document_recognized": true,
+    "grounded_field_ratio": 1.0,
+    "checks": [
+      {
+        "name": "line_math",
+        "passed": true,
+        "severity": "info",
+        "detail": "3 lines reconcile",
+        "expected": null,
+        "actual": null
+      },
+      {
+        "name": "subtotal_eq_sum_of_lines",
+        "passed": true,
+        "severity": "error",
+        "detail": "sum(lines)=2815.50  subtotal=2815.50  diff_cents=0",
+        "expected": "2815.50",
+        "actual": "2815.50"
+      },
+      {
+        "name": "total_eq_subtotal_plus_tax_plus_shipping",
+        "passed": true,
+        "severity": "error",
+        "detail": "subtotal+tax+shipping=3166.47  total=3166.47  diff_cents=0",
+        "expected": "3166.47",
+        "actual": "3166.47"
+      },
+      {
+        "name": "po_date_sane",
+        "passed": true,
+        "severity": "info",
+        "detail": "2026-05-18",
+        "expected": null,
+        "actual": null
+      },
+      {
+        "name": "po_number_shape",
+        "passed": true,
+        "severity": "info",
+        "detail": "PO-87421",
+        "expected": null,
+        "actual": null
+      },
+      {
+        "name": "line.1.sku_known",
+        "passed": true,
+        "severity": "info",
+        "detail": "FLR-OAK-7X48",
+        "expected": null,
+        "actual": null
+      },
+      {
+        "name": "line.2.sku_known",
+        "passed": true,
+        "severity": "info",
+        "detail": "TLE-MAR-12X24",
+        "expected": null,
+        "actual": null
+      },
+      {
+        "name": "line.3.sku_known",
+        "passed": true,
+        "severity": "info",
+        "detail": "GRT-EPX-1G",
+        "expected": null,
+        "actual": null
+      },
+      {
+        "name": "line.1.price_within_tolerance",
+        "passed": true,
+        "severity": "info",
+        "detail": "po=4.75  list=4.75  diff=0.00%",
+        "expected": "4.75",
+        "actual": "4.75"
+      },
+      {
+        "name": "line.2.price_within_tolerance",
+        "passed": true,
+        "severity": "info",
+        "detail": "po=3.20  list=3.20  diff=0.00%",
+        "expected": "3.20",
+        "actual": "3.20"
+      },
+      {
+        "name": "line.3.price_within_tolerance",
+        "passed": true,
+        "severity": "info",
+        "detail": "po=58.00  list=58.00  diff=0.00%",
+        "expected": "58.00",
+        "actual": "58.00"
+      }
+    ],
+    "field_confidences": {
+      "header.po_number": 1.0,
+      "header.po_date": 1.0,
+      "header.buyer_name": 1.0,
+      "header.ship_to": 1.0,
+      "header.payment_terms": 1.0,
+      "lines[0].customer_sku": 1.0,
+      "lines[0].description": 1.0,
+      "lines[0].quantity": 1.0,
+      "lines[0].unit_price": 1.0,
+      "lines[0].extended_price": 1.0,
+      "lines[1].customer_sku": 1.0,
+      "lines[1].description": 1.0,
+      "lines[1].quantity": 1.0,
+      "lines[1].unit_price": 1.0,
+      "lines[1].extended_price": 1.0,
+      "lines[2].customer_sku": 1.0,
+      "lines[2].description": 1.0,
+      "lines[2].quantity": 1.0,
+      "lines[2].unit_price": 1.0,
+      "lines[2].extended_price": 1.0,
+      "totals.subtotal": 1.0,
+      "totals.tax": 1.0,
+      "totals.shipping": 1.0,
+      "totals.total": 1.0
+    },
+    "overall_confidence": 1.0,
+    "consistency_diffs": []
+  },
+  "sales_order": {
+    "so_number": "SO-20260521-FD2015",
+    "po_number": "PO-87421",
+    "po_date": "2026-05-18",
+    "customer": "Acme Construction LLC",
+    "lines": [
+      {
+        "line_no": 1,
+        "customer_sku": "FLR-OAK-7X48",
+        "internal_sku": "OAK-007",
+        "internal_description": "Oak engineered plank 7x48",
+        "quantity": 250.0,
+        "unit_price": 4.75,
+        "extended_price": 1187.5,
+        "sku_match_method": "exact",
+        "sku_match_score": 100.0,
+        "price_variance_pct": 0.0,
+        "price_source": "po",
+        "flags": []
+      },
+      {
+        "line_no": 2,
+        "customer_sku": "TLE-MAR-12X24",
+        "internal_sku": "MAR-1224",
+        "internal_description": "Marble look porcelain 12x24",
+        "quantity": 400.0,
+        "unit_price": 3.2,
+        "extended_price": 1280.0,
+        "sku_match_method": "exact",
+        "sku_match_score": 100.0,
+        "price_variance_pct": 0.0,
+        "price_source": "po",
+        "flags": []
+      },
+      {
+        "line_no": 3,
+        "customer_sku": "GRT-EPX-1G",
+        "internal_sku": "EPX-1G",
+        "internal_description": "Epoxy grout 1 gallon",
+        "quantity": 6.0,
+        "unit_price": 58.0,
+        "extended_price": 348.0,
+        "sku_match_method": "exact",
+        "sku_match_score": 100.0,
+        "price_variance_pct": 0.0,
+        "price_source": "po",
+        "flags": []
+      }
+    ],
+    "subtotal": 2815.5,
+    "tax": 175.97,
+    "shipping": 175.0,
+    "total": 3166.47,
+    "confidence": 1.0,
+    "requires_human_review": false,
+    "review_reasons": []
+  }
+}
