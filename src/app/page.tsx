@@ -1,60 +1,155 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div style={{ position: 'relative', minHeight: '100vh' }}>
-      <div className="container" style={{ paddingTop: '4rem', paddingBottom: '4rem', position: 'relative', zIndex: 1 }}>
-        
-        {/* Hero Section */}
-        <section style={{ textAlign: 'center', marginBottom: '8rem' }}>
-          <h1 className="glow-text text-gradient" style={{ fontSize: '4rem', marginBottom: '1rem', lineHeight: 1.1 }}>
-            True Agentic AI.<br />Beyond the Chatbot.
-          </h1>
-          <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', maxWidth: '600px', margin: '0 auto 2rem' }}>
-            Welcome to Clea Solutions. We believe in building robust, fine-tuned, and highly trained AI systems that solve real enterprise problems.
-          </p>
-          <Link href="/work" style={{ display: 'inline-block', padding: '1rem 2rem', backgroundColor: 'var(--accent-green)', color: '#000', fontWeight: 'bold', borderRadius: '8px', boxShadow: '0 0 15px var(--accent-green-glow)' }}>
-            See Our Work
-          </Link>
-        </section>
-
-        {/* Vision Section */}
-        <section className="glass-panel glass-panel-content" style={{ marginTop: '2rem' }}>
-          <h2 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '3rem', textAlign: 'center' }}>Our Philosophy</h2>
-          
-          <div className="responsive-grid">
-            
-            <div>
-              <h3 style={{ fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ color: 'var(--accent-green)' }}>01 //</span> Generic Bots Fail
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                The era of wrapping a generic LLM API and calling it an "agent" is over. Off-the-shelf chatbots are unpredictable, hallucinate, and cannot be trusted with critical business logic. True solutions require deeper integration.
-              </p>
+    <>
+      {/* Hero */}
+      <section className="section">
+        <div className="container">
+          <div style={{ maxWidth: "780px" }}>
+            <div className="eyebrow" style={{ marginBottom: "2rem" }}>
+              (01) — Clea Solutions
             </div>
-
-            <div>
-              <h3 style={{ fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ color: 'var(--accent-green)' }}>02 //</span> Fine-Tuning is Key
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                At Clea Solutions, we believe that specialized training and fine-tuning are the only paths to success. We build models that understand your specific domain, ensuring high accuracy, reliability, and security.
-              </p>
+            <h1
+              className="display"
+              style={{
+                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                marginBottom: "1.75rem",
+              }}
+            >
+              Agentic systems that can be trusted with the work.
+            </h1>
+            <p
+              style={{
+                fontSize: "1.15rem",
+                lineHeight: 1.6,
+                color: "var(--ink-muted)",
+                maxWidth: "620px",
+                marginBottom: "2.5rem",
+              }}
+            >
+              We build grounded, fine-tuned agents for the parts of a business where wrong answers cost
+              real money. Domain-specific. Auditable. Production-grade.
+            </p>
+            <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+              <Link href="/work" className="btn btn-primary">
+                See the work
+                <span aria-hidden>→</span>
+              </Link>
+              <Link href="/contact" className="btn btn-ghost">
+                Start a conversation
+              </Link>
             </div>
-
-            <div>
-              <h3 style={{ fontSize: '1.5rem', color: 'var(--text-primary)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <span style={{ color: 'var(--accent-green)' }}>03 //</span> Agentic Workflows
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7 }}>
-                An AI shouldn't just talk—it should act. We engineer autonomous agentic workflows that can make decisions, use tools, and execute complex, multi-step tasks across your existing infrastructure securely.
-              </p>
-            </div>
-
           </div>
-        </section>
+        </div>
+      </section>
 
+      <hr className="rule" />
+
+      {/* Principles */}
+      <section className="section">
+        <div className="container">
+          <div className="eyebrow" style={{ marginBottom: "1rem" }}>
+            (02) — How we think
+          </div>
+          <h2
+            className="display"
+            style={{
+              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+              maxWidth: "640px",
+              marginBottom: "4rem",
+            }}
+          >
+            Three things we believe make the difference between a demo and a system you can{" "}
+            <em style={{ fontStyle: "italic" }}>actually deploy.</em>
+          </h2>
+
+          <div className="grid-3">
+            <Principle
+              num="01"
+              title="Generic chatbots fail in production"
+              body="Wrapping an LLM API and calling it an agent has a ceiling. Off-the-shelf models are unpredictable, hallucinate quietly, and can't be trusted with critical workflows. The interesting work starts where the wrapper ends."
+            />
+            <Principle
+              num="02"
+              title="Fine-tuning and grounding are the work"
+              body="We train models on your domain, ground every output in source evidence, and require two independent passes to agree before a value is accepted. Accuracy isn't an aspiration — it's an invariant."
+            />
+            <Principle
+              num="03"
+              title="An agent should act, not chat"
+              body="Real value comes from autonomous workflows that decide, use tools, and execute multi-step tasks across your existing systems — safely, observably, with clean handoffs back to a human when it matters."
+            />
+          </div>
+        </div>
+      </section>
+
+      <hr className="rule" />
+
+      {/* Closing */}
+      <section className="section">
+        <div className="container">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "end",
+              flexWrap: "wrap",
+              gap: "2rem",
+            }}
+          >
+            <div style={{ maxWidth: "560px" }}>
+              <div className="eyebrow" style={{ marginBottom: "1rem" }}>
+                (03) — In practice
+              </div>
+              <p
+                className="display"
+                style={{
+                  fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
+                  lineHeight: 1.3,
+                }}
+              >
+                Every project ships with audit bundles, source-grounded outputs, and the honest
+                answer when the system isn't sure.
+              </p>
+            </div>
+            <Link href="/work" className="btn-link">
+              Browse projects
+              <span aria-hidden>→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+}
+
+function Principle({ num, title, body }: { num: string; title: string; body: string }) {
+  return (
+    <div>
+      <div
+        className="mono"
+        style={{
+          fontSize: "0.75rem",
+          color: "var(--ink-faint)",
+          marginBottom: "1rem",
+          letterSpacing: "0.1em",
+        }}
+      >
+        {num}
       </div>
+      <h3
+        style={{
+          fontSize: "1.2rem",
+          fontWeight: 500,
+          marginBottom: "0.85rem",
+          letterSpacing: "-0.01em",
+          color: "var(--ink)",
+        }}
+      >
+        {title}
+      </h3>
+      <p style={{ color: "var(--ink-muted)", fontSize: "0.95rem", lineHeight: 1.65 }}>{body}</p>
     </div>
   );
 }

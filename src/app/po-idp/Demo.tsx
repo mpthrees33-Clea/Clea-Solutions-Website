@@ -1,6 +1,6 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
+import { useState } from "react";
 
 type SamplePayload = {
   primary: {
@@ -49,13 +49,13 @@ type SamplePayload = {
 };
 
 const STAGES = [
-  { key: 'route', label: '1 · route document' },
-  { key: 'ocr', label: '2 · OCR + bboxes' },
-  { key: 'extract', label: '3 · extract (Gemini Flash)' },
-  { key: 'ground', label: '4 · verify grounding' },
-  { key: 'check', label: '5 · cross-check math + catalog' },
-  { key: 'consistency', label: '6 · second model agrees?' },
-  { key: 'so', label: '7 · build sales order' },
+  { key: "route", label: "01 · route document" },
+  { key: "ocr", label: "02 · OCR + bboxes" },
+  { key: "extract", label: "03 · extract (Gemini Flash)" },
+  { key: "ground", label: "04 · verify grounding" },
+  { key: "check", label: "05 · cross-check math + catalog" },
+  { key: "consistency", label: "06 · second model agrees?" },
+  { key: "so", label: "07 · build sales order" },
 ] as const;
 
 export default function Demo() {
@@ -68,7 +68,7 @@ export default function Demo() {
     setData(null);
     setStage(-1);
 
-    const res = await fetch('/api/po-idp/sample');
+    const res = await fetch("/api/po-idp/sample");
     const payload: SamplePayload = await res.json();
 
     for (let i = 0; i < STAGES.length; i++) {
@@ -80,99 +80,101 @@ export default function Demo() {
   }
 
   return (
-    <div className="glass-panel" style={{ padding: '2rem' }}>
-      <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem' }}>
-        <h2 className="text-gradient" style={{ fontSize: '1.6rem', margin: 0 }}>
-          Try it on a sample PO
+    <div
+      style={{
+        padding: "2.5rem",
+        background: "var(--bg-elevated)",
+        border: "1px solid var(--rule)",
+        borderRadius: "12px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          alignItems: "baseline",
+          gap: "0.75rem 1.5rem",
+          marginBottom: "2rem",
+        }}
+      >
+        <h2
+          className="display"
+          style={{ fontSize: "1.6rem", margin: 0, letterSpacing: "-0.01em" }}
+        >
+          Try it on a sample PO.
         </h2>
-        <span style={{ color: 'var(--text-secondary)', fontSize: '0.85rem' }}>
-          Real output from the running pipeline — captured on the last test run.
+        <span style={{ color: "var(--ink-muted)", fontSize: "0.9rem" }}>
+          Real output from the running pipeline.
         </span>
       </div>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center', marginBottom: '1.5rem' }}>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "0.75rem 1.25rem",
+          alignItems: "center",
+          marginBottom: "2rem",
+        }}
+      >
         <button
           onClick={run}
           disabled={running}
-          style={{
-            padding: '0.75rem 1.5rem',
-            background: 'var(--accent-green)',
-            color: '#000',
-            fontWeight: 700,
-            border: 'none',
-            borderRadius: '8px',
-            cursor: running ? 'wait' : 'pointer',
-            boxShadow: '0 0 12px var(--accent-green-glow)',
-            opacity: running ? 0.7 : 1,
-          }}
+          className="btn btn-primary"
+          style={{ opacity: running ? 0.6 : 1, cursor: running ? "wait" : "pointer" }}
         >
-          {running ? 'Running pipeline…' : data ? 'Run again' : '▶  Run the demo'}
+          {running ? "Running pipeline…" : data ? "Run again" : "Run the demo"}
+          <span aria-hidden>→</span>
         </button>
-        <a
-          href="/po-idp/sample_po.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontSize: '0.9rem', color: 'var(--accent-green)' }}
-        >
-          ↓ Sample PO PDF (input)
+        <a href="/po-idp/sample_po.pdf" target="_blank" rel="noopener noreferrer" className="btn-link" style={{ fontSize: "0.85rem" }}>
+          ↓ Sample PO (input)
         </a>
-        <a
-          href="/po-idp/sample_so.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ fontSize: '0.9rem', color: 'var(--accent-green)' }}
-        >
-          ↓ Generated SO PDF
+        <a href="/po-idp/sample_so.pdf" target="_blank" rel="noopener noreferrer" className="btn-link" style={{ fontSize: "0.85rem" }}>
+          ↓ Generated SO
         </a>
-        <a
-          href="/po-idp/sample_audit.zip"
-          style={{ fontSize: '0.9rem', color: 'var(--accent-green)' }}
-        >
-          ↓ Full audit bundle (.zip)
+        <a href="/po-idp/sample_audit.zip" className="btn-link" style={{ fontSize: "0.85rem" }}>
+          ↓ Audit bundle (.zip)
         </a>
       </div>
 
-      <div style={{ display: 'grid', gap: '0.5rem', marginBottom: '1.5rem' }}>
+      <ol style={{ listStyle: "none", display: "grid", gap: "0.35rem", margin: 0, padding: 0, marginBottom: "2rem" }}>
         {STAGES.map((s, i) => {
-          const state = stage > i ? 'done' : stage === i ? 'running' : 'pending';
+          const state = stage > i ? "done" : stage === i ? "running" : "pending";
+          const color =
+            state === "done"
+              ? "var(--ink)"
+              : state === "running"
+                ? "var(--accent)"
+                : "var(--ink-faint)";
           return (
-            <div
+            <li
               key={s.key}
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.75rem',
-                padding: '0.55rem 0.9rem',
-                borderRadius: '6px',
-                background:
-                  state === 'done'
-                    ? 'rgba(0,145,80,0.08)'
-                    : state === 'running'
-                      ? 'rgba(0,145,80,0.18)'
-                      : 'rgba(255,255,255,0.03)',
-                border:
-                  state === 'pending'
-                    ? '1px solid rgba(255,255,255,0.05)'
-                    : '1px solid rgba(0,145,80,0.3)',
-                transition: 'all 0.25s ease',
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+                padding: "0.55rem 0.85rem",
+                borderRadius: "6px",
+                background: state === "running" ? "rgba(30, 58, 138, 0.04)" : "transparent",
+                border: "1px solid",
+                borderColor:
+                  state === "pending" ? "var(--rule)" : state === "running" ? "var(--accent)" : "var(--rule)",
+                transition: "all 200ms ease",
               }}
             >
-              <span style={{ width: '14px', textAlign: 'center', color: 'var(--accent-green)' }}>
-                {state === 'done' ? '✓' : state === 'running' ? '◐' : '○'}
+              <span style={{ width: "16px", textAlign: "center", color, fontSize: "0.85rem" }}>
+                {state === "done" ? "✓" : state === "running" ? "●" : "○"}
               </span>
               <span
-                style={{
-                  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
-                  fontSize: '0.88rem',
-                  color: state === 'pending' ? 'var(--text-secondary)' : 'var(--text-primary)',
-                }}
+                className="mono"
+                style={{ fontSize: "0.82rem", color }}
               >
                 {s.label}
               </span>
-            </div>
+            </li>
           );
         })}
-      </div>
+      </ol>
 
       {data && <Results data={data} />}
     </div>
@@ -185,35 +187,37 @@ function Results({ data }: { data: SamplePayload }) {
   const confidencePct = (report.overall_confidence * 100).toFixed(1);
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "2rem", borderTop: "1px solid var(--rule)", paddingTop: "2rem" }}>
       {/* Top metrics */}
       <div
         style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
-          gap: '0.75rem',
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
+          gap: "0.5rem",
         }}
       >
-        <Stat label="document recognized" value={report.document_recognized ? 'yes' : 'no'} good={report.document_recognized} />
+        <Stat label="document recognized" value={report.document_recognized ? "yes" : "no"} good={report.document_recognized} />
         <Stat label="fields grounded" value={`${groundedPct}%`} good={report.grounded_field_ratio === 1} />
         <Stat label="overall confidence" value={`${confidencePct}%`} good={report.overall_confidence >= 0.92} />
         <Stat label="checks failed" value={String(report.checks.filter((c) => !c.passed).length)} good={report.checks.every((c) => c.passed)} />
         <Stat label="consistency diffs" value={String(report.consistency_diffs.length)} good={report.consistency_diffs.length === 0} />
         <Stat
           label="requires review"
-          value={so.requires_human_review ? 'yes' : 'no'}
+          value={so.requires_human_review ? "yes" : "no"}
           good={!so.requires_human_review}
         />
       </div>
 
-      {/* Extracted fields with source-quote pills */}
+      {/* Extracted fields */}
       <div>
-        <h3 style={{ fontSize: '1.1rem', marginBottom: '0.75rem' }}>Extracted header (with provenance)</h3>
+        <div className="eyebrow" style={{ marginBottom: "0.75rem" }}>
+          Extracted header (with provenance)
+        </div>
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '0.6rem',
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "0.5rem",
           }}
         >
           {Object.entries(primary.header || {}).map(([k, v]) =>
@@ -227,24 +231,26 @@ function Results({ data }: { data: SamplePayload }) {
 
       {/* Line items */}
       <div>
-        <h3 style={{ fontSize: '1.1rem', marginBottom: '0.75rem' }}>Mapped sales-order lines</h3>
+        <div className="eyebrow" style={{ marginBottom: "0.75rem" }}>
+          Mapped sales-order lines
+        </div>
         <div
           style={{
-            overflowX: 'auto',
-            border: '1px solid rgba(255,255,255,0.08)',
-            borderRadius: '8px',
+            overflowX: "auto",
+            border: "1px solid var(--rule)",
+            borderRadius: "8px",
           }}
         >
           <table
             style={{
-              width: '100%',
-              borderCollapse: 'collapse',
-              fontSize: '0.85rem',
-              minWidth: '720px',
+              width: "100%",
+              borderCollapse: "collapse",
+              fontSize: "0.85rem",
+              minWidth: "720px",
             }}
           >
             <thead>
-              <tr style={{ background: 'rgba(0,145,80,0.15)' }}>
+              <tr style={{ background: "var(--bg)" }}>
                 <Th>#</Th>
                 <Th>Customer SKU</Th>
                 <Th>Internal SKU</Th>
@@ -257,26 +263,27 @@ function Results({ data }: { data: SamplePayload }) {
             </thead>
             <tbody>
               {so.lines.map((l) => (
-                <tr key={l.line_no} style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                <tr key={l.line_no} style={{ borderTop: "1px solid var(--rule)" }}>
                   <Td>{l.line_no}</Td>
                   <Td mono>{l.customer_sku}</Td>
-                  <Td mono>{l.internal_sku ?? '—'}</Td>
+                  <Td mono>{l.internal_sku ?? "—"}</Td>
                   <Td>{l.internal_description}</Td>
                   <Td align="right">{l.quantity}</Td>
                   <Td align="right">${l.unit_price.toFixed(2)}</Td>
                   <Td align="right">${l.extended_price.toFixed(2)}</Td>
                   <Td>
                     <span
+                      className="mono"
                       style={{
-                        fontSize: '0.7rem',
-                        padding: '0.15rem 0.5rem',
-                        borderRadius: '999px',
-                        background:
-                          l.sku_match_method === 'exact'
-                            ? 'rgba(0,145,80,0.2)'
-                            : 'rgba(255,200,0,0.2)',
+                        fontSize: "0.68rem",
+                        padding: "0.15rem 0.5rem",
+                        borderRadius: "999px",
+                        border: "1px solid var(--rule-strong)",
                         color:
-                          l.sku_match_method === 'exact' ? 'var(--accent-green)' : '#ffc800',
+                          l.sku_match_method === "exact" ? "var(--ink)" : "var(--ink-muted)",
+                        background: l.sku_match_method === "exact" ? "var(--bg)" : "transparent",
+                        letterSpacing: "0.04em",
+                        textTransform: "uppercase",
                       }}
                     >
                       {l.sku_match_method}
@@ -284,7 +291,7 @@ function Results({ data }: { data: SamplePayload }) {
                   </Td>
                 </tr>
               ))}
-              <tr style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
+              <tr style={{ borderTop: "1px solid var(--rule-strong)" }}>
                 <Td colSpan={6} align="right">Subtotal</Td>
                 <Td align="right">${so.subtotal.toFixed(2)}</Td>
                 <Td />
@@ -299,7 +306,7 @@ function Results({ data }: { data: SamplePayload }) {
                 <Td align="right">${so.shipping.toFixed(2)}</Td>
                 <Td />
               </tr>
-              <tr style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
+              <tr style={{ borderTop: "1px solid var(--rule-strong)" }}>
                 <Td colSpan={6} align="right"><strong>Total</strong></Td>
                 <Td align="right"><strong>${so.total.toFixed(2)}</strong></Td>
                 <Td />
@@ -311,33 +318,36 @@ function Results({ data }: { data: SamplePayload }) {
 
       {/* Checks */}
       <div>
-        <h3 style={{ fontSize: '1.1rem', marginBottom: '0.75rem' }}>Validation checks ({report.checks.length})</h3>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
+        <div className="eyebrow" style={{ marginBottom: "0.75rem" }}>
+          Validation checks ({report.checks.length})
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
           {report.checks.map((c, i) => (
             <div
               key={i}
+              className="mono"
               style={{
-                display: 'flex',
-                gap: '0.6rem',
-                alignItems: 'baseline',
-                fontSize: '0.82rem',
-                fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
-                padding: '0.35rem 0.6rem',
-                borderRadius: '4px',
-                background: c.passed ? 'rgba(0,145,80,0.06)' : 'rgba(220,60,60,0.1)',
+                display: "flex",
+                gap: "0.6rem",
+                alignItems: "baseline",
+                fontSize: "0.8rem",
+                padding: "0.4rem 0.7rem",
+                borderRadius: "4px",
+                background: c.passed ? "transparent" : "rgba(220, 60, 60, 0.06)",
+                border: c.passed ? "1px solid var(--rule)" : "1px solid rgba(220, 60, 60, 0.25)",
               }}
             >
               <span
                 style={{
-                  color: c.passed ? 'var(--accent-green)' : '#ff6b6b',
+                  color: c.passed ? "var(--ink)" : "#B91C1C",
                   fontWeight: 700,
-                  minWidth: '20px',
+                  minWidth: "20px",
                 }}
               >
-                {c.passed ? '✓' : '✗'}
+                {c.passed ? "✓" : "✗"}
               </span>
-              <span style={{ color: 'var(--text-primary)' }}>{c.name}</span>
-              <span style={{ color: 'var(--text-secondary)' }}>{c.detail}</span>
+              <span style={{ color: "var(--ink)" }}>{c.name}</span>
+              <span style={{ color: "var(--ink-muted)" }}>{c.detail}</span>
             </div>
           ))}
         </div>
@@ -350,21 +360,26 @@ function Stat({ label, value, good }: { label: string; value: string; good: bool
   return (
     <div
       style={{
-        padding: '0.85rem 1rem',
-        borderRadius: '8px',
-        background: good ? 'rgba(0,145,80,0.1)' : 'rgba(255,180,0,0.1)',
-        border: `1px solid ${good ? 'rgba(0,145,80,0.3)' : 'rgba(255,180,0,0.3)'}`,
+        padding: "0.85rem 1rem",
+        borderRadius: "8px",
+        background: "var(--bg)",
+        border: "1px solid var(--rule)",
       }}
     >
-      <div style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--text-secondary)' }}>
+      <div
+        className="mono"
+        style={{ fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "var(--ink-muted)" }}
+      >
         {label}
       </div>
       <div
         style={{
-          fontSize: '1.4rem',
-          fontWeight: 700,
-          marginTop: '0.2rem',
-          color: good ? 'var(--accent-green)' : '#ffc800',
+          fontFamily: "var(--font-serif), serif",
+          fontSize: "1.5rem",
+          fontWeight: 500,
+          marginTop: "0.3rem",
+          letterSpacing: "-0.01em",
+          color: good ? "var(--ink)" : "#B45309",
         }}
       >
         {value}
@@ -377,24 +392,24 @@ function FieldRow({ field, value, quote }: { field: string; value: string; quote
   return (
     <div
       style={{
-        padding: '0.6rem 0.8rem',
-        background: 'rgba(255,255,255,0.03)',
-        borderRadius: '6px',
-        border: '1px solid rgba(255,255,255,0.05)',
+        padding: "0.7rem 0.9rem",
+        background: "var(--bg)",
+        borderRadius: "6px",
+        border: "1px solid var(--rule)",
       }}
     >
-      <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+      <div
+        className="mono"
+        style={{ fontSize: "0.65rem", color: "var(--ink-muted)", textTransform: "uppercase", letterSpacing: "0.06em" }}
+      >
         {field}
       </div>
-      <div style={{ fontSize: '0.95rem', color: 'var(--text-primary)', fontWeight: 600, margin: '0.15rem 0' }}>
+      <div style={{ fontSize: "0.95rem", color: "var(--ink)", fontWeight: 500, margin: "0.2rem 0" }}>
         {value}
       </div>
       <div
-        style={{
-          fontSize: '0.72rem',
-          color: 'var(--accent-green)',
-          fontFamily: 'ui-monospace, SFMono-Regular, Menlo, monospace',
-        }}
+        className="mono"
+        style={{ fontSize: "0.72rem", color: "var(--ink-faint)" }}
         title="verbatim source quote — must substring-match OCR text"
       >
         ↳ {quote}
@@ -403,17 +418,18 @@ function FieldRow({ field, value, quote }: { field: string; value: string; quote
   );
 }
 
-function Th({ children, align = 'left' }: { children?: React.ReactNode; align?: 'left' | 'right' }) {
+function Th({ children, align = "left" }: { children?: React.ReactNode; align?: "left" | "right" }) {
   return (
     <th
+      className="mono"
       style={{
         textAlign: align,
-        padding: '0.55rem 0.75rem',
-        fontWeight: 600,
-        fontSize: '0.78rem',
-        textTransform: 'uppercase',
-        letterSpacing: '0.05em',
-        color: 'var(--text-primary)',
+        padding: "0.7rem 0.85rem",
+        fontWeight: 500,
+        fontSize: "0.7rem",
+        textTransform: "uppercase",
+        letterSpacing: "0.06em",
+        color: "var(--ink-muted)",
       }}
     >
       {children}
@@ -423,12 +439,12 @@ function Th({ children, align = 'left' }: { children?: React.ReactNode; align?: 
 
 function Td({
   children,
-  align = 'left',
+  align = "left",
   mono = false,
   colSpan,
 }: {
   children?: React.ReactNode;
-  align?: 'left' | 'right';
+  align?: "left" | "right";
   mono?: boolean;
   colSpan?: number;
 }) {
@@ -436,10 +452,10 @@ function Td({
     <td
       colSpan={colSpan}
       style={{
-        padding: '0.5rem 0.75rem',
+        padding: "0.6rem 0.85rem",
         textAlign: align,
-        fontFamily: mono ? 'ui-monospace, SFMono-Regular, Menlo, monospace' : 'inherit',
-        color: 'var(--text-primary)',
+        fontFamily: mono ? "var(--font-mono), monospace" : "inherit",
+        color: "var(--ink)",
       }}
     >
       {children}

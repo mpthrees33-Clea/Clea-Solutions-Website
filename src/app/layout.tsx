@@ -1,14 +1,32 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Inter, Newsreader, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+  style: ["normal", "italic"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Clea Solutions | Agentic AI",
-  description: "Clea Solutions - Fine-tuned Agentic AI for enterprise, not just generic chatbots.",
+  title: "Clea Solutions — Agentic AI for enterprise",
+  description:
+    "We build fine-tuned, grounded agentic systems that solve real enterprise problems. Not chatbots.",
 };
 
 export default function RootLayout({
@@ -17,11 +35,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={spaceGrotesk.className}>
-        <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', position: 'relative' }}>
-          <div className="glow-orb" style={{ top: '-100px', left: '-100px' }}></div>
-          <div className="glow-orb" style={{ bottom: '-100px', right: '-100px' }}></div>
+    <html lang="en" className={`${inter.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}>
+      <body>
+        <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
           <Navbar />
           <main style={{ flex: 1 }}>{children}</main>
           <Footer />

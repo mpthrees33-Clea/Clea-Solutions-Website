@@ -1,16 +1,58 @@
-import Link from 'next/link';
+import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <nav className="glass-panel" style={{ margin: '1rem', padding: '1rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'sticky', top: '1rem', zIndex: 100 }}>
-      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <span style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>Clea Solutions</span>
-      </Link>
-      <div style={{ display: 'flex', gap: '2rem' }}>
-        <Link href="/">Vision</Link>
-        <Link href="/work" style={{ fontWeight: '500' }}>Our Work</Link>
-        <Link href="/contact" style={{ fontWeight: '500' }}>Contact Us</Link>
+    <header
+      style={{
+        borderBottom: "1px solid var(--rule)",
+        background: "rgba(250, 250, 247, 0.85)",
+        backdropFilter: "saturate(180%) blur(6px)",
+        WebkitBackdropFilter: "saturate(180%) blur(6px)",
+        position: "sticky",
+        top: 0,
+        zIndex: 50,
+      }}
+    >
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          height: "64px",
+        }}
+      >
+        <Link
+          href="/"
+          style={{
+            display: "inline-flex",
+            alignItems: "baseline",
+            gap: "0.5rem",
+            fontFamily: "var(--font-serif), serif",
+            fontSize: "1.25rem",
+            fontWeight: 500,
+            letterSpacing: "-0.01em",
+            color: "var(--ink)",
+          }}
+        >
+          Clea
+          <span className="mono" style={{ fontSize: "0.7rem", color: "var(--ink-faint)", letterSpacing: "0.1em" }}>
+            /SOLUTIONS
+          </span>
+        </Link>
+
+        <nav style={{ display: "flex", gap: "2rem", alignItems: "center", fontSize: "0.9rem" }}>
+          <Link href="/" style={{ color: "var(--ink-muted)" }}>
+            Approach
+          </Link>
+          <Link href="/work" style={{ color: "var(--ink-muted)" }}>
+            Work
+          </Link>
+          <Link href="/contact" className="btn btn-ghost" style={{ padding: "0.5rem 1rem", fontSize: "0.85rem" }}>
+            Contact
+          </Link>
+        </nav>
       </div>
-    </nav>
+    </header>
   );
 }

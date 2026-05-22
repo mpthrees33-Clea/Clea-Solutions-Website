@@ -9,122 +9,179 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    name: 'PO IDP — Zero-Hallucination Document Intelligence',
+    name: "PO IDP — Zero-Hallucination Document Intelligence",
     description:
-      'Enterprise IDP that turns inbound purchase-order PDFs into validated sales orders. Seven independent anti-hallucination layers: every value traces to verbatim source text, two models must agree, math reconciles to the cent.',
-    language: 'Python · FastAPI · Gemini · Ollama',
-    href: '/po-idp',
+      "Enterprise IDP that turns inbound purchase-order PDFs into validated sales orders. Seven independent anti-hallucination layers: every value traces to verbatim source text, two models must agree, math reconciles to the cent.",
+    language: "Python · FastAPI · Gemini · Ollama",
+    href: "/po-idp",
     isLiveDemo: true,
-    sourceUrl: 'https://github.com/mpthrees33-clea/po-idp',
+    sourceUrl: "https://github.com/mpthrees33-clea/po-idp",
   },
   {
-    name: 'Private Label Brochure Generator',
+    name: "Private Label Brochure Generator",
     description:
-      'AI-powered tool that scrapes factory product pages and generates Trinity-branded PDF brochures with color crossover lists in under 60 seconds. Built for flooring sales reps who need instant, professional collateral.',
-    language: 'TypeScript / Next.js',
-    href: 'https://brochures.clea-solutions.ai',
+      "AI-powered tool that scrapes factory product pages and generates Trinity-branded PDF brochures with color crossover lists in under 60 seconds. Built for flooring sales reps who need instant, professional collateral.",
+    language: "TypeScript · Next.js",
+    href: "https://brochures.clea-solutions.ai",
     isLiveDemo: true,
-    sourceUrl: 'https://github.com/mpthrees33-clea/private-label-brochure-generator',
+    sourceUrl: "https://github.com/mpthrees33-clea/private-label-brochure-generator",
   },
   {
-    name: 'Film Estimation Tool',
+    name: "Film Estimation Tool",
     description:
-      'Next-gen architectural film material estimation tool. Calculate linear footage, rolls, and costs for doors, walls, columns, and custom surfaces with smart templates and waste-factor logic.',
-    language: 'TypeScript / Next.js',
-    href: 'https://mpthrees33-clea.github.io/Architectual-film-estimation/',
+      "Architectural film material estimation. Calculate linear footage, rolls, and costs for doors, walls, columns, and custom surfaces with smart templates and waste-factor logic.",
+    language: "TypeScript · Next.js",
+    href: "https://mpthrees33-clea.github.io/Architectual-film-estimation/",
     isLiveDemo: true,
-    sourceUrl: 'https://github.com/mpthrees33-clea/Architectual-film-estimation',
+    sourceUrl: "https://github.com/mpthrees33-clea/Architectual-film-estimation",
   },
   {
-    name: 'Sales Hub',
+    name: "Sales Hub",
     description:
-      'Field-ready sales workspace for flooring distributor reps — voice-first AI assistant, multi-step sample orders, CRM kanban, and private-label price crossover lookup.',
-    language: 'TypeScript / React',
-    href: 'https://mpthrees33-clea.github.io/Sales-Hub/',
+      "Field-ready sales workspace for flooring distributor reps — voice-first AI assistant, multi-step sample orders, CRM kanban, and private-label price crossover lookup.",
+    language: "TypeScript · React",
+    href: "https://mpthrees33-clea.github.io/Sales-Hub/",
     isLiveDemo: true,
-    sourceUrl: 'https://github.com/mpthrees33-clea/Sales-Hub',
+    sourceUrl: "https://github.com/mpthrees33-clea/Sales-Hub",
   },
   {
-    name: 'Travel Country V6',
+    name: "Travel Country V6",
     description:
-      'Travel destination experience redesign. Live demo coming soon — view source on GitHub.',
-    language: 'TypeScript / React',
-    href: 'https://github.com/mpthrees33-clea/Travel-Country-V6',
+      "Travel destination experience redesign. Live demo coming soon — view source on GitHub.",
+    language: "TypeScript · React",
+    href: "https://github.com/mpthrees33-clea/Travel-Country-V6",
     isLiveDemo: false,
-    sourceUrl: 'https://github.com/mpthrees33-clea/Travel-Country-V6',
+    sourceUrl: "https://github.com/mpthrees33-clea/Travel-Country-V6",
   },
 ];
 
 export default function WorkPage() {
   return (
-    <div className="container" style={{ paddingTop: '4rem', paddingBottom: '4rem' }}>
-      <h1 className="glow-text text-gradient" style={{ fontSize: '3.5rem', marginBottom: '1rem', textAlign: 'center' }}>
-        Our Work
-      </h1>
-      <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', textAlign: 'center', marginBottom: '4rem', maxWidth: '600px', margin: '0 auto 4rem' }}>
-        A collection of open-source projects, tools, and experiments building the future of Agentic AI.
-      </p>
-
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '2rem' }}>
-        {PROJECTS.map((p) => {
-          const isInternal = p.href.startsWith('/');
-          return (
-          <a
-            key={p.name}
-            href={p.href}
-            target={isInternal ? undefined : '_blank'}
-            rel={isInternal ? undefined : 'noopener noreferrer'}
-            className="glass-panel project-card"
-            style={{ position: 'relative' }}
-          >
-            <span
+    <>
+      <section className="section">
+        <div className="container">
+          <div style={{ maxWidth: "640px", marginBottom: "5rem" }}>
+            <div className="eyebrow" style={{ marginBottom: "1.5rem" }}>
+              (00) — Selected work
+            </div>
+            <h1
+              className="display"
               style={{
-                position: 'absolute',
-                top: '1rem',
-                right: '1rem',
-                fontSize: '0.7rem',
-                fontWeight: 600,
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                padding: '0.25rem 0.6rem',
-                borderRadius: '999px',
-                background: p.isLiveDemo ? 'var(--accent-green)' : 'rgba(255,255,255,0.08)',
-                color: p.isLiveDemo ? '#000' : 'var(--text-secondary)',
-                border: p.isLiveDemo ? 'none' : '1px solid rgba(255,255,255,0.15)',
+                fontSize: "clamp(2.25rem, 5vw, 3.5rem)",
+                marginBottom: "1.5rem",
               }}
             >
-              {p.isLiveDemo ? '● Live Demo' : 'Source'}
-            </span>
-
-            <h2 style={{ fontSize: '1.5rem', color: 'var(--accent-green)', marginBottom: '0.5rem', paddingRight: '6rem' }}>
-              {p.name}
-            </h2>
-            <p style={{ color: 'var(--text-secondary)', marginBottom: '1.5rem', minHeight: '3rem', fontSize: '0.9rem' }}>
-              {p.description}
+              Things we've built.
+            </h1>
+            <p style={{ fontSize: "1.1rem", color: "var(--ink-muted)", lineHeight: 1.6 }}>
+              Production tools, research prototypes, and shipped products — each one a working
+              answer to a specific question.
             </p>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', color: 'var(--text-primary)' }}>
-              <span>{p.language}</span>
-              <span style={{ color: 'var(--text-secondary)', fontSize: '0.8rem' }}>
-                {p.isLiveDemo ? 'Open app →' : 'View on GitHub →'}
-              </span>
-            </div>
-          </a>
-          );
-        })}
-      </div>
+          </div>
 
-      <p style={{ textAlign: 'center', marginTop: '3rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-        Source code for every project is available at{' '}
-        <a
-          href="https://github.com/mpthrees33-clea"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: 'var(--accent-green)', textDecoration: 'none' }}
-        >
-          github.com/mpthrees33-clea
-        </a>
-        .
-      </p>
-    </div>
+          <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
+            {PROJECTS.map((p, i) => {
+              const isInternal = p.href.startsWith("/");
+              const num = String(i + 1).padStart(2, "0");
+              return (
+                <li
+                  key={p.name}
+                  style={{
+                    borderTop: "1px solid var(--rule)",
+                    borderBottom: i === PROJECTS.length - 1 ? "1px solid var(--rule)" : undefined,
+                  }}
+                >
+                  <a
+                    href={p.href}
+                    target={isInternal ? undefined : "_blank"}
+                    rel={isInternal ? undefined : "noopener noreferrer"}
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "60px 1fr auto",
+                      gap: "2rem",
+                      padding: "2.5rem 0",
+                      alignItems: "start",
+                      color: "var(--ink)",
+                    }}
+                    className="work-row"
+                  >
+                    <span
+                      className="mono"
+                      style={{
+                        fontSize: "0.75rem",
+                        color: "var(--ink-faint)",
+                        paddingTop: "0.4rem",
+                        letterSpacing: "0.1em",
+                      }}
+                    >
+                      {num}
+                    </span>
+
+                    <div>
+                      <h2
+                        style={{
+                          fontSize: "1.4rem",
+                          fontWeight: 500,
+                          letterSpacing: "-0.01em",
+                          marginBottom: "0.6rem",
+                          fontFamily: "var(--font-serif), serif",
+                        }}
+                      >
+                        {p.name}
+                      </h2>
+                      <p
+                        style={{
+                          color: "var(--ink-muted)",
+                          fontSize: "0.95rem",
+                          lineHeight: 1.6,
+                          marginBottom: "1rem",
+                          maxWidth: "620px",
+                        }}
+                      >
+                        {p.description}
+                      </p>
+                      <span
+                        className="mono"
+                        style={{ fontSize: "0.72rem", color: "var(--ink-faint)", letterSpacing: "0.06em" }}
+                      >
+                        {p.language.toUpperCase()}
+                      </span>
+                    </div>
+
+                    <span
+                      style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.4rem",
+                        fontSize: "0.8rem",
+                        color: "var(--ink-muted)",
+                        paddingTop: "0.4rem",
+                        whiteSpace: "nowrap",
+                      }}
+                    >
+                      {p.isLiveDemo ? "Open" : "Source"}
+                      <span aria-hidden>→</span>
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ol>
+
+          <p style={{ marginTop: "3rem", fontSize: "0.9rem", color: "var(--ink-muted)" }}>
+            All source code is open at{" "}
+            <a
+              href="https://github.com/mpthrees33-clea"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-link"
+            >
+              github.com/mpthrees33-clea
+            </a>
+            .
+          </p>
+        </div>
+      </section>
+    </>
   );
 }
