@@ -6,30 +6,38 @@ export default function Home() {
       {/* Hero */}
       <section className="section">
         <div className="container">
-          <div style={{ maxWidth: "780px" }}>
-            <div className="eyebrow" style={{ marginBottom: "2rem" }}>
+          <div style={{ maxWidth: "820px" }} className="fade-up">
+            <div className="eyebrow" style={{ marginBottom: "2rem", display: "inline-flex", alignItems: "center" }}>
+              <span className="dot-mark" />
               (01) — Clea Solutions
             </div>
             <h1
               className="display"
               style={{
-                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                fontSize: "clamp(2.5rem, 6.2vw, 4.75rem)",
                 marginBottom: "1.75rem",
               }}
             >
-              Agentic systems that can be trusted with the work.
+              Agentic systems that can be{" "}
+              <em
+                className="text-accent"
+                style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
+              >
+                trusted
+              </em>{" "}
+              with the work.
             </h1>
             <p
               style={{
-                fontSize: "1.15rem",
-                lineHeight: 1.6,
+                fontSize: "1.2rem",
+                lineHeight: 1.55,
                 color: "var(--ink-muted)",
-                maxWidth: "620px",
+                maxWidth: "640px",
                 marginBottom: "2.5rem",
               }}
             >
-              We build grounded, fine-tuned agents for the parts of a business where wrong answers cost
-              real money. Domain-specific. Auditable. Production-grade.
+              We build grounded, fine-tuned agents for the parts of a business where wrong
+              answers cost real money. Domain-specific. Auditable. Production-grade.
             </p>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
               <Link href="/work" className="btn btn-primary">
@@ -44,25 +52,80 @@ export default function Home() {
         </div>
       </section>
 
-      <hr className="rule" />
+      {/* Stats strip */}
+      <section style={{ background: "var(--bg-tint)", borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)" }}>
+        <div className="container" style={{ padding: "3.5rem 1.5rem" }}>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: "2rem",
+            }}
+            className="stats-grid"
+          >
+            <Stat figure="7" suffix="" label="anti-hallucination layers in our IDP pipeline" />
+            <Stat figure="2" suffix="" label="independent models must agree per extraction" />
+            <Stat figure="0.0001" prefix="$" label="marginal cost per processed document" />
+            <Stat figure="100" suffix="%" label="of extracted fields grounded in source text" />
+          </div>
+        </div>
+        <style>{`
+          @media (max-width: 720px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 2rem 1.5rem !important; }
+          }
+        `}</style>
+      </section>
+
+      {/* Ticker */}
+      <div className="ticker">
+        <div className="ticker-track">
+          {[...Array(2)].flatMap((_, k) =>
+            TICKER_ITEMS.map((item, i) => (
+              <span key={`${k}-${i}`} className="ticker-item" style={{ display: "inline-flex", alignItems: "center", gap: "0.6rem" }}>
+                <span className="ticker-dot">◆</span>
+                {item}
+              </span>
+            )),
+          )}
+        </div>
+      </div>
 
       {/* Principles */}
       <section className="section">
         <div className="container">
-          <div className="eyebrow" style={{ marginBottom: "1rem" }}>
-            (02) — How we think
-          </div>
-          <h2
-            className="display"
+          <div
             style={{
-              fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
-              maxWidth: "640px",
+              display: "grid",
+              gridTemplateColumns: "minmax(180px, 220px) 1fr",
+              gap: "3rem",
+              alignItems: "start",
               marginBottom: "4rem",
             }}
+            className="principles-header"
           >
-            Three things we believe make the difference between a demo and a system you can{" "}
-            <em style={{ fontStyle: "italic" }}>actually deploy.</em>
-          </h2>
+            <div>
+              <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center" }}>
+                <span className="dot-mark" />
+                (02) — Approach
+              </div>
+            </div>
+            <h2
+              className="display"
+              style={{
+                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                maxWidth: "720px",
+              }}
+            >
+              Three things that separate{" "}
+              <em
+                className="text-accent"
+                style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
+              >
+                a demo
+              </em>{" "}
+              from a system you can actually deploy.
+            </h2>
+          </div>
 
           <div className="grid-3">
             <Principle
@@ -82,6 +145,11 @@ export default function Home() {
             />
           </div>
         </div>
+        <style>{`
+          @media (max-width: 720px) {
+            .principles-header { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+          }
+        `}</style>
       </section>
 
       <hr className="rule" />
@@ -91,26 +159,34 @@ export default function Home() {
         <div className="container">
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
+              display: "grid",
+              gridTemplateColumns: "1fr auto",
+              gap: "3rem",
               alignItems: "end",
               flexWrap: "wrap",
-              gap: "2rem",
             }}
+            className="closing-grid"
           >
-            <div style={{ maxWidth: "560px" }}>
-              <div className="eyebrow" style={{ marginBottom: "1rem" }}>
+            <div style={{ maxWidth: "640px" }}>
+              <div className="eyebrow" style={{ marginBottom: "1.25rem", display: "inline-flex", alignItems: "center" }}>
+                <span className="dot-mark" />
                 (03) — In practice
               </div>
               <p
                 className="display"
                 style={{
-                  fontSize: "clamp(1.5rem, 2.5vw, 2rem)",
+                  fontSize: "clamp(1.5rem, 2.6vw, 2.1rem)",
                   lineHeight: 1.3,
                 }}
               >
-                Every project ships with audit bundles, source-grounded outputs, and the honest
-                answer when the system isn't sure.
+                Every project ships with audit bundles,{" "}
+                <em
+                  className="text-accent"
+                  style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
+                >
+                  source-grounded outputs,
+                </em>{" "}
+                and the honest answer when the system isn't sure.
               </p>
             </div>
             <Link href="/work" className="btn-link">
@@ -119,24 +195,71 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        <style>{`
+          @media (max-width: 720px) {
+            .closing-grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
       </section>
     </>
+  );
+}
+
+const TICKER_ITEMS = [
+  "GROUNDED EXTRACTION",
+  "TWO-MODEL CONSISTENCY",
+  "AUDIT BUNDLES",
+  "FINE-TUNED FOR DOMAIN",
+  "PYTHON · TYPESCRIPT · NEXT.JS",
+  "FASTAPI · GEMINI · OLLAMA",
+  "ZERO HALLUCINATION",
+];
+
+function Stat({
+  figure,
+  label,
+  prefix,
+  suffix,
+}: {
+  figure: string;
+  label: string;
+  prefix?: string;
+  suffix?: string;
+}) {
+  return (
+    <div>
+      <div className="stat-figure">
+        {prefix && <span style={{ fontSize: "0.55em", color: "var(--ink-muted)", marginRight: "0.05em" }}>{prefix}</span>}
+        <em>{figure}</em>
+        {suffix && <span style={{ fontSize: "0.55em", color: "var(--ink-muted)", marginLeft: "0.05em" }}>{suffix}</span>}
+      </div>
+      <span className="stat-label">{label}</span>
+    </div>
   );
 }
 
 function Principle({ num, title, body }: { num: string; title: string; body: string }) {
   return (
     <div>
-      <div
-        className="mono"
-        style={{
-          fontSize: "0.75rem",
-          color: "var(--ink-faint)",
-          marginBottom: "1rem",
-          letterSpacing: "0.1em",
-        }}
-      >
-        {num}
+      <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1rem" }}>
+        <span
+          style={{
+            width: "28px",
+            height: "1px",
+            background: "var(--accent)",
+            display: "inline-block",
+          }}
+        />
+        <span
+          className="mono"
+          style={{
+            fontSize: "0.72rem",
+            color: "var(--accent-deep)",
+            letterSpacing: "0.12em",
+          }}
+        >
+          {num}
+        </span>
       </div>
       <h3
         style={{
