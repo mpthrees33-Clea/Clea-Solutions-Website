@@ -9,7 +9,7 @@ export default function Home() {
           <div style={{ maxWidth: "820px" }} className="fade-up">
             <div className="eyebrow" style={{ marginBottom: "2rem", display: "inline-flex", alignItems: "center" }}>
               <span className="dot-mark" />
-              (01) — Clea Solutions
+              (01) · Clea Solutions
             </div>
             <h1
               className="display"
@@ -106,7 +106,7 @@ export default function Home() {
             <div>
               <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center" }}>
                 <span className="dot-mark" />
-                (02) — Approach
+                (02) · Approach
               </div>
             </div>
             <h2
@@ -136,12 +136,12 @@ export default function Home() {
             <Principle
               num="02"
               title="Fine-tuning and grounding are the work"
-              body="We train models on your domain, ground every output in source evidence, and require two independent passes to agree before a value is accepted. Accuracy isn't an aspiration — it's an invariant."
+              body="We train AI on your domain, ground every output in source evidence, and require two independent passes to agree before a value is accepted. Accuracy isn't an aspiration. It's an invariant."
             />
             <Principle
               num="03"
               title="An agent should act, not chat"
-              body="Real value comes from autonomous workflows that decide, use tools, and execute multi-step tasks across your existing systems — safely, observably, with clean handoffs back to a human when it matters."
+              body="Real value comes from autonomous workflows that decide, use tools, and execute multi-step tasks across your existing systems. Safely, observably, with clean handoffs back to a human when it matters."
             />
           </div>
         </div>
@@ -170,7 +170,7 @@ export default function Home() {
             <div style={{ maxWidth: "640px" }}>
               <div className="eyebrow" style={{ marginBottom: "1.25rem", display: "inline-flex", alignItems: "center" }}>
                 <span className="dot-mark" />
-                (03) — In practice
+                (03) · In practice
               </div>
               <p
                 className="display"
@@ -211,7 +211,7 @@ const TICKER_ITEMS = [
   "AUDIT BUNDLES",
   "FINE-TUNED FOR DOMAIN",
   "PYTHON · TYPESCRIPT · NEXT.JS",
-  "FASTAPI · GEMINI · OLLAMA",
+  "AGENTIC WORKFLOWS",
   "ZERO HALLUCINATION",
 ];
 

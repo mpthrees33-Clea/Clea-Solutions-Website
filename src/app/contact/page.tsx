@@ -6,7 +6,7 @@ export default function Contact() {
       <div className="container-narrow">
         <div style={{ marginBottom: "3.5rem" }}>
           <div className="eyebrow" style={{ marginBottom: "1.5rem" }}>
-            (00) — Contact
+            (00) · Contact
           </div>
           <h1
             className="display"

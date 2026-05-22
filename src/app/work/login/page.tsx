@@ -38,7 +38,7 @@ function LoginForm() {
     <section className="section">
       <div className="container-narrow" style={{ maxWidth: "420px" }}>
         <div className="eyebrow" style={{ marginBottom: "1.25rem" }}>
-          (00) — Authorized access
+          (00) · Authorized access
         </div>
         <h1
           className="display"

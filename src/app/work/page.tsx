@@ -9,10 +9,10 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    name: "PO IDP — Zero-Hallucination Document Intelligence",
+    name: "PO IDP · Zero-Hallucination Document Intelligence",
     description:
       "Enterprise IDP that turns inbound purchase-order PDFs into validated sales orders. Seven independent anti-hallucination layers: every value traces to verbatim source text, two models must agree, math reconciles to the cent.",
-    language: "Python · FastAPI · Gemini · Ollama",
+    language: "Python · FastAPI · AI",
     href: "/po-idp",
     isLiveDemo: true,
     sourceUrl: "https://github.com/mpthrees33-clea/po-idp",
@@ -38,7 +38,7 @@ const PROJECTS: Project[] = [
   {
     name: "Sales Hub",
     description:
-      "Field-ready sales workspace for flooring distributor reps — voice-first AI assistant, multi-step sample orders, CRM kanban, and private-label price crossover lookup.",
+      "Field-ready sales workspace for flooring distributor reps. Voice-first AI assistant, multi-step sample orders, CRM kanban, and private-label price crossover lookup.",
     language: "TypeScript · React",
     href: "https://mpthrees33-clea.github.io/Sales-Hub/",
     isLiveDemo: true,
@@ -47,7 +47,7 @@ const PROJECTS: Project[] = [
   {
     name: "Travel Country V6",
     description:
-      "Travel destination experience redesign. Live demo coming soon — view source on GitHub.",
+      "Travel destination experience redesign. Live demo coming soon. View source on GitHub.",
     language: "TypeScript · React",
     href: "https://github.com/mpthrees33-clea/Travel-Country-V6",
     isLiveDemo: false,
@@ -62,7 +62,7 @@ export default function WorkPage() {
         <div className="container">
           <div style={{ maxWidth: "640px", marginBottom: "5rem" }}>
             <div className="eyebrow" style={{ marginBottom: "1.5rem" }}>
-              (00) — Selected work
+              (00) · Selected work
             </div>
             <h1
               className="display"
@@ -74,7 +74,7 @@ export default function WorkPage() {
               Things we've built.
             </h1>
             <p style={{ fontSize: "1.1rem", color: "var(--ink-muted)", lineHeight: 1.6 }}>
-              Production tools, research prototypes, and shipped products — each one a working
+              Production tools, research prototypes, and shipped products. Each one a working
               answer to a specific question.
             </p>
           </div>

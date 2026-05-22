@@ -51,7 +51,7 @@ type SamplePayload = {
 const STAGES = [
   { key: "route", label: "01 · route document" },
   { key: "ocr", label: "02 · OCR + bboxes" },
-  { key: "extract", label: "03 · extract (Gemini Flash)" },
+  { key: "extract", label: "03 · extract (AI)" },
   { key: "ground", label: "04 · verify grounding" },
   { key: "check", label: "05 · cross-check math + catalog" },
   { key: "consistency", label: "06 · second model agrees?" },
@@ -266,7 +266,7 @@ function Results({ data }: { data: SamplePayload }) {
                 <tr key={l.line_no} style={{ borderTop: "1px solid var(--rule)" }}>
                   <Td>{l.line_no}</Td>
                   <Td mono>{l.customer_sku}</Td>
-                  <Td mono>{l.internal_sku ?? "—"}</Td>
+                  <Td mono>{l.internal_sku ?? "·"}</Td>
                   <Td>{l.internal_description}</Td>
                   <Td align="right">{l.quantity}</Td>
                   <Td align="right">${l.unit_price.toFixed(2)}</Td>
@@ -410,7 +410,7 @@ function FieldRow({ field, value, quote }: { field: string; value: string; quote
       <div
         className="mono"
         style={{ fontSize: "0.72rem", color: "var(--ink-faint)" }}
-        title="verbatim source quote — must substring-match OCR text"
+        title="verbatim source quote, must substring-match OCR text"
       >
         ↳ {quote}
       </div>

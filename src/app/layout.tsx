@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Clea Solutions — Agentic AI for enterprise",
+  title: "Clea Solutions · Agentic AI for enterprise",
   description:
     "We build fine-tuned, grounded agentic systems that solve real enterprise problems. Not chatbots.",
 };
