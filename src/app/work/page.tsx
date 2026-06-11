@@ -31,7 +31,7 @@ const PROJECTS: Project[] = [
     description:
       "Architectural film material estimation. Calculate linear footage, rolls, and costs for doors, walls, columns, and custom surfaces with smart templates and waste-factor logic.",
     language: "TypeScript · Next.js",
-    href: "https://mpthrees33-clea.github.io/Architectual-film-estimation/",
+    href: "https://estimator.clea-solutions.ai",
     isLiveDemo: true,
     sourceUrl: "https://github.com/mpthrees33-clea/Architectual-film-estimation",
   },
