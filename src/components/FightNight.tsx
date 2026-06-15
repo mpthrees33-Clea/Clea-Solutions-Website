@@ -37,8 +37,8 @@ export default function FightNight({ fights }: { fights: Fight[] }) {
   return (
     <>
       <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-        {fights.map((fight) => (
-          <FightCard key={fight.bout} fight={fight} selectedIds={selectedIds} onToggle={toggle} />
+        {fights.map((fight, i) => (
+          <FightCard key={fight.bout} fight={fight} order={i + 1} total={fights.length} selectedIds={selectedIds} onToggle={toggle} />
         ))}
       </div>
 
@@ -53,10 +53,9 @@ export default function FightNight({ fights }: { fights: Fight[] }) {
           zIndex: 60,
           borderRadius: "16px",
           overflow: "hidden",
-          background: "linear-gradient(160deg, rgba(20,22,32,0.96), rgba(10,11,17,0.97))",
+          background: "linear-gradient(160deg, #141620, #0a0b11)",
           border: `1px solid ${CYAN}44`,
           boxShadow: `0 0 0 1px rgba(0,0,0,0.4), 0 24px 60px -20px rgba(0,0,0,0.9), 0 0 40px -10px ${CYAN}44`,
-          backdropFilter: "blur(10px)",
         }}
       >
         <button

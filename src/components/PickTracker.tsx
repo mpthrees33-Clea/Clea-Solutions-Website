@@ -78,7 +78,7 @@ export default function PickTracker({ fights }: { fights: Fight[] }) {
   const leader = coltonScore === joshScore ? null : coltonScore > joshScore ? "colton" : "josh";
 
   return (
-    <div className="ufc-card" style={{ position: "relative", zIndex: 2, borderRadius: "20px", padding: "1.5rem", background: "linear-gradient(160deg, rgba(28,30,40,0.92), rgba(13,14,20,0.92))", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 70px -34px rgba(0,0,0,0.95)", overflow: "hidden", backdropFilter: "blur(6px)" }}>
+    <div className="ufc-card" style={{ position: "relative", zIndex: 2, borderRadius: "20px", padding: "1.5rem", background: "linear-gradient(160deg, #1b1d27, #0d0e14)", border: "1px solid rgba(255,255,255,0.1)", boxShadow: "0 30px 70px -34px rgba(0,0,0,0.95)", overflow: "hidden" }}>
       <div style={{ position: "absolute", top: "-50%", left: "-10%", width: "50%", height: "140%", background: `radial-gradient(circle, ${COLTON}22, transparent 70%)`, pointerEvents: "none" }} />
       <div style={{ position: "absolute", top: "-50%", right: "-10%", width: "50%", height: "140%", background: `radial-gradient(circle, ${JOSH}22, transparent 70%)`, pointerEvents: "none" }} />
 

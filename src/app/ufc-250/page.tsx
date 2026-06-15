@@ -73,51 +73,55 @@ const FIGHTS: Fight[] = [
 ];
 
 export default function UFC250Page() {
+  // FIGHTS is authored main-event-first; show it in the order the fights actually
+  // happen — opener at top, main event at the bottom.
+  const fightOrder = FIGHTS.slice().reverse();
+
   return (
-    <main className="ufc-root" style={{ position: "relative", minHeight: "100vh", background: "#06070b", overflow: "hidden" }}>
-      {/* ── futuristic animated background layers ── */}
+    <main className="ufc-root" style={{ position: "relative", minHeight: "100vh", background: "#06070b" }}>
+      {/* ── futuristic background (single fixed, GPU-composited layer) ── */}
+      <div className="ufc-bg" aria-hidden />
       <div className="ufc-bg-grid" aria-hidden />
-      <div className="ufc-bg-blob ufc-blob-a" aria-hidden />
-      <div className="ufc-bg-blob ufc-blob-b" aria-hidden />
-      <div className="ufc-bg-blob ufc-blob-c" aria-hidden />
-      <div className="ufc-scanline" aria-hidden />
 
       <style
         dangerouslySetInnerHTML={{
           __html: `
             .ufc-root { color: #fff; }
+            /* Background is a single fixed, GPU-composited layer so it never repaints on scroll */
+            .ufc-bg {
+              position: fixed; inset: 0; z-index: 0; pointer-events: none;
+              transform: translateZ(0); will-change: transform;
+              background:
+                radial-gradient(420px 420px at 8% 2%, rgba(255,46,91,0.30), transparent 60%),
+                radial-gradient(460px 460px at 96% 22%, rgba(47,123,255,0.28), transparent 60%),
+                radial-gradient(520px 520px at 40% 104%, rgba(155,92,255,0.26), transparent 60%),
+                linear-gradient(180deg, #07080d 0%, #06070b 100%);
+            }
             .ufc-bg-grid {
-              position: fixed; inset: -2px; z-index: 0; pointer-events: none;
+              position: fixed; inset: 0; z-index: 0; pointer-events: none;
+              transform: translateZ(0);
               background-image:
-                linear-gradient(rgba(120,160,255,0.06) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(120,160,255,0.06) 1px, transparent 1px);
+                linear-gradient(rgba(120,160,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(120,160,255,0.05) 1px, transparent 1px);
               background-size: 46px 46px;
               mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 80%);
               -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 80%);
-              animation: ufcGridPan 24s linear infinite;
             }
-            .ufc-bg-blob { position: fixed; z-index: 0; pointer-events: none; border-radius: 50%; filter: blur(90px); opacity: 0.55; }
-            .ufc-blob-a { top: -160px; left: -120px; width: 520px; height: 520px; background: radial-gradient(circle, #ff2e5b, transparent 65%); animation: ufcFloat1 16s ease-in-out infinite; }
-            .ufc-blob-b { top: 10%; right: -160px; width: 560px; height: 560px; background: radial-gradient(circle, #2f7bff, transparent 65%); animation: ufcFloat2 19s ease-in-out infinite; }
-            .ufc-blob-c { bottom: -200px; left: 30%; width: 600px; height: 600px; background: radial-gradient(circle, #9b5cff, transparent 65%); animation: ufcFloat3 22s ease-in-out infinite; }
-            .ufc-scanline { position: fixed; inset: 0; z-index: 1; pointer-events: none; background: repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 2px, transparent 4px); mix-blend-mode: overlay; }
             .ufc-card, .ufc-fade, .ufc-slip { position: relative; z-index: 2; }
-            .ufc-card { transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease; }
-            .ufc-card:hover { transform: translateY(-4px); border-color: rgba(34,224,208,0.4); box-shadow: 0 30px 70px -28px rgba(0,0,0,0.95), 0 0 50px -18px rgba(34,224,208,0.5); }
-            .ufc-pick:hover, .ufc-tape-btn:hover { filter: brightness(1.18); }
-            .ufc-fade { animation: ufcFade 320ms ease both; }
+            .ufc-card { transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease; }
+            @media (hover: hover) {
+              .ufc-card:hover { transform: translateY(-3px); border-color: rgba(34,224,208,0.4); box-shadow: 0 24px 50px -28px rgba(0,0,0,0.9), 0 0 40px -20px rgba(34,224,208,0.45); }
+              .ufc-pick:hover, .ufc-tape-btn:hover { filter: brightness(1.18); }
+            }
+            .ufc-fade { animation: ufcFade 240ms ease both; }
             @keyframes ufcFade { from { opacity: 0; transform: translateY(-6px);} to { opacity: 1; transform: translateY(0);} }
-            @keyframes ufcGridPan { from { background-position: 0 0, 0 0; } to { background-position: 46px 46px, 46px 46px; } }
             @keyframes ufcGlow { 0%,100%{opacity:0.5;} 50%{opacity:1;} }
-            @keyframes ufcFloat1 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(40px,30px);} }
-            @keyframes ufcFloat2 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(-50px,40px);} }
-            @keyframes ufcFloat3 { 0%,100%{transform:translate(0,0);} 50%{transform:translate(30px,-40px);} }
             @media (max-width: 640px) {
               .ufc-fighters { grid-template-columns: 1fr 1fr !important; }
               .ufc-fighters > div:nth-child(2) { display: none !important; }
             }
             @media (prefers-reduced-motion: reduce) {
-              .ufc-bg-grid, .ufc-bg-blob { animation: none !important; }
+              .ufc-bg, .ufc-bg-grid { animation: none !important; }
             }
           `,
         }}
@@ -186,10 +190,10 @@ export default function UFC250Page() {
 
       {/* ── FIGHTS + interactive bet slip ── */}
       <section className="container" style={{ position: "relative", zIndex: 2, paddingBottom: "5rem" }}>
-        <FightNight fights={FIGHTS} />
+        <FightNight fights={fightOrder} />
 
         <div style={{ marginTop: "2rem" }}>
-          <PickTracker fights={FIGHTS} />
+          <PickTracker fights={fightOrder} />
         </div>
 
         <p className="mono" style={{ marginTop: "2.5rem", fontSize: "0.66rem", lineHeight: 1.7, color: "rgba(255,255,255,0.38)", textAlign: "center", letterSpacing: "0.03em" }}>

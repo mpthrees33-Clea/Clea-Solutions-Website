@@ -54,7 +54,7 @@ function FighterPhoto({ fighter, corner, size }: { fighter: Fighter; corner: str
         <img src={fighter.photo} alt={fighter.name} onError={() => setFailed(true)} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", objectPosition: "top center" }} />
       )}
       {fighter.rank && (
-        <span className="mono" style={{ position: "absolute", top: "0.5rem", left: "0.5rem", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.05em", padding: "0.15rem 0.4rem", borderRadius: "5px", background: "rgba(0,0,0,0.55)", color: CYAN, border: `1px solid ${CYAN}55`, backdropFilter: "blur(4px)" }}>
+        <span className="mono" style={{ position: "absolute", top: "0.5rem", left: "0.5rem", fontSize: "0.6rem", fontWeight: 700, letterSpacing: "0.05em", padding: "0.15rem 0.4rem", borderRadius: "5px", background: "rgba(0,0,0,0.65)", color: CYAN, border: `1px solid ${CYAN}55` }}>
           {fighter.rank}
         </span>
       )}
@@ -144,9 +144,11 @@ function TapeRow({ label, red, blue }: { label: string; red?: string | number; b
 }
 
 export default function FightCard({
-  fight, selectedIds, onToggle,
+  fight, order, total, selectedIds, onToggle,
 }: {
   fight: Fight;
+  order?: number;
+  total?: number;
   selectedIds: Set<string>;
   onToggle: (s: Selection) => void;
 }) {
@@ -158,13 +160,18 @@ export default function FightCard({
   const blueSel = selId(fight.bout, fight.blue.name);
 
   return (
-    <div className="ufc-card" style={{ position: "relative", borderRadius: "20px", padding: "1.4rem", background: "linear-gradient(160deg, rgba(28,30,40,0.92), rgba(13,14,20,0.92))", border: "1px solid rgba(255,255,255,0.09)", boxShadow: "0 30px 70px -34px rgba(0,0,0,0.95)", overflow: "hidden", backdropFilter: "blur(6px)" }}>
+    <div className="ufc-card" style={{ position: "relative", borderRadius: "20px", padding: "1.4rem", background: "linear-gradient(160deg, #1b1d27, #0d0e14)", border: "1px solid rgba(255,255,255,0.09)", boxShadow: "0 30px 70px -34px rgba(0,0,0,0.95)", overflow: "hidden" }}>
       <div style={{ position: "absolute", top: "-45%", left: "-12%", width: "55%", height: "130%", background: `radial-gradient(circle, ${RED}26, transparent 70%)`, pointerEvents: "none" }} />
       <div style={{ position: "absolute", top: "-45%", right: "-12%", width: "55%", height: "130%", background: `radial-gradient(circle, ${BLUE}26, transparent 70%)`, pointerEvents: "none" }} />
 
       {/* header */}
       <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.2rem", gap: "0.5rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.55rem", flexWrap: "wrap" }}>
+          {order && (
+            <span className="mono" style={{ fontSize: "0.6rem", letterSpacing: "0.06em", padding: "0.3rem 0.55rem", borderRadius: "6px", background: "rgba(255,255,255,0.06)", color: CYAN, border: `1px solid ${CYAN}44`, fontWeight: 700, whiteSpace: "nowrap" }}>
+              FIGHT {order}{total ? `/${total}` : ""}
+            </span>
+          )}
           {fight.ribbon && (
             <span className="mono" style={{ fontSize: "0.6rem", letterSpacing: "0.14em", padding: "0.3rem 0.6rem", borderRadius: "6px", background: "linear-gradient(90deg, #ff3355, #ff8c00)", color: "#fff", fontWeight: 700, boxShadow: "0 0 18px rgba(255,80,80,0.5)" }}>{fight.ribbon}</span>
           )}
