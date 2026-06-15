@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import FightNight from "@/components/FightNight";
+import PickTracker from "@/components/PickTracker";
 import type { Fight } from "@/lib/odds";
 
 export const metadata: Metadata = {
@@ -186,6 +187,10 @@ export default function UFC250Page() {
       {/* ── FIGHTS + interactive bet slip ── */}
       <section className="container" style={{ position: "relative", zIndex: 2, paddingBottom: "5rem" }}>
         <FightNight fights={FIGHTS} />
+
+        <div style={{ marginTop: "2rem" }}>
+          <PickTracker fights={FIGHTS} />
+        </div>
 
         <p className="mono" style={{ marginTop: "2.5rem", fontSize: "0.66rem", lineHeight: 1.7, color: "rgba(255,255,255,0.38)", textAlign: "center", letterSpacing: "0.03em" }}>
           Odds are a fight-day snapshot and are static on this page — they will not update live during the event.<br />
