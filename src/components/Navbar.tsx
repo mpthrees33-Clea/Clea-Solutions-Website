@@ -62,6 +62,9 @@ export default function Navbar() {
           <Link href="/work" style={{ color: "var(--ink-muted)" }}>
             Work
           </Link>
+          <Link href="/ufc-250" style={{ color: "var(--ink-muted)" }}>
+            Fight Night
+          </Link>
           <Link href="/contact" className="btn btn-ghost" style={{ padding: "0.5rem 1rem", fontSize: "0.85rem" }}>
             Contact
           </Link>
