@@ -9,6 +9,15 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
+    name: "Email Voice Model · Fine-Tuned On-Prem",
+    description:
+      "Gemma 4 fine-tuned with QLoRA on years of real sent email — trained, merged, quantized, and served entirely on our own hardware. Same incoming email, two drafts: the stock model's, and one in the author's actual voice.",
+    language: "Python · QLoRA · Gemma 4 · llama.cpp",
+    href: "/email-voice",
+    isLiveDemo: false,
+    sourceUrl: "https://github.com/mpthrees33-clea/clea-solutions-website",
+  },
+  {
     name: "PO IDP · Zero-Hallucination Document Intelligence",
     description:
       "Enterprise IDP that turns inbound purchase-order PDFs into validated sales orders. Seven independent anti-hallucination layers: every value traces to verbatim source text, two models must agree, math reconciles to the cent.",

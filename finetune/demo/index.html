@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Email Voice — bot vs me</title>
+<style>
+  :root { --bg:#0e0e10; --panel:#17171a; --rule:#2a2a2e; --ink:#e8e8ea; --muted:#9a9aa2; --accent:#5dd39e; }
+  * { box-sizing:border-box; margin:0; }
+  body { background:var(--bg); color:var(--ink); font:15px/1.55 -apple-system,"Segoe UI",sans-serif; padding:2rem; max-width:1500px; margin:0 auto; }
+  h1 { font-size:1.25rem; font-weight:600; letter-spacing:-.01em; }
+  h1 small { color:var(--muted); font-weight:400; }
+  .cfg { display:flex; gap:.75rem; flex-wrap:wrap; margin:1rem 0 1.5rem; }
+  .cfg label { font-size:.72rem; letter-spacing:.08em; color:var(--muted); text-transform:uppercase; display:block; margin-bottom:.3rem; }
+  .cfg input { background:var(--panel); border:1px solid var(--rule); color:var(--ink); border-radius:6px; padding:.45rem .6rem; font-size:.85rem; width:240px; }
+  textarea { width:100%; background:var(--panel); border:1px solid var(--rule); color:var(--ink); border-radius:8px; padding:.9rem; font:inherit; resize:vertical; }
+  #incoming { min-height:160px; }
+  #system { min-height:52px; font-size:.85rem; color:var(--muted); }
+  button { background:var(--accent); color:#08281a; border:0; border-radius:8px; padding:.7rem 1.6rem; font:600 .95rem/1 inherit; cursor:pointer; margin:1rem 0 1.5rem; }
+  button:disabled { opacity:.5; cursor:wait; }
+  .row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+  .pane { background:var(--panel); border:1px solid var(--rule); border-radius:10px; padding:1.1rem; min-height:220px; }
+  .pane.tuned { border-color:var(--accent); }
+  .pane h2 { font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); margin-bottom:.75rem; display:flex; justify-content:space-between; }
+  .pane.tuned h2 { color:var(--accent); }
+  .pane pre { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; }
+  .stats { font-weight:400; text-transform:none; letter-spacing:0; }
+  @media (max-width:900px){ .row{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+  <h1>Email Voice <small>— same email, two drafts: the bot vs the fine-tune</small></h1>
+
+  <div class="cfg">
+    <div><label>Base endpoint (the bot)</label><input id="baseUrl" value="http://localhost:8080"></div>
+    <div><label>Fine-tuned endpoint (you)</label><input id="tunedUrl" value="http://localhost:8081"></div>
+  </div>
+
+  <label style="font-size:.72rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:.3rem">System prompt (same for both)</label>
+  <textarea id="system">You draft email replies as NAME, ROLE. Match their voice exactly: their greetings, sign-offs, sentence length, and level of formality. Reply only with the email body — no subject line, no explanations.</textarea>
+
+  <label style="font-size:.72rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;display:block;margin:1rem 0 .3rem">Incoming email</label>
+  <textarea id="incoming" placeholder="From: customer@example.com
+Subject: Follow-up on the quote
+
+Hi — just checking whether you had a chance to look at the numbers we sent over last week..."></textarea>
+
+  <button id="go">Draft both replies</button>
+
+  <div class="row">
+    <div class="pane"><h2>Stock model <span class="stats" id="baseStats"></span></h2><pre id="baseOut"></pre></div>
+    <div class="pane tuned"><h2>Fine-tuned on my email <span class="stats" id="tunedStats"></span></h2><pre id="tunedOut"></pre></div>
+  </div>
+
+<script>
+async function draft(endpoint, outEl, statsEl, systemPrompt, incoming) {
+  outEl.textContent = "";
+  statsEl.textContent = "…";
+  const t0 = performance.now();
+  let tokens = 0;
+  try {
+    const res = await fetch(endpoint.replace(/\/$/, "") + "/v1/chat/completions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        stream: true,
+        temperature: 0.7,
+        top_p: 0.9,
+        max_tokens: 500,
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: incoming + "\n\nDraft the reply." },
+        ],
+      }),
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status + " — is llama-server running?");
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = "";
+    for (;;) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      const lines = buf.split("\n");
+      buf = lines.pop();
+      for (const line of lines) {
+        if (!line.startsWith("data: ") || line.includes("[DONE]")) continue;
+        const delta = JSON.parse(line.slice(6)).choices?.[0]?.delta?.content;
+        if (delta) {
+          outEl.textContent += delta;
+          tokens++;
+          statsEl.textContent = (tokens / ((performance.now() - t0) / 1000)).toFixed(1) + " tok/s";
+        }
+      }
+    }
+  } catch (err) {
+    outEl.textContent = "⚠ " + err.message;
+    statsEl.textContent = "";
+  }
+}
+
+document.getElementById("go").addEventListener("click", async () => {
+  const btn = document.getElementById("go");
+  const incoming = document.getElementById("incoming").value.trim();
+  if (!incoming) return;
+  btn.disabled = true;
+  const systemPrompt = document.getElementById("system").value;
+  await Promise.all([
+    draft(document.getElementById("baseUrl").value, document.getElementById("baseOut"),
+          document.getElementById("baseStats"), systemPrompt, incoming),
+    draft(document.getElementById("tunedUrl").value, document.getElementById("tunedOut"),
+          document.getElementById("tunedStats"), systemPrompt, incoming),
+  ]);
+  btn.disabled = false;
+});
+</script>
+</body>
+</html>

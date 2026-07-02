@@ -1,0 +1,24 @@
+# QLoRA stack for Tesla P40 (Pascal, sm_61).
+#
+# TORCH PIN IS THE CRITICAL ONE: recent wheels have been dropping old GPU
+# architectures. Install, then run scripts/00_env_check.py — if the Pascal-
+# kernel check fails, step DOWN torch minor versions until it passes.
+# (Community-verified P40 baseline: torch 2.4.x–2.5.x cu121 wheels include sm_61.)
+#
+#   pip install torch --index-url https://download.pytorch.org/whl/cu121
+torch>=2.4,<2.6
+
+# Gemma 4 support landed April 2026 — these need to be current, not pinned old.
+transformers>=4.51
+trl>=0.17
+peft>=0.15
+bitsandbytes>=0.45
+datasets>=3.0
+accelerate>=1.0
+sentencepiece
+
+# Outlook .msg extraction (only needed for scripts/01)
+extract-msg
+
+# Hugging Face CLI for model downloads
+huggingface_hub[cli]
