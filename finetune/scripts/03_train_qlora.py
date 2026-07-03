@@ -21,7 +21,9 @@ from pathlib import Path
 
 PRESETS = {
     # model id, per-device batch, grad accum, seq len, epochs
-    "e4b": dict(model="google/gemma-4-e4b-it", batch=2, grad_accum=8, seq_len=2048, epochs=3),
+    # batch 1 even on the small size: fp32 activations at seq 2048 OOM a 24GB
+    # P40 at batch 2 (device_map=auto splits layers unevenly)
+    "e4b": dict(model="google/gemma-4-e4b-it", batch=1, grad_accum=16, seq_len=2048, epochs=3),
     "12b": dict(model="google/gemma-4-12b-it", batch=1, grad_accum=16, seq_len=2048, epochs=2),
     "31b": dict(model="google/gemma-4-31b-it", batch=1, grad_accum=16, seq_len=2048, epochs=2),
 }
@@ -90,8 +92,10 @@ def main():
         lora_dropout=0.05,
         bias="none",
         task_type="CAUSAL_LM",
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj",
-                        "gate_proj", "up_proj", "down_proj"],
+        # regex, not list: the vision/audio towers reuse these proj names but
+        # wrap them in Gemma4ClippableLinear, which PEFT can't adapt. Scope to
+        # everything OUTSIDE the towers (text-only fine-tune anyway).
+        target_modules=r"^(?!.*(?:vision_tower|audio_tower)).*\.(?:q_proj|k_proj|v_proj|o_proj|gate_proj|up_proj|down_proj)$",
     )
 
     sft_config = SFTConfig(
