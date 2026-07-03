@@ -40,3 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 __pycache__/
+
+# email fine-tune: raw mail data and artifacts stay local
+finetune/data/
+finetune/runs/
+finetune/reports/
+finetune/.venv/
