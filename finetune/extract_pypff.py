@@ -62,6 +62,40 @@ def body_of(msg) -> str:
         return ""
 
 
+# MAPI property ids that mirror the RFC822 threading/addressing headers.
+# Sent Items usually have no transport_headers, so these are the only source there.
+PR_INTERNET_MESSAGE_ID = 0x1035
+PR_INTERNET_REFERENCES = 0x1039
+PR_IN_REPLY_TO_ID = 0x1042
+PR_SENDER_SMTP_ADDRESS = 0x5D01
+PR_DISPLAY_TO = 0x0E04
+
+_WANTED_PROPS = {
+    PR_INTERNET_MESSAGE_ID,
+    PR_INTERNET_REFERENCES,
+    PR_IN_REPLY_TO_ID,
+    PR_SENDER_SMTP_ADDRESS,
+    PR_DISPLAY_TO,
+}
+
+
+def mapi_props(msg) -> dict:
+    out = {}
+    try:
+        rs = msg.get_record_set(0)
+        for i in range(rs.get_number_of_entries()):
+            e = rs.get_entry(i)
+            et = e.get_entry_type()
+            if et in _WANTED_PROPS:
+                try:
+                    out[et] = e.get_data_as_string() or ""
+                except Exception:
+                    pass
+    except Exception:
+        pass
+    return out
+
+
 def record(msg) -> dict | None:
     # Prefer the RFC822 transport headers (they carry the threading fields).
     hdr = None
@@ -71,6 +105,8 @@ def record(msg) -> dict | None:
             hdr = email.message_from_string(decode(raw), policy=email.policy.default)
     except Exception:
         hdr = None
+
+    props = mapi_props(msg)
 
     body = body_of(msg)
     if not body:
@@ -83,9 +119,14 @@ def record(msg) -> dict | None:
     from_ = h("From")
     if not from_:
         try:
-            from_ = decode(msg.get_sender_name())
+            name = decode(msg.get_sender_name())
         except Exception:
-            from_ = ""
+            name = ""
+        smtp = props.get(PR_SENDER_SMTP_ADDRESS, "").strip()
+        if name and smtp:
+            from_ = f"{name} <{smtp}>"
+        else:
+            from_ = name or smtp
     subject = h("Subject")
     if not subject:
         try:
@@ -100,11 +141,11 @@ def record(msg) -> dict | None:
             date = ""
 
     return {
-        "message_id": h("Message-ID").strip(),
-        "in_reply_to": h("In-Reply-To").strip(),
-        "references": h("References").strip(),
+        "message_id": (h("Message-ID") or props.get(PR_INTERNET_MESSAGE_ID, "")).strip(),
+        "in_reply_to": (h("In-Reply-To") or props.get(PR_IN_REPLY_TO_ID, "")).strip(),
+        "references": (h("References") or props.get(PR_INTERNET_REFERENCES, "")).strip(),
         "from": from_.strip(),
-        "to": h("To").strip(),
+        "to": (h("To") or props.get(PR_DISPLAY_TO, "")).strip(),
         "date": date.strip(),
         "subject": subject.strip(),
         "body": body,
