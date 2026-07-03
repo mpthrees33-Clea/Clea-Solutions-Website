@@ -28,12 +28,14 @@ from pathlib import Path
 
 # ---------------------------------------------------------------- cleaning
 
+# Outlook's HTML-to-text bodies indent quoted blocks, so every anchor must
+# tolerate leading whitespace.
 QUOTE_MARKERS = [
-    re.compile(r"^-{2,}\s*Original Message\s*-{2,}", re.I | re.M),
-    re.compile(r"^On .{5,120} wrote:\s*$", re.M),
-    re.compile(r"^From:\s.+^Sent:\s.+^To:\s.+", re.S | re.M),  # Outlook inline header block
+    re.compile(r"^[ \t]*-{2,}\s*Original Message\s*-{2,}", re.I | re.M),
+    re.compile(r"^[ \t]*On .{5,120} wrote:\s*$", re.M),
+    re.compile(r"^[ \t]*From:[ \t].{1,200}?^[ \t]*Sent:[ \t].{1,200}?^[ \t]*To:[ \t]", re.S | re.M),  # Outlook inline header block
     re.compile(r"^>{1,}\s?", re.M),  # classic quote prefixes (marker only)
-    re.compile(r"^_{10,}\s*$", re.M),  # Outlook divider
+    re.compile(r"^[ \t]*_{10,}\s*$", re.M),  # Outlook divider
 ]
 
 SIGNOFF_RE = re.compile(
@@ -42,7 +44,8 @@ SIGNOFF_RE = re.compile(
 )
 
 FOOTER_MARKERS = re.compile(
-    r"(this e-?mail .{0,80}(confidential|privileged)|unsubscribe|disclaimer:|sent from my (iphone|ipad|android|galaxy)|get outlook for)",
+    r"(this e-?mail .{0,80}(confidential|privileged)|unsubscribe|disclaimer:"
+    r"|sent from (my )?(iphone|ipad|android|galaxy)|please excuse (any )?typos|get outlook for)",
     re.I,
 )
 
@@ -62,6 +65,9 @@ def strip_quoted_history(body: str) -> str:
     return body[:cut].rstrip()
 
 
+PHONE_LINE_RE = re.compile(r"^[\s(]*\+?\d[\d\s().-]{6,}$")
+
+
 def strip_signature(body: str, name_tokens: list[str]) -> str:
     """Trim a trailing signature block: a sign-off line near the end, or a
     short trailing block starting with the author's name."""
@@ -71,12 +77,17 @@ def strip_signature(body: str, name_tokens: list[str]) -> str:
         if SIGNOFF_RE.match(lines[i]):
             # keep the sign-off itself (it's part of the voice), drop what follows
             return "\n".join(lines[: i + 1]).rstrip()
-    # fallback: trailing block that begins with the author's name
+    # fallback: trailing block that begins with the author's name; ignore the
+    # blank/phone-only lines Outlook pads signatures with
     if name_tokens:
-        for i in range(max(0, len(lines) - 6), len(lines)):
-            first = lines[i].strip().lower()
-            if first and all(t in first for t in name_tokens):
-                return "\n".join(lines[:i]).rstrip()
+        tail = [i for i in range(len(lines)) if lines[i].strip()][-10:]
+        for i in tail:
+            stripped = lines[i].strip().lower()
+            if all(t in stripped for t in name_tokens) and len(stripped) < 60:
+                rest = [lines[j].strip() for j in range(i + 1, len(lines)) if lines[j].strip()]
+                # only cut if what follows looks like signature furniture, not prose
+                if all(PHONE_LINE_RE.match(r) or len(r) < 60 for r in rest):
+                    return "\n".join(lines[:i]).rstrip()
     return body.rstrip()
 
 
@@ -85,19 +96,25 @@ def strip_footers(body: str) -> str:
     return body[: m.start()].rstrip() if m else body
 
 
+def normalize_ws(body: str) -> str:
+    """HTML-converted bodies pad lines with trailing spaces, which defeats the
+    blank-line collapse and the line-anchored markers."""
+    body = re.sub(r"[ \t]+\n", "\n", body)
+    return re.sub(r"\n{3,}", "\n\n", body)
+
+
 def clean_reply(body: str, name_tokens: list[str]) -> str:
+    body = normalize_ws(body)
     body = strip_quoted_history(body)
     body = strip_footers(body)
     body = strip_signature(body, name_tokens)
-    body = re.sub(r"\n{3,}", "\n\n", body)
-    return body.strip()
+    return normalize_ws(body).strip()
 
 
 def clean_incoming(body: str) -> str:
     """Incoming mail keeps more context but still drop footers and deep quotes."""
-    body = strip_footers(strip_quoted_history(body))
-    body = re.sub(r"\n{3,}", "\n\n", body)
-    return body.strip()[:6000]  # cap pathological threads
+    body = strip_footers(strip_quoted_history(normalize_ws(body)))
+    return normalize_ws(body).strip()[:6000]  # cap pathological threads
 
 
 # ---------------------------------------------------------------- pairing
@@ -144,7 +161,9 @@ def build_pairs(raw_path: Path, my_addresses: set[str], name_tokens: list[str]):
 
         reply = clean_reply(rec["body"], name_tokens)
         incoming = clean_incoming(parent["body"])
-        if len(reply) < 80 or len(reply.split()) < 15 or not incoming:
+        # floor tuned low: this author's voice IS short replies — only drop
+        # bare acknowledgements ("thanks!", "sounds good")
+        if len(reply) < 40 or len(reply.split()) < 6 or not incoming:
             dropped["too_short"] += 1
             continue
 
