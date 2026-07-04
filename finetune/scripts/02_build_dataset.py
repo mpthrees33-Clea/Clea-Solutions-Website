@@ -20,6 +20,7 @@ Usage:
 """
 
 import argparse
+import difflib
 import hashlib
 import json
 import random
@@ -111,8 +112,20 @@ def clean_reply(body: str, name_tokens: list[str]) -> str:
     return normalize_ws(body).strip()
 
 
+# Mail-gateway banner fragments that HTML flattening scatters through the text.
+SECURITY_BANNER_RE = re.compile(
+    r"(graymail\s*(\|\s*)?|phish\s*(\|\s*)?|report suspicious\b.{0,60}|caution\s*:\s*internal"
+    r"|external\s*\(\s*[\w.+-]+@[\w.-]+\s*\)|^[ \t]*(external|spam|more\.{3})[ \t]*$)",
+    re.I | re.M,
+)
+JUNK_LINE_RE = re.compile(r"^[\W_ �]*$", re.M)  # lines of pipes/nbsp/� furniture
+
+
 def clean_incoming(body: str) -> str:
     """Incoming mail keeps more context but still drop footers and deep quotes."""
+    body = re.sub("[\\u200b\\u200c\\u200d\\ufeff]", "", body)  # zero-width chars Outlook scatters
+    body = SECURITY_BANNER_RE.sub("", body)
+    body = "\n".join("" if JUNK_LINE_RE.fullmatch(l) else l for l in body.splitlines())
     body = strip_footers(strip_quoted_history(normalize_ws(body)))
     return normalize_ws(body).strip()[:6000]  # cap pathological threads
 
@@ -120,9 +133,69 @@ def clean_incoming(body: str) -> str:
 # ---------------------------------------------------------------- pairing
 
 
-def address_in(header: str, addresses: set[str]) -> bool:
+ADDR_RE = re.compile(r"[\w.+-]+@[\w-]+\.[\w.-]+")
+
+
+def is_mine(header: str, addresses: set[str], name_tokens: list[str]) -> bool:
+    """Sent Items extracted via MAPI fallback often carry a display name with no
+    SMTP address, so match by address when one is present, by name otherwise."""
     header = (header or "").lower()
-    return any(a in header for a in addresses)
+    addrs = ADDR_RE.findall(header)
+    if addrs:
+        return any(a in addresses for a in addrs)
+    return bool(name_tokens) and all(t in header for t in name_tokens)
+
+
+# An Outlook quoted-header block inside a reply body. HTML-to-text conversion
+# pads these lines unpredictably, so each field is matched separately within
+# the header region rather than as one strict multi-line pattern.
+QUOTED_ANCHOR_RE = re.compile(r"^[ \t]*From:[ \t]*\S.{0,200}?^[ \t]*Sent:[ \t].{0,120}?^[ \t]*To:[ \t]", re.S | re.M)
+QUOTED_FIELD_RES = {
+    "from": re.compile(r"^[ \t]*From:[ \t]*(.+)$", re.M),
+    "subject": re.compile(r"^[ \t]*Subject:[ \t]*(.+)$", re.M),
+}
+
+
+def parent_from_quoted(body: str, my_addresses: set[str], name_tokens: list[str]) -> dict | None:
+    """When the incoming email is missing from the archive, reconstruct it from
+    the quoted block the reply itself carries. Walk blocks top-down and take the
+    first one authored by someone else (skips own mail in self-reply chains)."""
+    body = normalize_ws(body)
+    anchors = list(QUOTED_ANCHOR_RE.finditer(body))
+    for i, m in enumerate(anchors):
+        block_end = anchors[i + 1].start() if i + 1 < len(anchors) else len(body)
+        block = body[m.start():block_end]
+        header_zone = block[:1200]
+        from_m = QUOTED_FIELD_RES["from"].search(header_zone)
+        if not from_m:
+            continue
+        from_ = from_m.group(1).strip()
+        if is_mine(from_, my_addresses, name_tokens):
+            continue
+        subj_m = QUOTED_FIELD_RES["subject"].search(header_zone)
+        subject = subj_m.group(1).strip() if subj_m else ""
+        # the quoted body starts after the last header line found near the top
+        hdr_end = max(
+            rx.search(header_zone).end() if rx.search(header_zone) else 0
+            for rx in (
+                QUOTED_FIELD_RES["subject"],
+                re.compile(r"^[ \t]*To:[ \t]*(.+)$", re.M),
+                re.compile(r"^[ \t]*Cc:[ \t]*(.+)$", re.M),
+            )
+        )
+        quoted_body = block[hdr_end:]
+        return {"from": from_, "subject": subject, "body": quoted_body}
+    return None
+
+
+def echoish(reply: str, incoming: str) -> bool:
+    """Guard against contaminated pairs where the 'reply' is really the quoted
+    incoming text (cleaning failure) — the model learns to parrot from these."""
+    a = re.sub(r"\s+", " ", reply.lower()).strip()
+    b = re.sub(r"\s+", " ", incoming.lower()).strip()
+    if not a or not b:
+        return False
+    return a in b or difflib.SequenceMatcher(None, a, b).ratio() > 0.85
 
 
 def build_pairs(raw_path: Path, my_addresses: set[str], name_tokens: list[str]):
@@ -135,21 +208,29 @@ def build_pairs(raw_path: Path, my_addresses: set[str], name_tokens: list[str]):
             if rec["message_id"]:
                 by_id[rec["message_id"]] = rec
 
-    pairs, dropped = [], {"no_parent": 0, "not_mine": 0, "noise": 0, "too_short": 0, "dupe": 0}
+    pairs = []
+    dropped = {"no_parent": 0, "not_mine": 0, "noise": 0, "too_short": 0, "dupe": 0, "echo": 0}
+    matched = {"direct": 0, "chain": 0, "quoted": 0}
     seen_hashes = set()
 
     for rec in records:
-        if not address_in(rec["from"], my_addresses):
+        if not is_mine(rec["from"], my_addresses, name_tokens):
             dropped["not_mine"] += 1
             continue
-        # resolve the message this reply answers
-        parent = None
-        for ref in [rec["in_reply_to"], *reversed(rec["references"].split())]:
-            ref = ref.strip()
-            if ref and ref in by_id:
-                parent = by_id[ref]
+        # resolve the message this reply answers: exact id first (in_reply_to,
+        # then references newest→oldest, skipping my own messages in the chain),
+        # then fall back to the quoted block carried inside the reply itself
+        parent, via = None, None
+        refs = [rec["in_reply_to"], *reversed(rec["references"].split())]
+        for n, ref in enumerate(r.strip() for r in refs):
+            cand = by_id.get(ref)
+            if cand and not is_mine(cand["from"], my_addresses, name_tokens):
+                parent, via = cand, ("direct" if n == 0 else "chain")
                 break
-        if parent is None or address_in(parent["from"], my_addresses):
+        if parent is None:
+            parent = parent_from_quoted(rec["body"], my_addresses, name_tokens)
+            via = "quoted"
+        if parent is None:
             dropped["no_parent"] += 1
             continue
         if AUTOREPLY_RE.search(rec["subject"]) or AUTOREPLY_RE.search(parent["subject"]):
@@ -166,12 +247,16 @@ def build_pairs(raw_path: Path, my_addresses: set[str], name_tokens: list[str]):
         if len(reply) < 40 or len(reply.split()) < 6 or not incoming:
             dropped["too_short"] += 1
             continue
+        if echoish(reply, incoming):
+            dropped["echo"] += 1
+            continue
 
         h = hashlib.sha1(re.sub(r"\s+", " ", reply.lower()).encode()).hexdigest()
         if h in seen_hashes:
             dropped["dupe"] += 1
             continue
         seen_hashes.add(h)
+        matched[via] += 1
 
         pairs.append(
             {
@@ -182,9 +267,10 @@ def build_pairs(raw_path: Path, my_addresses: set[str], name_tokens: list[str]):
                 },
                 "reply": reply,
                 "date": rec["date"],
+                "matched_via": via,
             }
         )
-    return pairs, dropped
+    return pairs, dropped, matched
 
 
 # ---------------------------------------------------------------- output
@@ -228,10 +314,10 @@ def main():
     name_tokens = [t.lower() for t in args.name.split() if len(t) > 1]
     system_prompt = args.system_prompt.format(name=args.name or "the user")
 
-    pairs, dropped = build_pairs(
+    pairs, dropped, matched = build_pairs(
         Path(args.raw), {a.lower() for a in args.my_addresses}, name_tokens
     )
-    print(f"Usable pairs: {len(pairs)}  (dropped: {dropped})")
+    print(f"Usable pairs: {len(pairs)}  (matched via: {matched})  (dropped: {dropped})")
     if len(pairs) < 150:
         print("WARNING: under 150 pairs — tone transfer will be weak. Add more archive data.")
 
