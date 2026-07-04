@@ -102,6 +102,7 @@ def main():
         output_dir=args.out_dir,
         num_train_epochs=epochs,
         per_device_train_batch_size=preset["batch"],
+        per_device_eval_batch_size=1,  # batch 8 default OOMs: fp32 logits at seq 2048
         gradient_accumulation_steps=preset["grad_accum"],
         learning_rate=args.lr,
         lr_scheduler_type="cosine",
