@@ -28,17 +28,30 @@ export default function Footer() {
             </span>
           </div>
           <p className="muted" style={{ fontSize: "0.9rem", maxWidth: "420px" }}>
-            Grounded agentic systems for enterprise. Built to be{" "}
-            <em className="text-accent-deep" style={{ fontStyle: "italic" }}>trusted</em> with real work.
+            Private, on-premise AI systems for small and mid-size businesses. Your data
+            stays{" "}
+            <em className="text-accent-deep" style={{ fontStyle: "italic" }}>inside your walls</em>.
           </p>
         </div>
 
-        <nav style={{ display: "flex", gap: "1.5rem", fontSize: "0.85rem", color: "var(--ink-muted)" }}>
+        <nav
+          style={{
+            display: "flex",
+            gap: "1.5rem",
+            fontSize: "0.85rem",
+            color: "var(--ink-muted)",
+            flexWrap: "wrap",
+            justifyContent: "flex-end",
+          }}
+        >
           <Link href="/work">Work</Link>
           <Link href="/contact">Contact</Link>
+          <a href="mailto:contact@clea-solutions.ai">contact@clea-solutions.ai</a>
           <a href="https://github.com/mpthrees33-clea" target="_blank" rel="noopener noreferrer">
             GitHub
           </a>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/terms">Terms</Link>
         </nav>
       </div>
 

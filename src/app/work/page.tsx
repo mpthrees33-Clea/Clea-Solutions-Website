@@ -9,19 +9,19 @@ type Project = {
 
 const PROJECTS: Project[] = [
   {
-    name: "Email Voice Model · Fine-Tuned On-Prem",
+    name: "Email in Your Own Voice · Built On-Prem",
     description:
-      "Gemma 4 fine-tuned with QLoRA on years of real sent email — trained, merged, quantized, and served entirely on our own hardware. Same incoming email, two drafts: the stock model's, and one in the author's actual voice.",
-    language: "Python · QLoRA · Gemma 4 · llama.cpp",
+      "An AI trained on years of real sent email so its drafts sound like the author, not a bot. Trained and running entirely on our own hardware. Same incoming email, two drafts: the stock model's, and one in the author's actual voice.",
+    language: "Email drafts in your own voice · runs in-house",
     href: "/email-voice",
     isLiveDemo: false,
     sourceUrl: "https://github.com/mpthrees33-clea/clea-solutions-website",
   },
   {
-    name: "PO IDP · Zero-Hallucination Document Intelligence",
+    name: "PO IDP · Document Intelligence You Can Audit",
     description:
-      "Enterprise IDP that turns inbound purchase-order PDFs into validated sales orders. Seven independent anti-hallucination layers: every value traces to verbatim source text, two models must agree, math reconciles to the cent.",
-    language: "Python · FastAPI · AI",
+      "Turns inbound purchase-order PDFs into validated sales orders in seconds. Every value is double-checked against the original document, the math must reconcile to the cent, and anything uncertain goes to a person, not into your order system. Built for a commercial flooring distributor.",
+    language: "Purchase order → validated sales order in seconds",
     href: "/po-idp",
     isLiveDemo: true,
     sourceUrl: "https://github.com/mpthrees33-clea/po-idp",
@@ -29,8 +29,8 @@ const PROJECTS: Project[] = [
   {
     name: "Private Label Brochure Generator",
     description:
-      "AI-powered tool that scrapes factory product pages and generates Trinity-branded PDF brochures with color crossover lists in under 60 seconds. Built for flooring sales reps who need instant, professional collateral.",
-    language: "TypeScript · Next.js",
+      "Scrapes factory product pages and generates distributor-branded PDF brochures with color crossover lists in under 60 seconds. Built for flooring sales reps who need instant, professional collateral.",
+    language: "Branded sales collateral in under 60 seconds",
     href: "https://brochures.clea-solutions.ai",
     isLiveDemo: true,
     sourceUrl: "https://github.com/mpthrees33-clea/private-label-brochure-generator",
@@ -39,7 +39,7 @@ const PROJECTS: Project[] = [
     name: "Film Estimation Tool",
     description:
       "Architectural film material estimation. Calculate linear footage, rolls, and costs for doors, walls, columns, and custom surfaces with smart templates and waste-factor logic.",
-    language: "TypeScript · Next.js",
+    language: "Accurate material quotes without spreadsheet errors",
     href: "https://estimator.clea-solutions.ai",
     isLiveDemo: true,
     sourceUrl: "https://github.com/mpthrees33-clea/Architectual-film-estimation",
@@ -48,19 +48,10 @@ const PROJECTS: Project[] = [
     name: "Sales Hub",
     description:
       "Field-ready sales workspace for flooring distributor reps. Voice-first AI assistant, multi-step sample orders, CRM kanban, and private-label price crossover lookup.",
-    language: "TypeScript · React",
+    language: "A field rep's whole day in one tool",
     href: "https://mpthrees33-clea.github.io/Sales-Hub/",
     isLiveDemo: true,
     sourceUrl: "https://github.com/mpthrees33-clea/Sales-Hub",
-  },
-  {
-    name: "Travel Country V6",
-    description:
-      "Travel destination experience redesign. Live demo coming soon. View source on GitHub.",
-    language: "TypeScript · React",
-    href: "https://github.com/mpthrees33-clea/Travel-Country-V6",
-    isLiveDemo: false,
-    sourceUrl: "https://github.com/mpthrees33-clea/Travel-Country-V6",
   },
 ];
 
@@ -83,8 +74,8 @@ export default function WorkPage() {
               Things we've built.
             </h1>
             <p style={{ fontSize: "1.1rem", color: "var(--ink-muted)", lineHeight: 1.6 }}>
-              Production tools, research prototypes, and shipped products. Each one a working
-              answer to a specific question.
+              Real systems doing real work for real businesses. Two have full case
+              studies, and several are live tools you can open right now.
             </p>
           </div>
 
