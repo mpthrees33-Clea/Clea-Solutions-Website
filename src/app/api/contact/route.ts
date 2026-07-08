@@ -37,7 +37,7 @@ export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error('contact: RESEND_API_KEY is not set');
-    return NextResponse.json({ success: false }, { status: 500 });
+    return NextResponse.json({ success: false, code: 'config' }, { status: 500 });
   }
 
   const fromAddress =
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
   if (!res.ok) {
     const detail = await res.text().catch(() => '');
     console.error(`contact: Resend returned ${res.status}: ${detail}`);
-    return NextResponse.json({ success: false }, { status: 500 });
+    return NextResponse.json({ success: false, code: `resend_${res.status}` }, { status: 500 });
   }
 
   return NextResponse.json({ success: true });
