@@ -18,14 +18,14 @@ export default function Home() {
                 marginBottom: "1.75rem",
               }}
             >
-              Agentic systems that can be{" "}
+              AI that does real work. And your data never{" "}
               <em
                 className="text-accent"
                 style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
               >
-                trusted
+                leaves
               </em>{" "}
-              with the work.
+              the building.
             </h1>
             <p
               style={{
@@ -36,8 +36,10 @@ export default function Home() {
                 marginBottom: "2.5rem",
               }}
             >
-              We build grounded, fine-tuned agents for the parts of a business where wrong
-              answers cost real money. Domain-specific. Auditable. Production-grade.
+              Clea Solutions builds private AI systems for small and mid-size businesses.
+              Software that reads your documents, drafts your email, and handles the
+              repetitive work, trained on how your company actually operates. It runs on
+              hardware you control, so nothing sensitive ever touches someone else's cloud.
             </p>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
               <Link href="/work" className="btn btn-primary">
@@ -45,7 +47,7 @@ export default function Home() {
                 <span aria-hidden>→</span>
               </Link>
               <Link href="/contact" className="btn btn-ghost">
-                Start a conversation
+                Book a free assessment
               </Link>
             </div>
           </div>
@@ -63,10 +65,10 @@ export default function Home() {
             }}
             className="stats-grid"
           >
-            <Stat figure="7" suffix="" label="anti-hallucination layers in our IDP pipeline" />
-            <Stat figure="2" suffix="" label="independent models must agree per extraction" />
-            <Stat figure="0.0001" prefix="$" label="marginal cost per processed document" />
-            <Stat figure="100" suffix="%" label="of extracted fields grounded in source text" />
+            <Stat figure="0" suffix="" label="customer documents sent to the cloud. Everything runs on your premises" />
+            <Stat figure="100" suffix="%" label="of AI outputs traced to the exact source text, or flagged for a person" />
+            <Stat figure="0" prefix="$" label="in per-seat or per-message fees. You own the system outright" />
+            <Stat figure="60" prefix="<" suffix="sec" label="to turn a purchase order PDF into a validated, double-checked order" />
           </div>
         </div>
         <style>{`
@@ -130,24 +132,88 @@ export default function Home() {
           <div className="grid-3">
             <Principle
               num="01"
-              title="Generic chatbots fail in production"
-              body="Wrapping an LLM API and calling it an agent has a ceiling. Off-the-shelf models are unpredictable, hallucinate quietly, and can't be trusted with critical workflows. The interesting work starts where the wrapper ends."
+              title="Generic AI guesses. Guessing costs money."
+              body="Off-the-shelf chatbots will always give you an answer, even when they're making it up. That's fine for brainstorming and dangerous for orders, invoices, and customer email. We build systems that check their own work before it reaches yours."
             />
             <Principle
               num="02"
-              title="Fine-tuning and grounding are the work"
-              body="We train AI on your domain, ground every output in source evidence, and require two independent passes to agree before a value is accepted. Accuracy isn't an aspiration. It's an invariant."
+              title="Trained on your business, checked against your documents"
+              body="Think of it like onboarding a new hire: we take a capable AI and train it on your documents, your terminology, and your way of working. Then every answer it gives must point back to a real source, or it says so and hands off to a person."
             />
             <Principle
               num="03"
-              title="An agent should act, not chat"
-              body="Real value comes from autonomous workflows that decide, use tools, and execute multi-step tasks across your existing systems. Safely, observably, with clean handoffs back to a human when it matters."
+              title="It does the task, not just the chat"
+              body="The value isn't a chat window. It's the purchase order that becomes a validated sales order in seconds, the reply drafted in your voice, the quote that adds up. Multi-step work, done end to end, with a person in the loop where it matters."
             />
           </div>
         </div>
         <style>{`
           @media (max-width: 720px) {
             .principles-header { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+          }
+        `}</style>
+      </section>
+
+      <hr className="rule" />
+
+      {/* Founder */}
+      <section className="section">
+        <div className="container">
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(180px, 220px) 1fr",
+              gap: "3rem",
+              alignItems: "start",
+            }}
+            className="founder-grid"
+          >
+            <div>
+              <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center" }}>
+                <span className="dot-mark" />
+                (03) · Who you'll work with
+              </div>
+            </div>
+            <div style={{ maxWidth: "720px" }}>
+              <h2
+                className="display"
+                style={{
+                  fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                You'll work with me, not a team of{" "}
+                <em
+                  className="text-accent"
+                  style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
+                >
+                  subcontractors.
+                </em>
+              </h2>
+              <p style={{ color: "var(--ink-muted)", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>
+                I'm Colton, the founder of Clea Solutions. I spent six years as an
+                architectural sales rep for a commercial distributor before I ever built
+                software. I don't come from a development background, and that's the point.
+                I've lived the problems these systems solve: the purchase orders keyed in
+                by hand, the inbox that never empties, the quote that has to be right the
+                first time.
+              </p>
+              <p style={{ color: "var(--ink-muted)", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>
+                So I spent the last year learning to build the fix myself, relentlessly.
+                Every system on this site was built, deployed, and is maintained by me.
+                When you call, you talk to the person who understands your day-to-day
+                because I've lived it, and who also writes the code.
+              </p>
+              <Link href="/contact" className="btn-link">
+                Book a free assessment
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
+          </div>
+        </div>
+        <style>{`
+          @media (max-width: 720px) {
+            .founder-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
           }
         `}</style>
       </section>
@@ -170,7 +236,7 @@ export default function Home() {
             <div style={{ maxWidth: "640px" }}>
               <div className="eyebrow" style={{ marginBottom: "1.25rem", display: "inline-flex", alignItems: "center" }}>
                 <span className="dot-mark" />
-                (03) · In practice
+                (04) · In practice
               </div>
               <p
                 className="display"
@@ -179,20 +245,26 @@ export default function Home() {
                   lineHeight: 1.3,
                 }}
               >
-                Every project ships with audit bundles,{" "}
+                Every project ships with a paper trail: outputs that{" "}
                 <em
                   className="text-accent"
                   style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
                 >
-                  source-grounded outputs,
+                  show their sources,
                 </em>{" "}
                 and the honest answer when the system isn't sure.
               </p>
             </div>
-            <Link href="/work" className="btn-link">
-              Browse projects
-              <span aria-hidden>→</span>
-            </Link>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", alignItems: "flex-start" }}>
+              <Link href="/work" className="btn-link">
+                Browse projects
+                <span aria-hidden>→</span>
+              </Link>
+              <Link href="/contact" className="btn-link">
+                Book a free assessment
+                <span aria-hidden>→</span>
+              </Link>
+            </div>
           </div>
         </div>
         <style>{`
@@ -206,13 +278,13 @@ export default function Home() {
 }
 
 const TICKER_ITEMS = [
-  "GROUNDED EXTRACTION",
-  "TWO-MODEL CONSISTENCY",
-  "AUDIT BUNDLES",
-  "FINE-TUNED FOR DOMAIN",
-  "PYTHON · TYPESCRIPT · NEXT.JS",
-  "AGENTIC WORKFLOWS",
-  "ZERO HALLUCINATION",
+  "YOUR DATA STAYS INSIDE YOUR WALLS",
+  "NO PER-SEAT FEES",
+  "YOU OWN THE MODEL",
+  "EVERY ANSWER SHOWS ITS SOURCE",
+  "HONEST WHEN IT ISN'T SURE",
+  "HUMAN HANDOFF BUILT IN",
+  "RUNS ON YOUR HARDWARE",
 ];
 
 function Stat({
