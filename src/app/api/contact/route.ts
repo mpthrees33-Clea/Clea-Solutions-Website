@@ -41,7 +41,7 @@ export async function POST(request: Request) {
   }
 
   const fromAddress =
-    process.env.CONTACT_FROM_ADDRESS || 'Clea Solutions Website <onboarding@resend.dev>';
+    process.env.CONTACT_FROM_ADDRESS || 'Clea Solutions Website <contact@clea-solutions.ai>';
 
   const lines = [
     `Name: ${name}`,

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Home() {
@@ -174,7 +175,29 @@ export default function Home() {
                 (03) · Who you&rsquo;ll work with
               </div>
             </div>
-            <div style={{ maxWidth: "720px" }}>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "240px 1fr",
+                gap: "2.5rem",
+                alignItems: "start",
+                maxWidth: "980px",
+              }}
+              className="founder-inner"
+            >
+              <Image
+                src="/colton.jpg"
+                alt="Colton, founder of Clea Solutions"
+                width={474}
+                height={474}
+                style={{
+                  width: "100%",
+                  height: "auto",
+                  borderRadius: "8px",
+                  border: "1px solid var(--rule)",
+                }}
+              />
+              <div style={{ maxWidth: "720px" }}>
               <h2
                 className="display"
                 style={{
@@ -208,12 +231,15 @@ export default function Home() {
                 Book a free assessment
                 <span aria-hidden>→</span>
               </Link>
+              </div>
             </div>
           </div>
         </div>
         <style>{`
           @media (max-width: 720px) {
             .founder-grid { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+            .founder-inner { grid-template-columns: 1fr !important; gap: 2rem !important; }
+            .founder-inner img { max-width: 280px; }
           }
         `}</style>
       </section>
