@@ -24,9 +24,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Clea Solutions · Agentic AI for enterprise",
+  title: "Clea Solutions · Private AI that runs on your hardware",
   description:
-    "We build fine-tuned, grounded agentic systems that solve real enterprise problems. Not chatbots.",
+    "Custom AI systems for small and mid-size businesses. Trained on how your company operates, running on hardware you control. Your data never leaves the building.",
 };
 
 export default function RootLayout({
