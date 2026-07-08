@@ -25,25 +25,25 @@ const LAYERS = [
     n: "03",
     name: "Document-recognition gate",
     detail:
-      "The model must explicitly mark `document_recognized: true`. If the input is an invoice, brochure, or anything else, the pipeline short-circuits. No sales order is built.",
+      "The system must positively confirm it is looking at a purchase order. If the input is an invoice, a brochure, or anything else, the pipeline stops rather than guesses. No sales order is built.",
   },
   {
     n: "04",
-    name: "Per-field source-quote grounding",
+    name: "Per-field source grounding",
     detail:
-      "Every leaf value carries a `source_quote` that must literally substring-match the OCR text. The validator reverifies after the model returns, and ungrounded fields are flagged, not silently accepted.",
+      "Every extracted value must point to the exact words on the original document. The system re-checks this after the fact, and anything it can't trace to the source is flagged for a person, never silently accepted.",
   },
   {
     n: "05",
     name: "Deterministic numeric parsing",
     detail:
-      'Money, dates, quantities never round-trip through the LLM. Pure regex parsers handle "$1,250.00" → 1250.00, "5/18/26" → 2026-05-18. Models do not do math here.',
+      'Money, dates, and quantities are never left to the AI. Tested, deterministic code converts "$1,250.00" → 1250.00 and "5/18/26" → 2026-05-18, the same way every time. The AI does not do math here.',
   },
   {
     n: "06",
     name: "Math + catalog reconciliation",
     detail:
-      "sum(line.extended) == subtotal. subtotal + tax + ship == total. ±5¢ tolerance. Every customer SKU must map to internal catalog. Price within ±2% of price-list.",
+      "Line items must add up to the subtotal, and subtotal plus tax and shipping must equal the total, to the cent. Every product code must match the internal catalog, and every price must sit within tolerance of the price list.",
   },
   {
     n: "07",
@@ -107,10 +107,11 @@ export default function POIDPPage() {
               lineHeight: 1.65,
             }}
           >
-            A grounded-extraction IDP pipeline that turns inbound purchase-order PDFs into
-            validated internal sales orders. Built on the conviction that an LLM should never
-            be the last word on a number. Every value must trace back to verbatim source text,
-            two models must agree, and the math must reconcile to the cent.
+            Orders that took minutes of manual keying now process in seconds, and anything
+            the system isn&rsquo;t sure about goes to a person, not into your books. Built
+            for a commercial flooring distributor, on the conviction that an AI should
+            never be the last word on a number: every value must trace back to the source
+            document, two models must agree, and the math must reconcile to the cent.
           </p>
         </header>
 
@@ -167,8 +168,9 @@ export default function POIDPPage() {
             Seven independent anti-hallucination layers.
           </h2>
           <p style={{ color: "var(--ink-muted)", marginBottom: "3rem", maxWidth: "640px" }}>
-            Each layer can refuse the run on its own. None is allowed to be weakened to
-            &ldquo;improve pass rates.&rdquo;
+            Each layer exists to protect one thing: no invented number ever reaches your
+            order system. Each can refuse the run on its own, and none is allowed to be
+            weakened to &ldquo;improve pass rates.&rdquo;
           </p>
           <div className="grid-2">
             {LAYERS.map((l) => (
