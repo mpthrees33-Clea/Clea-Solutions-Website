@@ -71,7 +71,7 @@ export default function WorkPage() {
                 marginBottom: "1.5rem",
               }}
             >
-              Things we've built.
+              Things we&rsquo;ve built.
             </h1>
             <p style={{ fontSize: "1.1rem", color: "var(--ink-muted)", lineHeight: 1.6 }}>
               Real systems doing real work for real businesses. Two have full case

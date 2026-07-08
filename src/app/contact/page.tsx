@@ -66,7 +66,7 @@ export default function Contact() {
               marginBottom: "1.25rem",
             }}
           >
-            Tell me what you're trying to solve.
+            Tell me what you&rsquo;re trying to solve.
           </h1>
           <p style={{ fontSize: "1.1rem", color: "var(--ink-muted)", lineHeight: 1.6 }}>
             Short notes are welcome. I read every message personally and reply within two
@@ -133,7 +133,7 @@ export default function Contact() {
               usually sooner.
             </p>
             <p style={{ color: "var(--ink-muted)", lineHeight: 1.6 }}>
-              If it's urgent, email me directly at{" "}
+              If it&rsquo;s urgent, email me directly at{" "}
               <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a>.
             </p>
           </div>
@@ -216,7 +216,7 @@ export default function Contact() {
             {status === "error" && (
               <p style={{ color: "var(--ink-muted)", lineHeight: 1.6 }}>
                 Something went wrong sending your message. Please email me directly at{" "}
-                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and I'll reply within
+                <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> and I&rsquo;ll reply within
                 two business days.
               </p>
             )}

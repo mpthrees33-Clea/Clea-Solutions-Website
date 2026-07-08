@@ -133,14 +133,14 @@ export default function POIDPPage() {
             className="display"
             style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", marginBottom: "1.5rem" }}
           >
-            Why raw LLMs don't ship in production IDP.
+            Why raw LLMs don&rsquo;t ship in production IDP.
           </h2>
           <p style={{ color: "var(--ink-muted)", lineHeight: 1.7, marginBottom: "1rem" }}>
             The standard pattern, handing a PDF to a foundation model and asking for JSON,
             looks great in demos and falls apart in production. The model will{" "}
             <em style={{ fontStyle: "italic" }}>always</em> return something. When the source
             is empty, garbled, or the wrong document type, that &ldquo;something&rdquo; is
-            invented. We've seen this break in the wild: a PDF accidentally passed as HTML,
+            invented. We&rsquo;ve seen this break in the wild: a PDF accidentally passed as HTML,
             parsed into nothing, a model filling the resulting blank with a plausible-but-fabricated
             product.
           </p>

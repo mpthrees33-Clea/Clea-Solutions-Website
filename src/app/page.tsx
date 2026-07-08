@@ -39,7 +39,7 @@ export default function Home() {
               Clea Solutions builds private AI systems for small and mid-size businesses.
               Software that reads your documents, drafts your email, and handles the
               repetitive work, trained on how your company actually operates. It runs on
-              hardware you control, so nothing sensitive ever touches someone else's cloud.
+              hardware you control, so nothing sensitive ever touches someone else&rsquo;s cloud.
             </p>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
               <Link href="/work" className="btn btn-primary">
@@ -171,7 +171,7 @@ export default function Home() {
             <div>
               <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center" }}>
                 <span className="dot-mark" />
-                (03) · Who you'll work with
+                (03) · Who you&rsquo;ll work with
               </div>
             </div>
             <div style={{ maxWidth: "720px" }}>
@@ -182,7 +182,7 @@ export default function Home() {
                   marginBottom: "1.5rem",
                 }}
               >
-                You'll work with me, not a team of{" "}
+                You&rsquo;ll work with me, not a team of{" "}
                 <em
                   className="text-accent"
                   style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
@@ -191,10 +191,10 @@ export default function Home() {
                 </em>
               </h2>
               <p style={{ color: "var(--ink-muted)", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>
-                I'm Colton, the founder of Clea Solutions. I spent six years as an
+                I&rsquo;m Colton, the founder of Clea Solutions. I spent six years as an
                 architectural sales rep for a commercial distributor before I ever built
-                software. I don't come from a development background, and that's the point.
-                I've lived the problems these systems solve: the purchase orders keyed in
+                software. I don&rsquo;t come from a development background, and that&rsquo;s the point.
+                I&rsquo;ve lived the problems these systems solve: the purchase orders keyed in
                 by hand, the inbox that never empties, the quote that has to be right the
                 first time.
               </p>
@@ -202,7 +202,7 @@ export default function Home() {
                 So I spent the last year learning to build the fix myself, relentlessly.
                 Every system on this site was built, deployed, and is maintained by me.
                 When you call, you talk to the person who understands your day-to-day
-                because I've lived it, and who also writes the code.
+                because I&rsquo;ve lived it, and who also writes the code.
               </p>
               <Link href="/contact" className="btn-link">
                 Book a free assessment
@@ -252,7 +252,7 @@ export default function Home() {
                 >
                   show their sources,
                 </em>{" "}
-                and the honest answer when the system isn't sure.
+                and the honest answer when the system isn&rsquo;t sure.
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", alignItems: "flex-start" }}>
