@@ -360,3 +360,36 @@ a:hover {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* ─── Technical appendix ─── */
+.tech-appendix {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+}
+
+.tech-appendix summary {
+  cursor: pointer;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  list-style: none;
+}
+
+.tech-appendix summary::-webkit-details-marker {
+  display: none;
+}
+
+.tech-appendix summary::before {
+  content: "+";
+  color: var(--accent);
+  margin-right: 0.75rem;
+}
+
+.tech-appendix[open] summary::before {
+  content: "−";
+}
+
+.tech-appendix summary:hover {
+  color: var(--ink);
+}
