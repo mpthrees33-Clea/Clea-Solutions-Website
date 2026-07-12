@@ -59,6 +59,9 @@ export default function Navbar() {
           <Link href="/" style={{ color: "var(--ink-muted)" }}>
             Approach
           </Link>
+          <Link href="/demo" style={{ color: "var(--ink-muted)" }}>
+            Live demos
+          </Link>
           <Link href="/work" style={{ color: "var(--ink-muted)" }}>
             Work
           </Link>

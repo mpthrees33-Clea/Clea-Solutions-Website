@@ -7,48 +7,60 @@ export default function Home() {
       {/* Hero */}
       <section className="section">
         <div className="container">
-          <div style={{ maxWidth: "820px" }} className="fade-up">
+          <div style={{ maxWidth: "860px" }} className="fade-up">
             <div className="eyebrow" style={{ marginBottom: "2rem", display: "inline-flex", alignItems: "center" }}>
               <span className="dot-mark" />
-              (01) · Clea Solutions
+              (01) · Clea Solutions · Tampa Bay, FL
             </div>
             <h1
               className="display"
               style={{
-                fontSize: "clamp(2.5rem, 6.2vw, 4.75rem)",
+                fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
                 marginBottom: "1.75rem",
               }}
             >
-              AI that does real work. And your data never{" "}
+              AI that runs your order desk, your quotes, and your inbox.{" "}
               <em
                 className="text-accent"
                 style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
               >
-                leaves
-              </em>{" "}
-              the building.
+                Built for distributors.
+              </em>
             </h1>
             <p
               style={{
                 fontSize: "1.2rem",
                 lineHeight: 1.55,
                 color: "var(--ink-muted)",
-                maxWidth: "640px",
+                maxWidth: "680px",
+                marginBottom: "1.25rem",
+              }}
+            >
+              Clea Solutions builds AI systems for flooring and building-products
+              distributors — and any small business drowning in documents. Emailed
+              purchase orders become validated sales orders in under a minute. Quotes
+              that add up. Email drafted in your own voice. Every output traced back to
+              its source, and everything running on hardware you control.
+            </p>
+            <p
+              style={{
+                fontSize: "1.05rem",
+                lineHeight: 1.55,
+                color: "var(--ink-muted)",
+                maxWidth: "680px",
                 marginBottom: "2.5rem",
               }}
             >
-              Clea Solutions builds private AI systems for small and mid-size businesses.
-              Software that reads your documents, drafts your email, and handles the
-              repetitive work, trained on how your company actually operates. It runs on
-              hardware you control, so nothing sensitive ever touches someone else&rsquo;s cloud.
+              No slideware, no &ldquo;AI strategy roadmap.&rdquo; A fixed-price two-week
+              pilot on your real documents, then a working system you own outright.
             </p>
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
-              <Link href="/work" className="btn btn-primary">
-                See the work
+              <Link href="/demo" className="btn btn-primary">
+                Watch it work — live demos
                 <span aria-hidden>→</span>
               </Link>
               <Link href="/contact" className="btn btn-ghost">
-                Book a free assessment
+                Book a paid pilot
               </Link>
             </div>
           </div>
@@ -93,6 +105,111 @@ export default function Home() {
         </div>
       </div>
 
+      {/* What we build */}
+      <section className="section">
+        <div className="container">
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "minmax(180px, 220px) 1fr",
+              gap: "3rem",
+              alignItems: "start",
+              marginBottom: "4rem",
+            }}
+            className="offers-header"
+          >
+            <div>
+              <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center" }}>
+                <span className="dot-mark" />
+                (02) · What we build
+              </div>
+            </div>
+            <h2
+              className="display"
+              style={{
+                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                maxWidth: "720px",
+              }}
+            >
+              Three systems. Fixed prices.{" "}
+              <em
+                className="text-accent"
+                style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
+              >
+                Each one starts with a pilot
+              </em>{" "}
+              on your real documents.
+            </h2>
+          </div>
+
+          <div className="grid-3" style={{ marginBottom: "3rem" }}>
+            {OFFERS.map((o) => (
+              <div key={o.num} className="card" style={{ padding: "1.75rem", display: "flex", flexDirection: "column" }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1rem" }}>
+                  <span style={{ width: "28px", height: "1px", background: "var(--accent)", display: "inline-block" }} />
+                  <span className="mono" style={{ fontSize: "0.72rem", color: "var(--accent-deep)", letterSpacing: "0.12em" }}>
+                    {o.num}
+                  </span>
+                </div>
+                <h3 style={{ fontSize: "1.2rem", fontWeight: 500, marginBottom: "0.5rem", letterSpacing: "-0.01em", color: "var(--ink)" }}>
+                  {o.title}
+                </h3>
+                <p className="mono" style={{ fontSize: "0.7rem", color: "var(--ink-faint)", letterSpacing: "0.05em", textTransform: "uppercase", marginBottom: "0.85rem" }}>
+                  {o.tagline}
+                </p>
+                <p style={{ color: "var(--ink-muted)", fontSize: "0.95rem", lineHeight: 1.65, marginBottom: "1.25rem", flex: 1 }}>
+                  {o.body}
+                </p>
+                <Link href={o.href} className="btn-link" style={{ fontSize: "0.9rem" }}>
+                  {o.cta} <span aria-hidden>→</span>
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          {/* Pricing strip */}
+          <div
+            style={{
+              border: "1px solid var(--rule)",
+              borderRadius: "12px",
+              background: "var(--bg-tint)",
+              padding: "2rem",
+            }}
+          >
+            <div className="eyebrow" style={{ marginBottom: "1.5rem" }}>
+              How every engagement is priced
+            </div>
+            <div className="grid-3">
+              <PriceStep
+                num="01"
+                title="Two-week paid pilot"
+                price="$1,500 fixed"
+                body="We run your real documents through the system and hand you the numbers: hours saved, error rate, what production looks like. If it doesn't make the case, you keep the report and walk away."
+              />
+              <PriceStep
+                num="02"
+                title="Production build"
+                price="$5,000 – $15,000 fixed quote"
+                body="Agreed milestones, fixed price, no surprises. At the end you own everything: the code, the model, and the hardware setup. Most builds ship in four to eight weeks."
+              />
+              <PriceStep
+                num="03"
+                title="Run & maintain"
+                price="from $500 / month"
+                body="Monitoring, tuning, and improvements so the system keeps up as your business changes. No per-seat fees, no per-message fees — ever."
+              />
+            </div>
+          </div>
+        </div>
+        <style>{`
+          @media (max-width: 720px) {
+            .offers-header { grid-template-columns: 1fr !important; gap: 1.5rem !important; }
+          }
+        `}</style>
+      </section>
+
+      <hr className="rule" />
+
       {/* Principles */}
       <section className="section">
         <div className="container">
@@ -109,7 +226,7 @@ export default function Home() {
             <div>
               <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center" }}>
                 <span className="dot-mark" />
-                (02) · Approach
+                (03) · Approach
               </div>
             </div>
             <h2
@@ -172,7 +289,7 @@ export default function Home() {
             <div>
               <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center" }}>
                 <span className="dot-mark" />
-                (03) · Who you&rsquo;ll work with
+                (04) · Who you&rsquo;ll work with
               </div>
             </div>
             <div
@@ -224,11 +341,12 @@ export default function Home() {
               <p style={{ color: "var(--ink-muted)", fontSize: "1.05rem", lineHeight: 1.7, marginBottom: "1.25rem" }}>
                 So I spent the last year learning to build the fix myself, relentlessly.
                 Every system on this site was built, deployed, and is maintained by me.
-                When you call, you talk to the person who understands your day-to-day
-                because I&rsquo;ve lived it, and who also writes the code.
+                I&rsquo;m based in Tampa Bay and work with distributors and small businesses
+                locally and remote. When you call, you talk to the person who understands
+                your day-to-day because I&rsquo;ve lived it, and who also writes the code.
               </p>
               <Link href="/contact" className="btn-link">
-                Book a free assessment
+                Book a paid pilot
                 <span aria-hidden>→</span>
               </Link>
               </div>
@@ -262,7 +380,7 @@ export default function Home() {
             <div style={{ maxWidth: "640px" }}>
               <div className="eyebrow" style={{ marginBottom: "1.25rem", display: "inline-flex", alignItems: "center" }}>
                 <span className="dot-mark" />
-                (04) · In practice
+                (05) · In practice
               </div>
               <p
                 className="display"
@@ -282,12 +400,12 @@ export default function Home() {
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", alignItems: "flex-start" }}>
-              <Link href="/work" className="btn-link">
-                Browse projects
+              <Link href="/demo" className="btn-link">
+                Watch the live demos
                 <span aria-hidden>→</span>
               </Link>
               <Link href="/contact" className="btn-link">
-                Book a free assessment
+                Book a paid pilot
                 <span aria-hidden>→</span>
               </Link>
             </div>
@@ -304,6 +422,7 @@ export default function Home() {
 }
 
 const TICKER_ITEMS = [
+  "BUILT FOR DISTRIBUTORS & DOCUMENT-HEAVY SMBs",
   "YOUR DATA STAYS INSIDE YOUR WALLS",
   "NO PER-SEAT FEES",
   "YOU OWN THE MODEL",
@@ -312,6 +431,60 @@ const TICKER_ITEMS = [
   "HUMAN HANDOFF BUILT IN",
   "RUNS ON YOUR HARDWARE",
 ];
+
+const OFFERS = [
+  {
+    num: "01",
+    title: "Order Desk Automation",
+    tagline: "PO PDF in → validated sales order out",
+    body: "Inbound purchase orders read, extracted, and double-checked against the original document. Math must reconcile to the cent, every SKU must match your catalog, and anything uncertain goes to a person — not into your order system. Running in production today for a commercial flooring distributor.",
+    href: "/demo",
+    cta: "Run the live demo",
+  },
+  {
+    num: "02",
+    title: "Quoting & Estimation",
+    tagline: "Accurate quotes without spreadsheet errors",
+    body: "Material estimation, price crossovers, and branded sales collateral generated in seconds instead of days. Built from the tools our own reps use in the field: an architectural film estimator, a private-label brochure generator, and a rep sales hub.",
+    href: "/demo",
+    cta: "Try the live tools",
+  },
+  {
+    num: "03",
+    title: "Inbox & Email Drafting",
+    tagline: "Your email, answered in your voice by 9am",
+    body: "An AI trained on years of your real sent mail so drafts sound like you, not a bot. It triages what matters, drafts the response, and a person always hits send. Trained and running entirely on hardware you control — your correspondence never leaves the building.",
+    href: "/email-voice",
+    cta: "See the side-by-side",
+  },
+];
+
+function PriceStep({ num, title, price, body }: { num: string; title: string; price: string; body: string }) {
+  return (
+    <div>
+      <div style={{ display: "flex", alignItems: "baseline", gap: "0.6rem", marginBottom: "0.5rem" }}>
+        <span className="mono" style={{ fontSize: "0.72rem", color: "var(--accent-deep)", letterSpacing: "0.12em" }}>
+          {num}
+        </span>
+        <h3 style={{ fontSize: "1.05rem", fontWeight: 500, letterSpacing: "-0.01em", color: "var(--ink)", margin: 0 }}>
+          {title}
+        </h3>
+      </div>
+      <div
+        style={{
+          fontFamily: "var(--font-serif), serif",
+          fontSize: "1.35rem",
+          fontWeight: 500,
+          color: "var(--ink)",
+          marginBottom: "0.6rem",
+        }}
+      >
+        {price}
+      </div>
+      <p style={{ color: "var(--ink-muted)", fontSize: "0.9rem", lineHeight: 1.6 }}>{body}</p>
+    </div>
+  );
+}
 
 function Stat({
   figure,

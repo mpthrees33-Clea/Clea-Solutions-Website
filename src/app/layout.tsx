@@ -24,9 +24,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Clea Solutions · Private AI that runs on your hardware",
+  title: "Clea Solutions · AI systems for building-products & flooring distributors",
   description:
-    "Custom AI systems for small and mid-size businesses. Trained on how your company operates, running on hardware you control. Your data never leaves the building.",
+    "Purchase orders become validated sales orders in under a minute. Quotes that add up. Email drafted in your voice. Private AI for distributors and document-heavy SMBs, running on hardware you control — based in Tampa Bay.",
 };
 
 export default function RootLayout({

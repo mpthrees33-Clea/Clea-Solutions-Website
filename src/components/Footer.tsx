@@ -27,9 +27,10 @@ export default function Footer() {
               Clea Solutions
             </span>
           </div>
-          <p className="muted" style={{ fontSize: "0.9rem", maxWidth: "420px" }}>
-            Private, on-premise AI systems for small and mid-size businesses. Your data
-            stays{" "}
+          <p className="muted" style={{ fontSize: "0.9rem", maxWidth: "440px" }}>
+            Private, on-premise AI systems for building-products and flooring
+            distributors — and other document-heavy small businesses. Based in Tampa
+            Bay. Your data stays{" "}
             <em className="text-accent-deep" style={{ fontStyle: "italic" }}>inside your walls</em>.
           </p>
         </div>
@@ -44,6 +45,7 @@ export default function Footer() {
             justifyContent: "flex-end",
           }}
         >
+          <Link href="/demo">Live demos</Link>
           <Link href="/work">Work</Link>
           <Link href="/contact">Contact</Link>
           <a href="mailto:contact@clea-solutions.ai">contact@clea-solutions.ai</a>
