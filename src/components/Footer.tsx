@@ -46,6 +46,7 @@ export default function Footer() {
           }}
         >
           <Link href="/demo">Live demos</Link>
+          <Link href="/specscout">SpecScout</Link>
           <Link href="/work">Work</Link>
           <Link href="/contact">Contact</Link>
           <a href="mailto:contact@clea-solutions.ai">contact@clea-solutions.ai</a>
