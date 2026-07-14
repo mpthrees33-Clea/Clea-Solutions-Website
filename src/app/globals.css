@@ -7,10 +7,10 @@
   --ink-faint: #585E66;
   --rule: #1F2228;
   --rule-strong: #32363E;
-  --accent: #F5A524;
-  --accent-deep: #FFC24D; /* on dark, "deep" is the brighter hover state */
-  --accent-soft: #8A6320;
-  --accent-wash: rgba(245, 165, 36, 0.08);
+  --accent: #9DB25A;
+  --accent-deep: #BCD077; /* on dark, "deep" is the brighter hover state */
+  --accent-soft: #57632F;
+  --accent-wash: rgba(157, 178, 90, 0.08);
   --max-w: 1120px;
   --gutter: 1.5rem;
   /* legacy alias: old serif references inherit the display grotesk */
@@ -207,7 +207,7 @@ a:hover {
 .form-input:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(245, 165, 36, 0.15);
+  box-shadow: 0 0 0 3px rgba(157, 178, 90, 0.18);
 }
 
 .form-input::placeholder {
@@ -432,5 +432,5 @@ a:hover {
 }
 
 .glow-node {
-  filter: drop-shadow(0 0 10px rgba(245, 165, 36, 0.45));
+  filter: drop-shadow(0 0 10px rgba(157, 178, 90, 0.45));
 }
