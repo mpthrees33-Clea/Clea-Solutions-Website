@@ -6,7 +6,7 @@ export default function Navbar() {
     <header
       style={{
         borderBottom: "1px solid var(--rule)",
-        background: "rgba(250, 250, 245, 0.85)",
+        background: "rgba(11, 12, 14, 0.75)",
         backdropFilter: "saturate(180%) blur(8px)",
         WebkitBackdropFilter: "saturate(180%) blur(8px)",
         position: "sticky",

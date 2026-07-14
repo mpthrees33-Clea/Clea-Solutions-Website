@@ -22,7 +22,7 @@ export default function Home() {
               AI that does real work. And your data never{" "}
               <em
                 className="text-accent"
-                style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
+                style={{ fontStyle: "normal" }}
               >
                 leaves
               </em>{" "}
@@ -122,7 +122,7 @@ export default function Home() {
               Three things that separate{" "}
               <em
                 className="text-accent"
-                style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
+                style={{ fontStyle: "normal" }}
               >
                 a demo
               </em>{" "}
@@ -208,7 +208,7 @@ export default function Home() {
                 You&rsquo;ll work with me, not a team of{" "}
                 <em
                   className="text-accent"
-                  style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
+                  style={{ fontStyle: "normal" }}
                 >
                   subcontractors.
                 </em>
@@ -274,7 +274,7 @@ export default function Home() {
                 Every project ships with a paper trail: outputs that{" "}
                 <em
                   className="text-accent"
-                  style={{ fontStyle: "italic", fontFamily: "var(--font-serif), serif" }}
+                  style={{ fontStyle: "normal" }}
                 >
                   show their sources,
                 </em>{" "}

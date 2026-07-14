@@ -155,7 +155,7 @@ export default function Demo() {
                 gap: "0.75rem",
                 padding: "0.55rem 0.85rem",
                 borderRadius: "6px",
-                background: state === "running" ? "rgba(30, 58, 138, 0.04)" : "transparent",
+                background: state === "running" ? "var(--accent-wash)" : "transparent",
                 border: "1px solid",
                 borderColor:
                   state === "pending" ? "var(--rule)" : state === "running" ? "var(--accent)" : "var(--rule)",
@@ -339,7 +339,7 @@ function Results({ data }: { data: SamplePayload }) {
             >
               <span
                 style={{
-                  color: c.passed ? "var(--ink)" : "#B91C1C",
+                  color: c.passed ? "var(--ink)" : "#F87171",
                   fontWeight: 700,
                   minWidth: "20px",
                 }}
@@ -379,7 +379,7 @@ function Stat({ label, value, good }: { label: string; value: string; good: bool
           fontWeight: 500,
           marginTop: "0.3rem",
           letterSpacing: "-0.01em",
-          color: good ? "var(--ink)" : "#B45309",
+          color: good ? "var(--ink)" : "#FBBF24",
         }}
       >
         {value}

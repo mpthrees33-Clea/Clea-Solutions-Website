@@ -97,7 +97,7 @@ export default function POIDPPage() {
             }}
           >
             Purchase orders in. Sales orders out.{" "}
-            <em style={{ fontStyle: "italic", color: "var(--ink-muted)" }}>Zero hallucinations.</em>
+            <em style={{ fontStyle: "normal" }}>Zero hallucinations.</em>
           </h1>
           <p
             style={{
