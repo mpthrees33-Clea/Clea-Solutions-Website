@@ -29,7 +29,7 @@ export default function ConfidentialityNote({
       <p style={{ fontSize: "0.95rem", lineHeight: 1.7, color: "var(--ink-muted)", margin: 0 }}>
         {children ?? (
           <>
-            The production {systemName} runs inside an employer&rsquo;s Azure tenant behind
+            The production {systemName}{" "}runs inside an employer&rsquo;s Azure tenant behind
             Microsoft Entra ID, governing live agents across Sales Hub, Quotes Hub, and
             customer service. It can&rsquo;t be shown publicly — which is exactly the point
             of systems built for enterprise environments. What you&rsquo;re looking at here

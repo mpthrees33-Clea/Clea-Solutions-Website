@@ -406,9 +406,9 @@ export default function Home() {
                     lineHeight: 1.3,
                   }}
                 >
-                  Every agent ships with a paper trail: outputs that <em>show their
-                  sources,</em> tools that log every call, and the honest answer when the
-                  system isn&rsquo;t sure.
+                  Every agent ships with a paper trail: outputs that{" "}
+                  <em>show their sources,</em>{" "}tools that log every call, and the
+                  honest answer when the system isn&rsquo;t sure.
                 </p>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.85rem", alignItems: "flex-start" }}>
