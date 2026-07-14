@@ -56,11 +56,14 @@ export default function Navbar() {
         </Link>
 
         <nav style={{ display: "flex", gap: "2rem", alignItems: "center", fontSize: "0.9rem" }}>
-          <Link href="/" style={{ color: "var(--ink-muted)" }}>
-            Approach
-          </Link>
           <Link href="/work" style={{ color: "var(--ink-muted)" }}>
-            Work
+            Platform
+          </Link>
+          <Link href="/mission-control" style={{ color: "var(--ink-muted)" }}>
+            Mission Control
+          </Link>
+          <Link href="/#thesis" style={{ color: "var(--ink-muted)" }}>
+            Approach
           </Link>
           <Link href="/contact" className="btn btn-ghost" style={{ padding: "0.5rem 1rem", fontSize: "0.85rem" }}>
             Contact

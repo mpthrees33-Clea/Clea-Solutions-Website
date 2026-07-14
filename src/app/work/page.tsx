@@ -1,3 +1,11 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Work · Clea Solutions",
+  description:
+    "One agentic AI platform — Mission Control, Sales Hub, Quotes Hub, PO IDP, and the email voice model — plus the standalone tools around it.",
+};
+
 type Project = {
   name: string;
   description: string;
@@ -7,25 +15,55 @@ type Project = {
   sourceUrl: string;
 };
 
-const PROJECTS: Project[] = [
+const PLATFORM: Project[] = [
   {
-    name: "Email in Your Own Voice · Built On-Prem",
+    name: "Mission Control · The Agent Control Plane",
     description:
-      "An AI trained on years of real sent email so its drafts sound like the author, not a bot. Trained and running entirely on our own hardware. Same incoming email, two drafts: the stock model's, and one in the author's actual voice.",
-    language: "Email drafts in your own voice · runs in-house",
-    href: "/email-voice",
+      "A visual graph of every agent across every platform — prompts, memory bindings, tool permissions, and run history governed in one place. Azure AI backed, Entra ID secured. Explore the sanitized interactive replica.",
+    language: "Every agent, observed, from one pane of glass",
+    href: "/mission-control",
+    isLiveDemo: true,
+    sourceUrl: "https://github.com/mpthrees33-clea",
+  },
+  {
+    name: "Quotes Hub · Agentic Quoting Platform",
+    description:
+      "Four cooperating AI capabilities: inbound request → priced draft quote with per-field grounding, catalog and private-label crossover, follow-ups drafted in the rep's voice, and grounded Q&A over quote history. Deployed inside a distributor's Microsoft environment.",
+    language: "Request in → priced quote out, sources attached",
+    href: "/quotes-hub",
     isLiveDemo: false,
-    sourceUrl: "https://github.com/mpthrees33-clea/clea-solutions-website",
+    sourceUrl: "https://github.com/mpthrees33-clea",
+  },
+  {
+    name: "Sales Hub · Field Sales Workspace",
+    description:
+      "A field rep's whole day in one tool: voice-first AI assistant with grounded answers, multi-step sample orders, CRM kanban, and crossover lookup. The AI is scoped — draft-only writes, human sends every email.",
+    language: "A field rep's whole day in one tool",
+    href: "/sales-hub",
+    isLiveDemo: false,
+    sourceUrl: "https://github.com/mpthrees33-clea/Sales-Hub",
   },
   {
     name: "PO IDP · Document Intelligence You Can Audit",
     description:
-      "Turns inbound purchase-order PDFs into validated sales orders in seconds. Every value is double-checked against the original document, the math must reconcile to the cent, and anything uncertain goes to a person, not into your order system. Built for a commercial flooring distributor.",
+      "Turns inbound purchase-order PDFs into validated sales orders in seconds. Seven independent validation layers, every value double-checked against the original document, math reconciled to the cent. Feeds the Quotes Hub and service workflows.",
     language: "Purchase order → validated sales order in seconds",
     href: "/po-idp",
     isLiveDemo: true,
     sourceUrl: "https://github.com/mpthrees33-clea/po-idp",
   },
+  {
+    name: "Email in Your Own Voice · Built On-Prem",
+    description:
+      "An AI trained on years of real sent email so its drafts sound like the author, not a bot. Trained and running entirely on our own hardware — it powers the drafting agents inside Sales Hub and Quotes Hub.",
+    language: "The voice model behind the platform's drafting agents",
+    href: "/email-voice",
+    isLiveDemo: false,
+    sourceUrl: "https://github.com/mpthrees33-clea/clea-solutions-website",
+  },
+];
+
+const TOOLS: Project[] = [
   {
     name: "Private Label Brochure Generator",
     description:
@@ -44,15 +82,6 @@ const PROJECTS: Project[] = [
     isLiveDemo: true,
     sourceUrl: "https://github.com/mpthrees33-clea/Architectual-film-estimation",
   },
-  {
-    name: "Sales Hub",
-    description:
-      "Field-ready sales workspace for flooring distributor reps. Voice-first AI assistant, multi-step sample orders, CRM kanban, and private-label price crossover lookup.",
-    language: "A field rep's whole day in one tool",
-    href: "https://mpthrees33-clea.github.io/Sales-Hub/",
-    isLiveDemo: true,
-    sourceUrl: "https://github.com/mpthrees33-clea/Sales-Hub",
-  },
 ];
 
 export default function WorkPage() {
@@ -60,7 +89,7 @@ export default function WorkPage() {
     <>
       <section className="section">
         <div className="container">
-          <div style={{ maxWidth: "640px", marginBottom: "5rem" }}>
+          <div style={{ maxWidth: "680px", marginBottom: "5rem" }}>
             <div className="eyebrow" style={{ marginBottom: "1.5rem" }}>
               (00) · Selected work
             </div>
@@ -71,102 +100,19 @@ export default function WorkPage() {
                 marginBottom: "1.5rem",
               }}
             >
-              Things we&rsquo;ve built.
+              One platform, and the tools around it.
             </h1>
             <p style={{ fontSize: "1.1rem", color: "var(--ink-muted)", lineHeight: 1.6 }}>
-              Real systems doing real work for real businesses. Two have full case
-              studies, and several are live tools you can open right now.
+              These aren&rsquo;t disconnected projects. The platform pieces feed each
+              other — documents become orders, orders become quotes, every agent is
+              observed from one control plane. The standalone tools are live and open
+              to try right now.
             </p>
           </div>
 
-          <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {PROJECTS.map((p, i) => {
-              const isInternal = p.href.startsWith("/");
-              const num = String(i + 1).padStart(2, "0");
-              return (
-                <li
-                  key={p.name}
-                  style={{
-                    borderTop: "1px solid var(--rule)",
-                    borderBottom: i === PROJECTS.length - 1 ? "1px solid var(--rule)" : undefined,
-                  }}
-                >
-                  <a
-                    href={p.href}
-                    target={isInternal ? undefined : "_blank"}
-                    rel={isInternal ? undefined : "noopener noreferrer"}
-                    style={{
-                      display: "grid",
-                      gridTemplateColumns: "60px 1fr auto",
-                      gap: "2rem",
-                      padding: "2.5rem 0",
-                      alignItems: "start",
-                      color: "var(--ink)",
-                    }}
-                    className="work-row"
-                  >
-                    <span
-                      className="mono"
-                      style={{
-                        fontSize: "0.75rem",
-                        color: "var(--ink-faint)",
-                        paddingTop: "0.4rem",
-                        letterSpacing: "0.1em",
-                      }}
-                    >
-                      {num}
-                    </span>
-
-                    <div>
-                      <h2
-                        style={{
-                          fontSize: "1.4rem",
-                          fontWeight: 500,
-                          letterSpacing: "-0.01em",
-                          marginBottom: "0.6rem",
-                          fontFamily: "var(--font-serif), serif",
-                        }}
-                      >
-                        {p.name}
-                      </h2>
-                      <p
-                        style={{
-                          color: "var(--ink-muted)",
-                          fontSize: "0.95rem",
-                          lineHeight: 1.6,
-                          marginBottom: "1rem",
-                          maxWidth: "620px",
-                        }}
-                      >
-                        {p.description}
-                      </p>
-                      <span
-                        className="mono"
-                        style={{ fontSize: "0.72rem", color: "var(--ink-faint)", letterSpacing: "0.06em" }}
-                      >
-                        {p.language.toUpperCase()}
-                      </span>
-                    </div>
-
-                    <span
-                      style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "0.4rem",
-                        fontSize: "0.8rem",
-                        color: "var(--ink-muted)",
-                        paddingTop: "0.4rem",
-                        whiteSpace: "nowrap",
-                      }}
-                    >
-                      {p.isLiveDemo ? "Open" : "Source"}
-                      <span aria-hidden>→</span>
-                    </span>
-                  </a>
-                </li>
-              );
-            })}
-          </ol>
+          <ProjectGroup label="I · THE PLATFORM" projects={PLATFORM} startAt={1} />
+          <div style={{ height: "4rem" }} />
+          <ProjectGroup label="II · STANDALONE TOOLS" projects={TOOLS} startAt={PLATFORM.length + 1} />
 
           <p style={{ marginTop: "3rem", fontSize: "0.9rem", color: "var(--ink-muted)" }}>
             All source code is open at{" "}
@@ -183,5 +129,119 @@ export default function WorkPage() {
         </div>
       </section>
     </>
+  );
+}
+
+function ProjectGroup({
+  label,
+  projects,
+  startAt,
+}: {
+  label: string;
+  projects: Project[];
+  startAt: number;
+}) {
+  return (
+    <div>
+      <div
+        className="mono"
+        style={{
+          fontSize: "0.7rem",
+          letterSpacing: "0.18em",
+          color: "var(--accent)",
+          marginBottom: "1.25rem",
+        }}
+      >
+        {label}
+      </div>
+      <ol style={{ listStyle: "none", padding: 0, margin: 0 }}>
+        {projects.map((p, i) => {
+          const isInternal = p.href.startsWith("/");
+          const num = String(startAt + i).padStart(2, "0");
+          return (
+            <li
+              key={p.name}
+              style={{
+                borderTop: "1px solid var(--rule)",
+                borderBottom: i === projects.length - 1 ? "1px solid var(--rule)" : undefined,
+              }}
+            >
+              <a
+                href={p.href}
+                target={isInternal ? undefined : "_blank"}
+                rel={isInternal ? undefined : "noopener noreferrer"}
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "60px 1fr auto",
+                  gap: "2rem",
+                  padding: "2.5rem 0",
+                  alignItems: "start",
+                  color: "var(--ink)",
+                }}
+                className="work-row"
+              >
+                <span
+                  className="mono"
+                  style={{
+                    fontSize: "0.75rem",
+                    color: "var(--ink-faint)",
+                    paddingTop: "0.4rem",
+                    letterSpacing: "0.1em",
+                  }}
+                >
+                  {num}
+                </span>
+
+                <div>
+                  <h2
+                    style={{
+                      fontSize: "1.4rem",
+                      fontWeight: 500,
+                      letterSpacing: "-0.01em",
+                      marginBottom: "0.6rem",
+                      fontFamily: "var(--font-display), sans-serif",
+                    }}
+                  >
+                    {p.name}
+                  </h2>
+                  <p
+                    style={{
+                      color: "var(--ink-muted)",
+                      fontSize: "0.95rem",
+                      lineHeight: 1.6,
+                      marginBottom: "1rem",
+                      maxWidth: "620px",
+                    }}
+                  >
+                    {p.description}
+                  </p>
+                  <span
+                    className="mono"
+                    style={{ fontSize: "0.72rem", color: "var(--ink-faint)", letterSpacing: "0.06em" }}
+                  >
+                    {p.language.toUpperCase()}
+                  </span>
+                </div>
+
+                <span
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.4rem",
+                    fontSize: "0.8rem",
+                    color: "var(--ink-muted)",
+                    paddingTop: "0.4rem",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {p.isLiveDemo ? "Open" : "Case study"}
+                  <span aria-hidden>→</span>
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
   );
 }
