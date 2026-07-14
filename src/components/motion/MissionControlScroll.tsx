@@ -59,7 +59,7 @@ const NODE_INDEX: Record<string, NodePos> = Object.fromEntries([
 const PLATFORM_LABELS: Record<string, { label: string; pos: NodePos }> = {
   "sales-hub": { label: "SALES HUB", pos: { x: 235, y: 55 } },
   "quotes-hub": { label: "QUOTES HUB", pos: { x: 600, y: 45 } },
-  "service-desk": { label: "SERVICE DESK", pos: { x: 1030, y: 55 } },
+  "service-desk": { label: "SERVICE DESK", pos: { x: 995, y: 55 } },
 };
 
 export default function MissionControlScroll() {

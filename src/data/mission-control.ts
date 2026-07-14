@@ -138,7 +138,7 @@ export const TOOLS: ToolDef[] = [
     kind: "api",
     authScope: "tickets.read · tickets.write",
     description: "Service tickets: create, update, route, and link source documents.",
-    pos: { x: 1020, y: 580 },
+    pos: { x: 985, y: 580 },
   },
 ];
 
@@ -165,7 +165,7 @@ export const MEMORY: MemoryStore[] = [
     kind: "structured",
     retention: "7 years · audit-grade",
     description: "Every quote, revision, and outcome. Feeds follow-up timing and win-rate context.",
-    pos: { x: 1065, y: 400 },
+    pos: { x: 1025, y: 415 },
   },
 ];
 
@@ -264,7 +264,7 @@ You never resolve or promise anything to the customer.`,
     memoryIds: ["doc-index"],
     guardrails: ["Read-and-route only", "Citations on every summary", "No customer-facing promises"],
     status: "active",
-    pos: { x: 985, y: 135 },
+    pos: { x: 950, y: 135 },
   },
   {
     id: "escalation-router",
@@ -279,7 +279,7 @@ evidence trail. When in doubt, escalate — never absorb risk.`,
     memoryIds: ["quote-history"],
     guardrails: ["Escalation is the default under uncertainty", "Evidence trail attached to every handoff"],
     status: "active",
-    pos: { x: 1080, y: 245 },
+    pos: { x: 1040, y: 250 },
   },
 ];
 
