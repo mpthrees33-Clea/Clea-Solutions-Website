@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Inter, Newsreader, JetBrains_Mono } from "next/font/google";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ScrollSetup from "@/components/motion/ScrollSetup";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -10,11 +11,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const newsreader = Newsreader({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-serif",
+  variable: "--font-display",
   display: "swap",
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -24,9 +25,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Clea Solutions · Private AI that runs on your hardware",
+  title: "Clea Solutions · Enterprise-grade agentic AI harnesses",
   description:
-    "Custom AI systems for small and mid-size businesses. Trained on how your company operates, running on hardware you control. Your data never leaves the building.",
+    "Agentic AI infrastructure that survives contact with production: grounding, validation, orchestration, and observability for every agent. Private by default — your data never leaves the building.",
 };
 
 export default function RootLayout({
@@ -35,8 +36,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${newsreader.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}>
       <body>
+        <ScrollSetup />
         <div style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}>
           <Navbar />
           <main style={{ flex: 1 }}>{children}</main>

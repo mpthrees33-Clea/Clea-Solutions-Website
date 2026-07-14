@@ -28,9 +28,9 @@ export default function Footer() {
             </span>
           </div>
           <p className="muted" style={{ fontSize: "0.9rem", maxWidth: "420px" }}>
-            Private, on-premise AI systems for small and mid-size businesses. Your data
-            stays{" "}
-            <em className="text-accent-deep" style={{ fontStyle: "italic" }}>inside your walls</em>.
+            Enterprise-grade agentic AI harnesses and infrastructure. Every agent
+            grounded, governed, and observed — and your data stays{" "}
+            <em className="text-accent-deep" style={{ fontStyle: "normal" }}>inside your walls</em>.
           </p>
         </div>
 
@@ -45,6 +45,7 @@ export default function Footer() {
           }}
         >
           <Link href="/work">Work</Link>
+          <Link href="/mission-control">Mission Control</Link>
           <Link href="/contact">Contact</Link>
           <a href="mailto:contact@clea-solutions.ai">contact@clea-solutions.ai</a>
           <a href="https://github.com/mpthrees33-clea" target="_blank" rel="noopener noreferrer">

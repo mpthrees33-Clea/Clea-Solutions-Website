@@ -140,7 +140,7 @@ export default function EmailVoicePage() {
             }}
           >
             Same model. Same email.{" "}
-            <em style={{ fontStyle: "italic", color: "var(--ink-muted)" }}>
+            <em style={{ fontStyle: "normal", color: "var(--ink-muted)" }}>
               One sounds like a bot. One sounds like me.
             </em>
           </h1>

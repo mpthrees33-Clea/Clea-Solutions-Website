@@ -65,7 +65,7 @@ function LoginForm() {
           />
 
           {error && (
-            <p className="mono" style={{ color: "#B91C1C", fontSize: "0.78rem", margin: 0, letterSpacing: "0.04em" }}>
+            <p className="mono" style={{ color: "#F87171", fontSize: "0.78rem", margin: 0, letterSpacing: "0.04em" }}>
               {error}
             </p>
           )}
