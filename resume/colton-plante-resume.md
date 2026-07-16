@@ -4,7 +4,7 @@ Charlotte, NC • (407) 325-7644 • mpthrees33@gmail.com • linkedin.com/in/co
 
 ## SUMMARY
 
-Technical sales leader with 6 years owning the full sales cycle for complex, multi-stakeholder enterprise accounts — $3.4M+ in annual revenue at 40%+ gross margin, top-quartile rep company-wide — and founder of a GenAI company designing, demoing, and deploying agentic AI systems. Combines consultative, trusted-advisor selling with hands-on technical depth (agents, RAG, LLM fine-tuning, orchestration) to establish credibility with technical decision makers and translate GenAI capability into business value.
+Technical sales leader with 6 years owning the full sales cycle for complex, multi-stakeholder enterprise accounts — $3.4M+ in annual revenue at 40%+ gross margin, top-quartile rep company-wide — and founder of an agentic AI company designing, demoing, and deploying production AI systems. Combines consultative, trusted-advisor selling with hands-on technical depth (agents, RAG, LLM fine-tuning, orchestration) to establish credibility with technical decision makers and translate GenAI capability into business value.
 
 ## EXPERIENCE
 
@@ -42,4 +42,4 @@ Agentic AI systems for construction and distribution businesses — on-premise, 
 
 **Sales:** Full sales cycle ownership • Enterprise & multi-stakeholder accounts • Consultative / solution selling • Proof-of-concept & demo management • Pricing negotiation & deal structuring • Territory & pipeline management • Trusted-advisor relationship building • Customer insights to product feedback
 
-**GenAI & Technical:** Agentic system design • RAG & grounding • LLM fine-tuning (QLoRA/LoRA, TRL, PEFT) • Local/on-prem inference (llama.cpp, GGUF) • Agent orchestration & governance (Azure AI, Microsoft Entra ID; LangGraph evaluation) • Prompt/context engineering • Python • TypeScript/React/Next.js • Claude Code
+**Agentic AI & Technical:** Agentic system design • RAG & grounding • LLM fine-tuning (QLoRA/LoRA, TRL, PEFT) • Local/on-prem inference (llama.cpp, GGUF) • Agent orchestration & governance (Azure AI, Microsoft Entra ID; LangGraph evaluation) • Prompt/context engineering • Python • TypeScript/React/Next.js • Claude Code
