@@ -4,7 +4,7 @@ Charlotte, NC • (407) 325-7644 • mpthrees33@gmail.com • linkedin.com/in/co
 
 ## SUMMARY
 
-Founder of an agentic AI company built on six years of top-quartile B2B construction sales. Designs and builds production-grade AI systems — on-prem document-processing agents, fine-tuned local LLMs, and agent orchestration with governance — that automate the distribution workflows learned firsthand selling $3.5M+ per year into the construction channel. Rare combination: can architect the agentic system and close the deal.
+Technical sales leader with 6 years owning the full sales cycle for complex, multi-stakeholder enterprise accounts — $3.4M+ in annual revenue at 40%+ gross margin, top-quartile rep company-wide — and founder of a GenAI company designing, demoing, and deploying agentic AI systems. Combines consultative, trusted-advisor selling with hands-on technical depth (agents, RAG, LLM fine-tuning, orchestration) to establish credibility with technical decision makers and translate GenAI capability into business value.
 
 ## EXPERIENCE
 
@@ -13,24 +13,24 @@ Founder of an agentic AI company built on six years of top-quartile B2B construc
 
 Agentic AI systems for construction and distribution businesses — on-premise, grounded, human-in-the-loop.
 
-- Built an intelligent document-processing agent that turns purchase-order PDFs into validated, ERP-ready orders, with independent validation layers and human review flags on every uncertain field — running fully on-prem so no customer documents leave the building.
-- Engineered an end-to-end local LLM fine-tuning pipeline (QLoRA via TRL/PEFT/bitsandbytes, merged and quantized to GGUF, served with llama.cpp on repurposed server GPUs) that drafts email replies in the user's own voice, trained on their sent mail.
-- Designed Mission Control, an agent orchestration and governance layer managing every agent's prompt, memory bindings, tool permissions, and run history — built on Azure AI and secured with Microsoft Entra ID.
-- Ship the product site and live demos in Next.js/TypeScript/React; run an agentic development workflow (Claude Code) daily across the full stack.
+- Lead customer discovery with construction and distribution operators — leveraging 6 years of channel relationships to map document-heavy workflows (PO entry, quoting, email operations) to agentic AI solutions and clear value propositions.
+- Build and run proof-of-concept iterations end to end — live demos of a document-processing agent, a fine-tuned email model, and an agent-governance console — owning the prototype-to-production lifecycle that moves prospects from evaluation to adoption.
+- Translate agentic architectures (agents, RAG/grounding, human-in-the-loop validation, on-prem inference) into plain-language business cases for non-technical owners and operations leaders — and into credible technical detail for developers.
+- Engineered the systems personally: end-to-end LLM fine-tuning pipeline (QLoRA via TRL/PEFT, quantized to GGUF, served with llama.cpp) and an agent orchestration & governance layer on Azure AI with Microsoft Entra ID; evaluated orchestration frameworks including LangGraph.
 
 ### Trinity Surfaces (formerly Trinity Tile) — Sales Representative, Carolinas Territory
 *Charlotte, NC • June 2020 – Present*
 
-- Built the Carolinas territory from a zero book of business — hired mid-COVID — into $3.4M+ in annual paid tile revenue at 41–43% gross margin ($3.28M in 2023; $3.42M in 2025).
+- Own the full sales cycle — prospecting, discovery, technical spec-in, quoting, pricing negotiation, close, and post-sale resolution — producing $3.4M+ in annual revenue at 41–43% gross margin ($3.28M in 2023; $3.42M in 2025).
 - Ranked #8 of 32 sales representatives company-wide in 2025 revenue ($2.7M billed, $1.26M gross margin) as a single-rep, multi-state territory.
-- Grew a specialty product line (Capri, Audrey Lane, 2tec2) from zero to $2.8M in cumulative sales across 150+ unique accounts, peaking at $815K in a single year.
-- Manage 20+ active accounts monthly — flooring contractors, commercial GCs, and design firms — including product supply for national rollouts such as Morgan Stanley office locations in NY, CA, and AL.
-- Sustained 40%+ gross margins for six consecutive years through spec-driven, consultative selling into the architecture & design and commercial construction channels.
+- Act as trusted advisor to technical decision makers — architects, designers, and GC project teams — winning product specifications on commercial construction projects with multi-month, multi-stakeholder sales cycles.
+- Manage complex enterprise accounts and national rollouts (including Morgan Stanley office locations in NY, CA, and AL), and expanded existing accounts with new product lines from zero to $2.8M cumulative sales across 150+ accounts.
+- Hired mid-COVID with a zero book of business; built the territory's sales playbook from scratch — prospecting cadence, spec-driven selling motion, and margin discipline that sustained 40%+ gross margins for six consecutive years.
 
 ### Travel Country Outdoors — E-Commerce & Amazon Channel Manager
 *Altamonte Springs, FL • 2013 – 2020*
 
-- Grew Amazon channel sales 200% year-over-year (2018–2019) and launched a new fulfillment warehouse, opening a second e-commerce sales channel (FBM) for the family retail business.
+- Grew Amazon channel sales 200% year-over-year (2018–2019) and launched a new fulfillment warehouse, opening a second e-commerce channel for the family retail business.
 
 ## EDUCATION
 
@@ -40,6 +40,6 @@ Agentic AI systems for construction and distribution businesses — on-premise, 
 
 ## SKILLS
 
-**AI & Software:** Agentic system design • LLM fine-tuning (QLoRA, LoRA, TRL, PEFT, bitsandbytes) • Local inference (llama.cpp, GGUF quantization) • RAG & grounding • Prompt/context engineering • Agent orchestration & governance (Azure AI, Microsoft Entra ID) • Python • TypeScript/React/Next.js • Claude Code
+**Sales:** Full sales cycle ownership • Enterprise & multi-stakeholder accounts • Consultative / solution selling • Proof-of-concept & demo management • Pricing negotiation & deal structuring • Territory & pipeline management • Trusted-advisor relationship building • Customer insights to product feedback
 
-**Sales:** Territory management • B2B construction & distribution channel (contractors, GCs, A&D community) • Consultative & spec-driven selling • Margin management • Forecasting • ERP/CRM order workflows
+**GenAI & Technical:** Agentic system design • RAG & grounding • LLM fine-tuning (QLoRA/LoRA, TRL, PEFT) • Local/on-prem inference (llama.cpp, GGUF) • Agent orchestration & governance (Azure AI, Microsoft Entra ID; LangGraph evaluation) • Prompt/context engineering • Python • TypeScript/React/Next.js • Claude Code
