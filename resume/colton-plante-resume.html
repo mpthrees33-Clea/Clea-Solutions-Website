@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Colton Plante — Resume</title>
+<style>
+  @page { size: Letter; margin: 0.45in 0.55in; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { font-family: Calibri, 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; font-size: 9.5pt; line-height: 1.24; }
+  h1 { font-size: 17pt; letter-spacing: 0.06em; font-weight: 700; }
+  .contact { font-size: 9pt; color: #333; margin-top: 1.5pt; }
+  h2 { font-size: 10pt; letter-spacing: 0.1em; font-weight: 700; text-transform: uppercase;
+       border-bottom: 1.2px solid #1a1a1a; padding-bottom: 1pt; margin: 7pt 0 3.5pt; }
+  .summary { font-size: 9.5pt; }
+  .job { margin-bottom: 5pt; }
+  .job-head { display: flex; justify-content: space-between; align-items: baseline; }
+  .job-title { font-size: 10pt; font-weight: 700; }
+  .job-title .co { font-weight: 700; }
+  .job-title .role { font-weight: 400; font-style: italic; }
+  .job-meta { font-size: 9pt; color: #333; white-space: nowrap; }
+  .job-sub { font-size: 9pt; font-style: italic; color: #333; margin: 0.5pt 0 1.5pt; }
+  ul { margin: 1.5pt 0 0 13pt; }
+  li { margin-bottom: 1.5pt; }
+  .edu p { margin-bottom: 2pt; }
+  .skills p { margin-bottom: 2pt; }
+  .label { font-weight: 700; }
+</style>
+</head>
+<body>
+
+<h1>COLTON PLANTE</h1>
+<div class="contact">Charlotte, NC &nbsp;•&nbsp; (407) 325-7644 &nbsp;•&nbsp; mpthrees33@gmail.com &nbsp;•&nbsp; linkedin.com/in/coltonplante &nbsp;•&nbsp; clea-solutions.ai</div>
+
+<h2>Summary</h2>
+<p class="summary">Founder of an agentic AI company built on six years of top-quartile B2B construction sales. Designs and builds production-grade AI systems — on-prem document-processing agents, fine-tuned local LLMs, and agent orchestration with governance — that automate the distribution workflows learned firsthand selling $3.5M+ per year into the construction channel. Rare combination: can architect the agentic system and close the deal.</p>
+
+<h2>Experience</h2>
+
+<div class="job">
+  <div class="job-head">
+    <span class="job-title"><span class="co">Clea Solutions</span> — <span class="role">Founder</span></span>
+    <span class="job-meta">Charlotte, NC &nbsp;|&nbsp; Dec 2025 – Present</span>
+  </div>
+  <div class="job-sub">Agentic AI systems for construction &amp; distribution businesses — on-premise, grounded, human-in-the-loop.</div>
+  <ul>
+    <li>Built an intelligent document-processing agent that turns purchase-order PDFs into validated, ERP-ready orders, with independent validation layers and human review flags on every uncertain field — fully on-prem, so no customer documents leave the building.</li>
+    <li>Engineered an end-to-end local LLM fine-tuning pipeline (QLoRA via TRL/PEFT/bitsandbytes, merged and quantized to GGUF, served with llama.cpp on repurposed server GPUs) that drafts email replies in the user's own voice, trained on their sent mail.</li>
+    <li>Designed Mission Control, an agent orchestration and governance layer managing every agent's prompt, memory bindings, tool permissions, and run history — built on Azure AI and secured with Microsoft Entra ID.</li>
+    <li>Ship the product site and live demos in Next.js/TypeScript/React; run an agentic development workflow (Claude Code) daily across the full stack.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head">
+    <span class="job-title"><span class="co">Trinity Surfaces</span> (formerly Trinity Tile) — <span class="role">Sales Representative, Carolinas Territory</span></span>
+    <span class="job-meta">Charlotte, NC &nbsp;|&nbsp; Jun 2020 – Present</span>
+  </div>
+  <ul>
+    <li>Built the Carolinas territory from a zero book of business — hired mid-COVID — into $3.4M+ in annual paid tile revenue at 41–43% gross margin ($3.28M in 2023; $3.42M in 2025).</li>
+    <li>Ranked #8 of 32 sales representatives company-wide in 2025 revenue ($2.7M billed, $1.26M gross margin) as a single-rep, multi-state territory.</li>
+    <li>Grew a specialty product line (Capri, Audrey Lane, 2tec2) from zero to $2.8M in cumulative sales across 150+ unique accounts, peaking at $815K in a single year.</li>
+    <li>Manage 20+ active accounts monthly — flooring contractors, commercial GCs, and design firms — including product supply for national rollouts such as Morgan Stanley office locations in NY, CA, and AL.</li>
+    <li>Sustained 40%+ gross margins for six consecutive years through spec-driven, consultative selling into the architecture &amp; design and commercial construction channels.</li>
+  </ul>
+</div>
+
+<div class="job">
+  <div class="job-head">
+    <span class="job-title"><span class="co">Travel Country Outdoors</span> — <span class="role">E-Commerce &amp; Amazon Channel Manager</span></span>
+    <span class="job-meta">Altamonte Springs, FL &nbsp;|&nbsp; 2013 – 2020</span>
+  </div>
+  <ul>
+    <li>Grew Amazon channel sales 200% year-over-year (2018–2019) and launched a new fulfillment warehouse, opening a second e-commerce sales channel (FBM) for the family retail business.</li>
+  </ul>
+</div>
+
+<h2>Education</h2>
+<div class="edu">
+  <p><span class="label">Rollins College, Crummer Graduate School of Business</span> — MBA, 2020 &nbsp;•&nbsp; Entrepreneurial Scholar of Distinction; consulted for NASA's patent-commercialization program</p>
+  <p><span class="label">Florida State University</span> — B.S. Entrepreneurship, 2018 &nbsp;•&nbsp; Florida State Football (2015–2018), All-ACC Academic Honor Roll</p>
+</div>
+
+<h2>Skills</h2>
+<div class="skills">
+  <p><span class="label">AI &amp; Software:</span> Agentic system design • LLM fine-tuning (QLoRA, LoRA, TRL, PEFT, bitsandbytes) • Local inference (llama.cpp, GGUF quantization) • RAG &amp; grounding • Prompt/context engineering • Agent orchestration &amp; governance (Azure AI, Microsoft Entra ID) • Python • TypeScript/React/Next.js • Claude Code</p>
+  <p><span class="label">Sales:</span> Territory management • B2B construction &amp; distribution channel (contractors, GCs, A&amp;D community) • Consultative &amp; spec-driven selling • Margin management • Forecasting • ERP/CRM order workflows</p>
+</div>
+
+</body>
+</html>
