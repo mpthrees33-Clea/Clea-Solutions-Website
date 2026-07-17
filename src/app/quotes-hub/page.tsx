@@ -154,7 +154,10 @@ export default function QuotesHubPage() {
               The agents inside this pipeline — Quote Builder, PO Intake, Crossover
               Lookup, and the voice-match drafter — are all governed from{" "}
               <Link href="/mission-control" className="btn-link">Mission Control</Link>, where
-              their prompts, tool scopes, and memory bindings live.
+              their prompts, tool scopes, and memory bindings live. For how any one of
+              them is structured internally — the loop, the trust boundaries, the
+              tool-call protocol — see{" "}
+              <Link href="/harness" className="btn-link">the harness anatomy</Link>.
             </p>
           </RevealSection>
         </div>

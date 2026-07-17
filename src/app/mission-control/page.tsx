@@ -199,6 +199,16 @@ export default function MissionControlPage() {
                 {ARCHITECTURE}
               </pre>
             </div>
+            <p style={{ marginTop: "1.5rem", color: "var(--ink-muted)", fontSize: "0.92rem", maxWidth: "680px", lineHeight: 1.65 }}>
+              This vocabulary maps one-for-one onto the loop in Vercel&rsquo;s
+              open-source eve framework — sessions made of turns made of checkpointed
+              steps, a hard trust boundary between runtime and sandbox, and approvals
+              that park instead of poll.{" "}
+              <Link href="/harness" className="btn-link">
+                Read the full anatomy
+                <span aria-hidden>→</span>
+              </Link>
+            </p>
           </RevealSection>
         </div>
       </section>

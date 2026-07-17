@@ -117,9 +117,16 @@ export default function Home() {
                   grounding, deterministic math, scoped tool permissions, governed
                   memory, escalation paths, and a control plane that watches all of it.
                 </p>
-                <p style={{ fontSize: "1.1rem", lineHeight: 1.7 }}>
-                  That other 90% is what we build.
+                <p style={{ fontSize: "1.1rem", lineHeight: 1.7, marginBottom: "1.5rem" }}>
+                  That other 90% is what we build — and it&rsquo;s no longer a private
+                  art. It&rsquo;s the discipline now codified in Vercel&rsquo;s
+                  open-source eve framework, and our harness maps onto it pattern for
+                  pattern.
                 </p>
+                <Link href="/harness" className="btn-link">
+                  Read the harness anatomy
+                  <span aria-hidden>→</span>
+                </Link>
               </div>
             </div>
           </RevealSection>
@@ -440,6 +447,7 @@ export default function Home() {
 
 const TICKER_ITEMS = [
   "EVERY AGENT OBSERVABLE",
+  "EVE-ALIGNED REFERENCE ARCHITECTURE",
   "GROUNDED OR IT ESCALATES",
   "ENTRA ID · AZURE AI",
   "RUNS ON YOUR HARDWARE",

@@ -44,7 +44,7 @@ export default function Navbar() {
             Clea
           </span>
           <span
-            className="mono"
+            className="mono nav-solutions"
             style={{
               fontSize: "0.68rem",
               color: "var(--ink-faint)",
@@ -55,14 +55,17 @@ export default function Navbar() {
           </span>
         </Link>
 
-        <nav style={{ display: "flex", gap: "2rem", alignItems: "center", fontSize: "0.9rem" }}>
-          <Link href="/work" style={{ color: "var(--ink-muted)" }}>
+        <nav className="main-nav" style={{ display: "flex", gap: "2rem", alignItems: "center", fontSize: "0.9rem" }}>
+          <Link href="/work" className="nav-platform" style={{ color: "var(--ink-muted)" }}>
             Platform
           </Link>
           <Link href="/mission-control" style={{ color: "var(--ink-muted)" }}>
             Mission Control
           </Link>
-          <Link href="/#thesis" style={{ color: "var(--ink-muted)" }}>
+          <Link href="/harness" style={{ color: "var(--ink-muted)" }}>
+            Harness
+          </Link>
+          <Link href="/#thesis" className="nav-approach" style={{ color: "var(--ink-muted)" }}>
             Approach
           </Link>
           <Link href="/contact" className="btn btn-ghost" style={{ padding: "0.5rem 1rem", fontSize: "0.85rem" }}>
@@ -70,6 +73,17 @@ export default function Navbar() {
           </Link>
         </nav>
       </div>
+      <style>{`
+        @media (max-width: 860px) {
+          .main-nav { gap: 1rem !important; font-size: 0.82rem !important; }
+          .nav-approach { display: none; }
+        }
+        @media (max-width: 560px) {
+          .main-nav { gap: 0.85rem !important; font-size: 0.8rem !important; }
+          .nav-platform { display: none; }
+          .nav-solutions { display: none; }
+        }
+      `}</style>
     </header>
   );
 }

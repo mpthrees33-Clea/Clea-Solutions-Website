@@ -156,6 +156,9 @@ export default function SalesHubPage() {
               seven agents governed from{" "}
               <Link href="/mission-control" className="btn-link">Mission Control</Link> —
               same prompts, tool scopes, and guardrails you can inspect in the replica.
+              For how any agent is structured internally — the loop, the trust
+              boundaries, the tool-call protocol — see{" "}
+              <Link href="/harness" className="btn-link">the harness anatomy</Link>.
             </p>
           </RevealSection>
         </div>

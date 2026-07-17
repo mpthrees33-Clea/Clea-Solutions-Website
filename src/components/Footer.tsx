@@ -46,6 +46,7 @@ export default function Footer() {
         >
           <Link href="/work">Work</Link>
           <Link href="/mission-control">Mission Control</Link>
+          <Link href="/harness">Harness</Link>
           <Link href="/contact">Contact</Link>
           <a href="mailto:contact@clea-solutions.ai">contact@clea-solutions.ai</a>
           <a href="https://github.com/mpthrees33-clea" target="_blank" rel="noopener noreferrer">
