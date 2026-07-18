@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import MobileFlow from "@/components/MobileFlow";
 
 export const metadata: Metadata = {
   title: "Email in Your Own Voice · Built On-Prem | Clea Solutions",
@@ -544,12 +545,11 @@ export default function EmailVoicePage() {
                 endpoint, LAN-only.
               </p>
               <pre
-                className="mono"
+                className="mono diagram-desktop pre-diagram"
                 style={{
                   fontSize: "0.82rem",
                   lineHeight: 1.55,
                   color: "var(--ink)",
-                  overflowX: "auto",
                   margin: "0 0 2.5rem 0",
                   padding: "2rem",
                   background: "var(--bg-elevated)",
@@ -578,6 +578,20 @@ export default function EmailVoicePage() {
        │
        ▼
   drafting UI  ──  one incoming email in, two drafts out`}</pre>
+              <div className="diagram-mobile" style={{ marginBottom: "2.5rem" }}>
+                <MobileFlow
+                  steps={[
+                    { title: "Mail archive", detail: ".pst / .msg / .eml" },
+                    { title: "extract + thread-pair", detail: "incoming email → reply actually sent" },
+                    { title: "clean", detail: "strip signatures · quoted history · footers · noise → train.jsonl / val.jsonl / held-out eval inbox" },
+                    { title: "QLoRA fine-tune", detail: "Gemma 4, NF4-quantized + frozen, LoRA adapters train · ladder: E4B → 12B → 31B across 2× Tesla P40" },
+                    { title: "side-by-side eval", detail: "stock draft · tuned draft · real reply" },
+                    { title: "merge adapters → fp16 → GGUF Q4_K_M", detail: "company-owned" },
+                    { title: "llama.cpp server", detail: "split across both GPUs, OpenAI-compatible, LAN-only" },
+                    { title: "drafting UI", detail: "one incoming email in, two drafts out" },
+                  ]}
+                />
+              </div>
               <dl
                 style={{
                   display: "grid",
@@ -631,7 +645,7 @@ export default function EmailVoicePage() {
         {/* CTA */}
         <section
           style={{
-            padding: "4rem 3rem",
+            padding: "clamp(2rem, 6vw, 4rem) clamp(1.25rem, 5vw, 3rem)",
             background: "var(--bg-elevated)",
             border: "1px solid var(--rule)",
             borderRadius: "12px",

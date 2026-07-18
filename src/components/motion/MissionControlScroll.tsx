@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 import { gsap, useGSAP } from "@/lib/gsap";
+import MissionControlMobileGraph from "./MissionControlMobileGraph";
 import {
   AGENTS,
   TOOLS,
@@ -173,8 +174,11 @@ export default function MissionControlScroll() {
             </Link>
           </div>
 
-          <div className="mc-stage panel" style={{ padding: "1rem", overflow: "hidden" }}>
+          <div className="mc-stage mc-stage-desktop panel" style={{ padding: "1rem", overflow: "hidden" }}>
             <Graph />
+          </div>
+          <div className="mc-stage-mobile">
+            <MissionControlMobileGraph />
           </div>
         </div>
       </div>
@@ -186,9 +190,12 @@ export default function MissionControlScroll() {
           gap: 3rem;
           align-items: start;
         }
+        .mc-stage-mobile { display: none; }
         @media (max-width: 899px) {
           .mc-layout { grid-template-columns: 1fr; gap: 2rem; }
           .mc-rail { order: 2; }
+          .mc-stage-desktop { display: none; }
+          .mc-stage-mobile { display: block; }
         }
       `}</style>
     </section>

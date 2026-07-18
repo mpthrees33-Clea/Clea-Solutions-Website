@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       {/* (01) Hero */}
-      <section className="section" style={{ paddingTop: "7rem", paddingBottom: "7rem" }}>
+      <section className="section section-hero">
         <div className="container">
           <div style={{ maxWidth: "900px" }}>
             <div className="eyebrow fade-up" style={{ marginBottom: "2rem", display: "inline-flex", alignItems: "center" }}>

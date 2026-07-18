@@ -85,7 +85,7 @@ export default function Contact() {
                 style={{
                   display: "flex",
                   gap: "1.25rem",
-                  borderTop: "1px solid var(--line)",
+                  borderTop: "1px solid var(--rule)",
                   paddingTop: "1.25rem",
                 }}
               >
@@ -120,7 +120,7 @@ export default function Contact() {
         {status === "success" ? (
           <div
             style={{
-              border: "1px solid var(--line)",
+              border: "1px solid var(--rule)",
               padding: "2.5rem",
               display: "flex",
               flexDirection: "column",

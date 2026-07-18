@@ -4,16 +4,7 @@ import Mark from "./Mark";
 export default function Footer() {
   return (
     <footer style={{ borderTop: "1px solid var(--rule)", marginTop: "6rem" }}>
-      <div
-        className="container"
-        style={{
-          padding: "3rem 1.5rem 2rem",
-          display: "grid",
-          gridTemplateColumns: "1fr auto",
-          gap: "2rem",
-          alignItems: "end",
-        }}
-      >
+      <div className="container footer-grid">
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.5rem" }}>
             <Mark size={20} />
@@ -34,16 +25,7 @@ export default function Footer() {
           </p>
         </div>
 
-        <nav
-          style={{
-            display: "flex",
-            gap: "1.5rem",
-            fontSize: "0.85rem",
-            color: "var(--ink-muted)",
-            flexWrap: "wrap",
-            justifyContent: "flex-end",
-          }}
-        >
+        <nav className="footer-nav">
           <Link href="/work">Work</Link>
           <Link href="/mission-control">Mission Control</Link>
           <Link href="/contact">Contact</Link>
@@ -57,16 +39,7 @@ export default function Footer() {
       </div>
 
       <div className="container" style={{ borderTop: "1px solid var(--rule)" }}>
-        <div
-          style={{
-            padding: "1.25rem 0",
-            display: "flex",
-            justifyContent: "space-between",
-            fontSize: "0.72rem",
-            color: "var(--ink-faint)",
-          }}
-          className="mono"
-        >
+        <div className="footer-bottom mono">
           <span>© {new Date().getFullYear()} CLEA SOLUTIONS</span>
           <span>
             <span className="ticker-dot">●</span> AVAILABLE FOR NEW WORK
