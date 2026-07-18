@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import Mark from "./Mark";
 
@@ -12,30 +12,39 @@ const LINKS = [
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const toggleRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
 
-  // Close the panel when the route changes (e.g. back/forward navigation).
-  // Hash links (/#thesis) don't change the pathname, so links also close on click.
-  const [prevPathname, setPrevPathname] = useState(pathname);
-  if (prevPathname !== pathname) {
-    setPrevPathname(pathname);
-    setOpen(false);
-  }
+  const close = () => {
+    if (toggleRef.current) toggleRef.current.checked = false;
+  };
+
+  // Close the panel when the route changes (back/forward, or after a link tap).
+  // The toggle itself is a native checkbox driven by CSS, so the menu opens and
+  // closes even if this JavaScript never runs — these effects are enhancement only.
+  useEffect(() => {
+    close();
+  }, [pathname]);
 
   useEffect(() => {
-    if (!open) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+      if (e.key === "Escape") close();
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
-
-  const close = () => setOpen(false);
+  }, []);
 
   return (
     <header className="site-header">
+      {/* Uncontrolled checkbox: the browser toggles it natively and CSS shows the
+          panel via #nav-toggle:checked ~ #mobile-nav — no hydration required. */}
+      <input
+        ref={toggleRef}
+        type="checkbox"
+        id="nav-toggle"
+        className="nav-toggle-checkbox"
+        aria-label="Toggle navigation menu"
+      />
       <div className="container site-header-row">
         <Link href="/" className="site-brand" onClick={close}>
           <Mark size={20} />
@@ -72,21 +81,15 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        <button
-          type="button"
-          className="nav-toggle"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((o) => !o)}
-        >
+        <label htmlFor="nav-toggle" className="nav-toggle">
           <span className="nav-toggle-bar" />
           <span className="nav-toggle-bar" />
           <span className="nav-toggle-bar" />
-        </button>
+          <span className="nav-toggle-label-a11y">Menu</span>
+        </label>
       </div>
 
-      <nav id="mobile-nav" className={open ? "nav-panel is-open" : "nav-panel"} aria-label="Mobile">
+      <nav id="mobile-nav" className="nav-panel" aria-label="Mobile">
         {LINKS.map((l) => (
           <Link key={l.href} href={l.href} onClick={close}>
             {l.label}

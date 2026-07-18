@@ -530,6 +530,17 @@ a:hover {
   font-size: 0.9rem;
 }
 
+/* The toggle is a visually-hidden native checkbox + a <label> hamburger.
+   Panel visibility is driven purely by :checked in CSS, so the menu works
+   the moment HTML + CSS load — it does not wait on React hydration. */
+.nav-toggle-checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -556,6 +567,15 @@ a:hover {
   margin-top: 5px;
 }
 
+.nav-toggle-label-a11y {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
 .nav-panel {
   display: none;
 }
@@ -569,19 +589,25 @@ a:hover {
     display: flex;
   }
 
-  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+  .nav-toggle-checkbox:focus-visible + .site-header-row .nav-toggle {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+
+  #nav-toggle:checked ~ .site-header-row .nav-toggle-bar:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
 
-  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+  #nav-toggle:checked ~ .site-header-row .nav-toggle-bar:nth-child(2) {
     opacity: 0;
   }
 
-  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+  #nav-toggle:checked ~ .site-header-row .nav-toggle-bar:nth-child(3) {
     transform: translateY(-7px) rotate(-45deg);
   }
 
-  .nav-panel.is-open {
+  #nav-toggle:checked ~ #mobile-nav {
     display: block;
     border-top: 1px solid var(--rule);
     background: var(--bg);
