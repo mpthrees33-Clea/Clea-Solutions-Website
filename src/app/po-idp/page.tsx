@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import MobileFlow from "@/components/MobileFlow";
 import Demo from "./Demo";
 
 export const metadata: Metadata = {
@@ -91,9 +92,10 @@ export default function POIDPPage() {
           <h1
             className="display"
             style={{
-              fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+              fontSize: "clamp(2.1rem, 8vw, 4.5rem)",
               marginBottom: "1.75rem",
               maxWidth: "900px",
+              overflowWrap: "anywhere",
             }}
           >
             Purchase orders in. Sales orders out.{" "}
@@ -226,12 +228,11 @@ export default function POIDPPage() {
             Architecture.
           </h2>
           <pre
-            className="mono"
+            className="mono diagram-desktop pre-diagram"
             style={{
               fontSize: "0.82rem",
               lineHeight: 1.55,
               color: "var(--ink)",
-              overflowX: "auto",
               margin: 0,
               padding: "2rem",
               background: "var(--bg-elevated)",
@@ -269,6 +270,23 @@ export default function POIDPPage() {
        │
        ▼
   catalog mapping  →  generated SO PDF  +  audit bundle (zip)`}</pre>
+          <div className="diagram-mobile">
+            <MobileFlow
+              steps={[
+                { title: "input file", detail: "PDF or image" },
+                { title: "content-type sniff", detail: "reject HTML / unknowns" },
+                { title: "pdfplumber tokens + bboxes", detail: "if <400 chars of text → vision fallback" },
+                { title: "pypdfium2 render → AI vision OCR" },
+                { title: "PRIMARY extractor", detail: "AI, strict schema · every field carries source_quote + bbox" },
+                { title: "grounding validator", detail: "every value must appear in OCR text" },
+                { title: "cross-check", detail: "math · dates · SKU catalog · pricing" },
+                { title: "SECONDARY extractor", detail: "independent AI, different prompt" },
+                { title: "consistency diff", detail: "PO#, SKUs, qty, prices, totals" },
+                { title: "confidence aggregator", detail: "0.92 = auto-approve · <0.70 = human review" },
+                { title: "catalog mapping", detail: "generated SO PDF + audit bundle (zip)" },
+              ]}
+            />
+          </div>
         </section>
 
         <hr className="rule" style={{ marginBottom: "4rem" }} />
@@ -350,7 +368,7 @@ export default function POIDPPage() {
         {/* CTA */}
         <section
           style={{
-            padding: "4rem 3rem",
+            padding: "clamp(2rem, 6vw, 4rem) clamp(1.25rem, 5vw, 3rem)",
             background: "var(--bg-elevated)",
             border: "1px solid var(--rule)",
             borderRadius: "12px",

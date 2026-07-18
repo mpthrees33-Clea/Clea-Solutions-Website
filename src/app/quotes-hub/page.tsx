@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ConfidentialityNote from "@/components/ConfidentialityNote";
+import MobileFlow from "@/components/MobileFlow";
 import RevealSection from "@/components/motion/RevealSection";
 
 export const metadata: Metadata = {
@@ -145,10 +146,31 @@ export default function QuotesHubPage() {
             <h2 className="display" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", marginBottom: "2rem" }}>
               Architecture.
             </h2>
-            <div className="panel" style={{ padding: "2rem", overflowX: "auto" }}>
+            <div className="panel diagram-desktop pre-diagram" style={{ padding: "2rem" }}>
               <pre className="mono" style={{ fontSize: "0.72rem", lineHeight: 1.5, color: "var(--ink-muted)", margin: 0 }}>
                 {ARCHITECTURE}
               </pre>
+            </div>
+            <div className="diagram-mobile">
+              <MobileFlow
+                steps={[
+                  { title: "inbound request", detail: "email · PO PDF · spec list" },
+                  { title: "intake — PO Intake (IDP) for documents", detail: "7 validation gates · per-field grounding" },
+                  { title: "quote agent", detail: "extract → catalog_search → crossover · every value carries its source line" },
+                  {
+                    parallel: [
+                      { title: "pricing engine", detail: "deterministic" },
+                      { title: "human review queue", detail: "<0.70 confidence" },
+                    ],
+                  },
+                  { title: "draft quote", detail: "rep approves" },
+                  { title: "pipeline: follow-up agent (voice model)", detail: "grounded Q&A over quote_history" },
+                ]}
+                footers={[
+                  "all agents observed by MISSION CONTROL",
+                  "Azure AI · Entra ID · tenant-only data",
+                ]}
+              />
             </div>
             <p style={{ marginTop: "1.5rem", color: "var(--ink-muted)", fontSize: "0.92rem", maxWidth: "680px", lineHeight: 1.65 }}>
               The agents inside this pipeline — Quote Builder, PO Intake, Crossover

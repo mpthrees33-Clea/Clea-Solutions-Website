@@ -170,27 +170,9 @@ function ProjectGroup({
                 href={p.href}
                 target={isInternal ? undefined : "_blank"}
                 rel={isInternal ? undefined : "noopener noreferrer"}
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "60px 1fr auto",
-                  gap: "2rem",
-                  padding: "2.5rem 0",
-                  alignItems: "start",
-                  color: "var(--ink)",
-                }}
                 className="work-row"
               >
-                <span
-                  className="mono"
-                  style={{
-                    fontSize: "0.75rem",
-                    color: "var(--ink-faint)",
-                    paddingTop: "0.4rem",
-                    letterSpacing: "0.1em",
-                  }}
-                >
-                  {num}
-                </span>
+                <span className="mono work-row-num">{num}</span>
 
                 <div>
                   <h2
@@ -223,17 +205,7 @@ function ProjectGroup({
                   </span>
                 </div>
 
-                <span
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.4rem",
-                    fontSize: "0.8rem",
-                    color: "var(--ink-muted)",
-                    paddingTop: "0.4rem",
-                    whiteSpace: "nowrap",
-                  }}
-                >
+                <span className="work-row-action">
                   {p.isLiveDemo ? "Open" : "Case study"}
                   <span aria-hidden>→</span>
                 </span>

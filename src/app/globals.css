@@ -36,8 +36,21 @@ body {
   line-height: 1.6;
 }
 
+html,
+body {
+  /* clip, not hidden: hidden would create a scroll container and break the
+     sticky header + ScrollTrigger pin measurement */
+  overflow-x: clip;
+}
+
 body {
   min-height: 100vh;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
 }
 
 a {
@@ -121,8 +134,13 @@ a:hover {
   padding: 3rem 0;
 }
 
+.section-hero {
+  padding: 7rem 0;
+}
+
 @media (max-width: 720px) {
   .section { padding: 4rem 0; }
+  .section-hero { padding: 3.5rem 0 4rem; }
 }
 
 /* ─── Buttons ─── */
@@ -238,8 +256,50 @@ a:hover {
   color: var(--ink);
 }
 
-.work-row a:hover h2 {
+.work-row {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 2rem;
+  padding: 2.5rem 0;
+  align-items: start;
+  color: var(--ink);
+}
+
+.work-row:hover h2 {
   color: var(--accent-deep);
+}
+
+.work-row-num {
+  font-size: 0.75rem;
+  color: var(--ink-faint);
+  padding-top: 0.4rem;
+  letter-spacing: 0.1em;
+}
+
+.work-row-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--ink-muted);
+  padding-top: 0.4rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .work-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 1.75rem 0;
+  }
+
+  .work-row-num {
+    padding-top: 0;
+  }
+
+  .work-row-action {
+    padding-top: 0.1rem;
+  }
 }
 
 /* ─── Grid ─── */
@@ -433,4 +493,256 @@ a:hover {
 
 .glow-node {
   filter: drop-shadow(0 0 10px rgba(157, 178, 90, 0.45));
+}
+
+/* ─── Site header / nav ───
+   Breakpoints, matching existing site conventions:
+   900px = layout breakpoint (shared grids, GSAP pin gate)
+   720px = phone breakpoint (nav, footer, page-level rules) */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--rule);
+  background: rgba(11, 12, 14, 0.75);
+  backdrop-filter: saturate(180%) blur(8px);
+  -webkit-backdrop-filter: saturate(180%) blur(8px);
+}
+
+.site-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 68px;
+}
+
+.site-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--ink);
+}
+
+.site-nav {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--ink);
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.nav-toggle-bar + .nav-toggle-bar {
+  margin-top: 5px;
+}
+
+.nav-panel {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .site-nav {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  .nav-panel.is-open {
+    display: block;
+    border-top: 1px solid var(--rule);
+    background: var(--bg);
+    padding-bottom: 0.5rem;
+  }
+
+  .nav-panel a {
+    display: block;
+    padding: 1rem var(--gutter);
+    font-size: 1rem;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-panel .btn {
+    display: flex;
+    justify-content: center;
+    margin: 0.85rem var(--gutter) 0.75rem;
+    padding: 0.8rem 1rem;
+    border-bottom: 0;
+  }
+}
+
+/* ─── Scrollable diagram helpers ─── */
+.pre-diagram {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ─── Mobile flow diagrams (case-study architecture, ≤720px) ─── */
+.diagram-mobile {
+  display: none;
+}
+
+.mflow {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: var(--bg-elevated);
+}
+
+.mflow-node {
+  border: 1px solid var(--rule-strong);
+  border-radius: 8px;
+  background: var(--bg-tint);
+  padding: 0.7rem 0.85rem;
+}
+
+.mflow-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.mflow-detail {
+  font-size: 0.75rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin-top: 0.25rem;
+}
+
+.mflow-arrow {
+  color: var(--accent);
+  font-size: 0.7rem;
+  padding-left: 0.85rem;
+  line-height: 1;
+}
+
+.mflow-parallel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+@media (max-width: 380px) {
+  .mflow-parallel {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mflow-footers {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.mflow-footer {
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+  .diagram-desktop {
+    display: none;
+  }
+
+  .diagram-mobile {
+    display: block;
+  }
+}
+
+.scroll-hint {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .scroll-hint {
+    display: block;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-faint);
+    text-align: right;
+    margin-top: 0.4rem;
+  }
+}
+
+/* ─── Footer ─── */
+.footer-grid {
+  padding: 3rem var(--gutter) 2rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2rem;
+  align-items: end;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 0.85rem;
+  color: var(--ink-muted);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-nav a[href^="mailto"] {
+  overflow-wrap: anywhere;
+}
+
+.footer-bottom {
+  padding: 1.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 720px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+    padding: 2.5rem var(--gutter) 1.75rem;
+  }
+
+  .footer-nav {
+    justify-content: flex-start;
+    gap: 0.85rem 1.25rem;
+  }
 }

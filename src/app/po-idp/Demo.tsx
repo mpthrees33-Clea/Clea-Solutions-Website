@@ -82,7 +82,7 @@ export default function Demo() {
   return (
     <div
       style={{
-        padding: "2.5rem",
+        padding: "clamp(1.25rem, 4vw, 2.5rem)",
         background: "var(--bg-elevated)",
         border: "1px solid var(--rule)",
         borderRadius: "12px",
@@ -192,7 +192,7 @@ function Results({ data }: { data: SamplePayload }) {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(170px, 100%), 1fr))",
           gap: "0.5rem",
         }}
       >
@@ -216,7 +216,7 @@ function Results({ data }: { data: SamplePayload }) {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))",
             gap: "0.5rem",
           }}
         >
@@ -237,6 +237,7 @@ function Results({ data }: { data: SamplePayload }) {
         <div
           style={{
             overflowX: "auto",
+            WebkitOverflowScrolling: "touch",
             border: "1px solid var(--rule)",
             borderRadius: "8px",
           }}
@@ -313,6 +314,9 @@ function Results({ data }: { data: SamplePayload }) {
               </tr>
             </tbody>
           </table>
+        </div>
+        <div className="scroll-hint mono" aria-hidden>
+          scroll →
         </div>
       </div>
 

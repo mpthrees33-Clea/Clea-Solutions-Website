@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import ConfidentialityNote from "@/components/ConfidentialityNote";
+import MobileFlow from "@/components/MobileFlow";
 import RevealSection from "@/components/motion/RevealSection";
 
 export const metadata: Metadata = {
@@ -146,10 +147,30 @@ export default function SalesHubPage() {
             <h2 className="display" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", marginBottom: "2rem" }}>
               Architecture.
             </h2>
-            <div className="panel" style={{ padding: "2rem", overflowX: "auto" }}>
+            <div className="panel diagram-desktop pre-diagram" style={{ padding: "2rem" }}>
               <pre className="mono" style={{ fontSize: "0.72rem", lineHeight: 1.5, color: "var(--ink-muted)", margin: 0 }}>
                 {ARCHITECTURE}
               </pre>
+            </div>
+            <div className="diagram-mobile">
+              <MobileFlow
+                steps={[
+                  { title: "rep (field · phone · desktop)", detail: "voice / text in" },
+                  { title: "Field Voice Assistant", detail: "grounded answers only · 3-sentence cap" },
+                  {
+                    parallel: [
+                      { title: "crm_api", detail: "read · write:draft" },
+                      { title: "catalog_search", detail: "+ crossover index · source row per hit" },
+                    ],
+                  },
+                  { title: "Voice-Match Email Drafter", detail: "on-prem fine-tune · drafts only" },
+                ]}
+                footers={[
+                  "conversation_store: 90-day, per-user scope",
+                  "observed by MISSION CONTROL",
+                  "Azure AI · Entra ID · tenant-only data",
+                ]}
+              />
             </div>
             <p style={{ marginTop: "1.5rem", color: "var(--ink-muted)", fontSize: "0.92rem", maxWidth: "680px", lineHeight: 1.65 }}>
               The Field Voice Assistant and Voice-Match Email Drafter are two of the
