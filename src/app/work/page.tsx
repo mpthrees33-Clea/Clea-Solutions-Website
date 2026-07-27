@@ -37,7 +37,7 @@ const PLATFORM: Project[] = [
   {
     name: "Sales Hub · Field Sales Workspace",
     description:
-      "A field rep's whole day in one tool: voice-first AI assistant with grounded answers, multi-step sample orders, CRM kanban, and crossover lookup. The AI is scoped — draft-only writes, human sends every email.",
+      "A field rep's whole day in one tool: voice-first AI assistant with grounded answers, multi-step sample orders, CRM kanban, and crossover lookup. The AI is scoped — draft-only writes, human sends every email. The case study now shows the open build: real screenshots, an interactive run trace, and the engineering decisions behind it.",
     language: "A field rep's whole day in one tool",
     href: "/sales-hub",
     isLiveDemo: false,
