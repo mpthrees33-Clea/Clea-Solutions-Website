@@ -176,9 +176,48 @@ pnpm eval:po     → field accuracy, nulls counted:
   },
 ];
 
+const INCIDENTS = [
+  {
+    num: "01",
+    symptom: `escalated · output_schema_failed
+"no JSON object in model output"`,
+    title: "Live models don't behave like scripts",
+    story:
+      "The first live night escalated 11 of 19 runs. The deployed code asked for JSON in prose and regex-scraped the reply — live Claude chatted its way through the tool loop and ended in sentences. The structured-output rework (schema transmitted as a submit_result tool, plus one repair turn) was already on the branch; production just wasn't running it yet.",
+    fix: "Merged. Every one of those escalations disappeared.",
+  },
+  {
+    num: "02",
+    symptom: `failed · ENOENT: no such file or directory
+open '/var/task/var/blob/…/transcript.json'`,
+    title: "The filesystem that isn't there",
+    story:
+      "The nightly crashed reading seed fixtures from local disk — but a serverless function's filesystem is throwaway, and the bytes lived in Vercel Blob. App-relative blob references now resolve through the active store, and the serving route redirects instead of reading disk.",
+    fix: "Meetings pipeline and PO extraction went green on the next cycle.",
+  },
+  {
+    num: "03",
+    symptom: `email-triage → "Could you provide the
+sender's email address to proceed?"`,
+    title: "The model can only see the prompt",
+    story:
+      "Live triage was handed a bare database id — but its sender-lookup tool needs the address, and its archive tool needs the thread id. The deterministic demo scripts read those from the DB directly, masking the gap for months. Deterministic code now resolves every pointer and puts it in the prompt: the model consumes ids, it never guesses them.",
+    fix: "All 14 live triage runs succeeded on the next night.",
+  },
+  {
+    num: "04",
+    symptom: `HTTP 504 · FUNCTION_INVOCATION_TIMEOUT
+batch msgbatch_018ACQ… status: in_progress`,
+    title: "Async workloads need async hosts",
+    story:
+      "A Message Batch is asynchronous; a Vercel function may only wait 300 seconds — and the poll loop outlived its host. The batch wait is now budgeted (cancel on expiry, so it never double-bills; degrade to serial, recorded honestly as serial-after-batch-timeout), and the whole nightly became resumable: a run that dies mid-flight is adopted by the next invocation and continued duplicate-free, because every step was already idempotent.",
+    fix: "The next night: attempt one died at 300s, attempt two adopted the same run and finished it. Zero duplicates.",
+  },
+];
+
 const OUTCOMES = [
-  { figure: "−50%", label: "token cost on overnight triage via the Message Batches API" },
-  { figure: "11", label: "external actions intercepted into approvals in one overnight run — agents cannot send" },
+  { figure: "33/34", label: "agent runs succeeded on the first fully-live night — zero escalations, zero failures" },
+  { figure: "$0.91", label: "total model cost for a complete overnight run on live Claude" },
   { figure: "0", label: "AI-sent emails. Every draft is reviewed and sent by a person" },
   { figure: "100%", label: "of assistant answers grounded in CRM or catalog records, or refused" },
 ];
@@ -407,13 +446,72 @@ export default function SalesHubPage() {
 
       <hr className="rule" />
 
+      {/* The first live night — a production debugging story */}
+      <section className="section">
+        <div className="container">
+          <RevealSection>
+            <div className="eyebrow" style={{ marginBottom: "1.5rem", display: "inline-flex", alignItems: "center" }}>
+              <span className="dot-mark" />
+              (05) · The first live night
+            </div>
+            <h2 className="display" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", maxWidth: "860px", marginBottom: "1.5rem" }}>
+              Then the API keys went in, <em>and the demo met production.</em>
+            </h2>
+            <p style={{ fontSize: "0.95rem", color: "var(--ink-muted)", maxWidth: "700px", lineHeight: 1.65, marginBottom: "3rem" }}>
+              A deterministic demo proves the architecture; live models prove the engineering.
+              The first night on real Claude models surfaced four failure modes the demo had
+              masked — each diagnosed from the run ledger, fixed, and verified green the same
+              evening. The error messages below are the real ones.
+            </p>
+          </RevealSection>
+          <RevealSection targets=".sh-incidents > div">
+            <div className="grid-2 sh-incidents" style={{ gap: "3rem 2.5rem" }}>
+              {INCIDENTS.map((inc) => (
+                <div key={inc.num}>
+                  <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1rem" }}>
+                    <span style={{ width: "28px", height: "1px", background: "var(--accent)", display: "inline-block" }} />
+                    <span className="mono" style={{ fontSize: "0.72rem", color: "var(--accent)", letterSpacing: "0.12em" }}>
+                      {inc.num}
+                    </span>
+                  </div>
+                  <div className="panel" style={{ padding: "1rem 1.25rem", marginBottom: "1rem", overflowX: "auto" }}>
+                    <pre className="mono" style={{ fontSize: "0.7rem", lineHeight: 1.55, color: "var(--ink-muted)", margin: 0 }}>
+                      {inc.symptom}
+                    </pre>
+                  </div>
+                  <h3 style={{ fontSize: "1.15rem", fontWeight: 500, marginBottom: "0.85rem", letterSpacing: "-0.01em" }}>
+                    {inc.title}
+                  </h3>
+                  <p style={{ color: "var(--ink-muted)", fontSize: "0.92rem", lineHeight: 1.65, marginBottom: "0.6rem" }}>
+                    {inc.story}
+                  </p>
+                  <p style={{ color: "var(--ink-muted)", fontSize: "0.92rem", lineHeight: 1.65 }}>
+                    <em style={{ fontStyle: "normal", color: "var(--accent-deep)" }}>Result:</em> {inc.fix}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </RevealSection>
+          <RevealSection>
+            <p style={{ marginTop: "2.5rem", color: "var(--ink-faint)", fontSize: "0.85rem", maxWidth: "700px", lineHeight: 1.65 }}>
+              Final ledger for the verified night: 33 of 34 agent runs succeeded, zero
+              escalations, zero failures, one deliberately-escalated price-mismatch PO caught
+              by the validation layers — total model cost $0.91. Forward-deployed engineering
+              is exactly this loop: ship, read the run ledger, fix the real failure, verify.
+            </p>
+          </RevealSection>
+        </div>
+      </section>
+
+      <hr className="rule" />
+
       {/* Outcomes */}
       <section className="section">
         <div className="container">
           <RevealSection>
             <div className="eyebrow" style={{ marginBottom: "1.5rem", display: "inline-flex", alignItems: "center" }}>
               <span className="dot-mark" />
-              (05) · Outcomes
+              (06) · Outcomes
             </div>
             <h2 className="display" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", marginBottom: "3rem" }}>
               Adopted, because it was built for the job.
