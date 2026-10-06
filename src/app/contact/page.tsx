@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { PILOT_LENGTH, PILOT_PRICE } from "@/data/offer";
 
 const CONTACT_EMAIL = "contact@clea-solutions.ai";
 
@@ -12,8 +13,8 @@ const ENGAGEMENT_STEPS = [
   },
   {
     num: "02",
-    title: "Small pilot, priced up front",
-    body: "A fixed-scope project that proves value on your real documents before you commit to anything bigger.",
+    title: `${PILOT_PRICE}, ${PILOT_LENGTH}`,
+    body: "One workflow: quote intake, or a purchase order into a sales order. Your documents, inside your tenant, scored before anyone calls it done. You own the code and the configuration.",
   },
   {
     num: "03",
@@ -74,6 +75,20 @@ export default function Contact() {
           </p>
         </div>
 
+        <div className="panel" style={{ padding: "2rem", marginBottom: "3rem" }}>
+          <div className="eyebrow" style={{ marginBottom: "0.75rem" }}>
+            The offer
+          </div>
+          <h2 className="display" style={{ fontSize: "clamp(1.8rem, 4vw, 2.4rem)", marginBottom: "0.75rem" }}>
+            {PILOT_PRICE} <span style={{ color: "var(--ink-muted)" }}>· {PILOT_LENGTH}</span>
+          </h2>
+          <p style={{ color: "var(--ink-muted)", lineHeight: 1.65, maxWidth: "640px" }}>
+            One workflow for a commercial distributor or wholesale sales team. It runs in
+            your tenant, on your documents. You own what gets built. A free 30-minute
+            assessment comes first, and sometimes the answer is that you should not buy this.
+          </p>
+        </div>
+
         <div style={{ marginBottom: "3.5rem" }}>
           <div className="eyebrow" style={{ marginBottom: "1.5rem" }}>
             How engagements work
@@ -112,8 +127,7 @@ export default function Contact() {
               fontSize: "0.95rem",
             }}
           >
-            No retainers unless you want ongoing support. No per-seat licenses. No surprise
-            invoices.
+            {`The ${PILOT_PRICE} pilot is the price. No retainer unless you ask for one later. This is not a copy of anyone else’s production system.`}
           </p>
         </div>
 

@@ -32,7 +32,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Clea Solutions · Enterprise-grade agentic AI harnesses",
   description:
-    "Agentic AI infrastructure that survives contact with production: grounding, validation, orchestration, and observability for every agent. Private by default — your data never leaves the building.",
+    "Harnesses for commercial distributors and wholesale sales teams. Grounding, validation, and a person on the uncertain line. Pilots run in your tenant.",
 };
 
 export default function RootLayout({

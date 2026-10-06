@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Mark from "./Mark";
+import { PILOT_PRICE } from "@/data/offer";
 
 export default function Footer() {
   return (
@@ -42,7 +43,7 @@ export default function Footer() {
         <div className="footer-bottom mono">
           <span>© {new Date().getFullYear()} CLEA SOLUTIONS</span>
           <span>
-            <span className="ticker-dot">●</span> AVAILABLE FOR NEW WORK
+            <span className="ticker-dot">●</span> {`${PILOT_PRICE} PILOT OPEN`}
           </span>
         </div>
       </div>

@@ -1,18 +1,55 @@
 import { NextResponse } from 'next/server';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const WINDOW_MS = 60 * 60 * 1000;
+const MAX_PER_WINDOW = 5;
+
+type Bucket = { count: number; resetAt: number };
+const buckets = new Map<string, Bucket>();
+
+function clientIp(request: Request): string {
+  const forwarded = request.headers.get('x-forwarded-for');
+  const first = forwarded?.split(',')[0]?.trim();
+  return first || request.headers.get('x-real-ip') || 'unknown';
+}
+
+function isLimited(ip: string): boolean {
+  const now = Date.now();
+  if (buckets.size > 1000) {
+    for (const [key, bucket] of buckets) {
+      if (bucket.resetAt < now) buckets.delete(key);
+    }
+  }
+  const existing = buckets.get(ip);
+  if (!existing || existing.resetAt < now) {
+    buckets.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    return false;
+  }
+  existing.count += 1;
+  return existing.count > MAX_PER_WINDOW;
+}
+
+function oneLine(value: string): string {
+  return value.replace(/[\u0000-\u001F\u007F]+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function fail(status: number) {
+  return NextResponse.json({ success: false }, { status });
+}
 
 export async function POST(request: Request) {
+  if (isLimited(clientIp(request))) return fail(429);
+
   let body: Record<string, unknown>;
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ success: false }, { status: 400 });
+    return fail(400);
   }
 
-  const name = typeof body.name === 'string' ? body.name.trim() : '';
-  const email = typeof body.email === 'string' ? body.email.trim() : '';
-  const phone = typeof body.phone === 'string' ? body.phone.trim() : '';
+  const name = oneLine(typeof body.name === 'string' ? body.name : '');
+  const email = oneLine(typeof body.email === 'string' ? body.email : '');
+  const phone = oneLine(typeof body.phone === 'string' ? body.phone : '');
   const description = typeof body.description === 'string' ? body.description.trim() : '';
   const honeypot = typeof body.company === 'string' ? body.company.trim() : '';
 
@@ -31,13 +68,15 @@ export async function POST(request: Request) {
     description.length > 5000 ||
     !EMAIL_RE.test(email)
   ) {
-    return NextResponse.json({ success: false }, { status: 400 });
+    return fail(400);
   }
 
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error('contact: RESEND_API_KEY is not set');
-    return NextResponse.json({ success: false, code: 'config' }, { status: 500 });
+  // Set CONTACT_TO_ADDRESS in the host env. Do not commit an inbox address.
+  const toAddress = process.env.CONTACT_TO_ADDRESS?.trim() ?? '';
+  if (!apiKey || !toAddress || !EMAIL_RE.test(toAddress)) {
+    console.error('contact: RESEND_API_KEY or CONTACT_TO_ADDRESS is not set');
+    return fail(500);
   }
 
   const fromAddress =
@@ -49,7 +88,7 @@ export async function POST(request: Request) {
     `Phone: ${phone || '(not provided)'}`,
     '',
     'Message:',
-    description,
+    description.replace(/\u0000/g, ''),
     '',
     `Submitted: ${new Date().toISOString()}`,
   ];
@@ -62,7 +101,7 @@ export async function POST(request: Request) {
     },
     body: JSON.stringify({
       from: fromAddress,
-      to: ['mpthrees33@gmail.com'],
+      to: [toAddress],
       reply_to: email,
       subject: `New inquiry from ${name}`,
       text: lines.join('\n'),
@@ -70,9 +109,8 @@ export async function POST(request: Request) {
   });
 
   if (!res.ok) {
-    const detail = await res.text().catch(() => '');
-    console.error(`contact: Resend returned ${res.status}: ${detail}`);
-    return NextResponse.json({ success: false, code: `resend_${res.status}` }, { status: 500 });
+    console.error(`contact: Resend returned ${res.status}`);
+    return fail(500);
   }
 
   return NextResponse.json({ success: true });

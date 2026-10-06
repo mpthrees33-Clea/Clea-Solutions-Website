@@ -67,9 +67,7 @@ const ARCHITECTURE = String.raw`
 `;
 
 const OUTCOMES = [
-  { figure: "—", label: "quotes drafted per week [PLACEHOLDER: Colton — real anonymized number]" },
-  { figure: "—", label: "average turnaround, before vs after [PLACEHOLDER: Colton]" },
-  { figure: "100%", label: "of extracted values traced to a source line or routed to a person" },
+  { figure: "100%", label: "of extracted values traced to a source line, or routed to a person" },
   { figure: "0", label: "prices computed by a language model. All math is deterministic" },
 ];
 
@@ -190,12 +188,12 @@ export default function QuotesHubPage() {
           <RevealSection>
             <div className="eyebrow" style={{ marginBottom: "1.5rem", display: "inline-flex", alignItems: "center" }}>
               <span className="dot-mark" />
-              (03) · Outcomes
+              (03) · Rules
             </div>
             <h2 className="display" style={{ fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)", marginBottom: "3rem" }}>
-              Measured, not promised.
+              Two rules the pipeline does not break.
             </h2>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "2rem" }} className="qh-stats">
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(2, minmax(0, 320px))", gap: "2rem" }} className="qh-stats">
               {OUTCOMES.map((o) => (
                 <div key={o.label}>
                   <div className="stat-figure">
