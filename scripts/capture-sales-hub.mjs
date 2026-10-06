@@ -21,7 +21,11 @@ import { fileURLToPath } from "node:url";
 const require = createRequire(import.meta.url);
 
 const BASE = process.env.SALES_HUB_URL ?? "http://localhost:3000";
-const PASSWORD = process.env.SALES_HUB_PASSWORD ?? "clea-demo";
+const PASSWORD = process.env.SALES_HUB_PASSWORD;
+if (!PASSWORD) {
+  console.error("Set SALES_HUB_PASSWORD. This script does not ship a default password.");
+  process.exit(1);
+}
 const OUT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "public", "sales-hub");
 
 // The filmed flow, one screen per architectural claim on the case study.

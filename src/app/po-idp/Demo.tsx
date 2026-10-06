@@ -104,7 +104,7 @@ export default function Demo() {
           Try it on a sample PO.
         </h2>
         <span style={{ color: "var(--ink-muted)", fontSize: "0.9rem" }}>
-          Real output from the running pipeline.
+          A recorded sample. These stages replay a saved result. They do not call a live pipeline.
         </span>
       </div>
 

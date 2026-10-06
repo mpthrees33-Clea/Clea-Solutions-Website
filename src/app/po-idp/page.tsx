@@ -99,7 +99,7 @@ export default function POIDPPage() {
             }}
           >
             Purchase orders in. Sales orders out.{" "}
-            <em style={{ fontStyle: "normal" }}>Zero hallucinations.</em>
+            <em style={{ fontStyle: "normal" }}>Unsure lines go to a person.</em>
           </h1>
           <p
             style={{

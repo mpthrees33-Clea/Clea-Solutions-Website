@@ -3,6 +3,7 @@ import Link from "next/link";
 import HeroTitle from "@/components/motion/HeroTitle";
 import RevealSection from "@/components/motion/RevealSection";
 import MissionControlScroll from "@/components/motion/MissionControlScroll";
+import { PILOT_PRICE } from "@/data/offer";
 
 export default function Home() {
   return (
@@ -28,10 +29,10 @@ export default function Home() {
                 margin: "1.75rem 0 2.5rem",
               }}
             >
-              Clea Solutions builds enterprise-grade agentic AI infrastructure: the
-              grounding, validation, orchestration, and observability that let agents do
-              real work without inventing it. Private by default — your data never
-              leaves the building.
+              Clea Solutions builds that harness for commercial distributors and
+              wholesale sales teams who still key quotes and purchase orders by hand.
+              Grounding, validation, and a person on the uncertain line. The pilot runs
+              in your tenant, on your documents.
             </p>
             <div className="fade-up fade-up-d3" style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
               <a href="#mission-control" className="btn btn-primary">
@@ -39,7 +40,7 @@ export default function Home() {
                 <span aria-hidden>↓</span>
               </a>
               <Link href="/contact" className="btn btn-ghost">
-                Book a free assessment
+                {`See the ${PILOT_PRICE} pilot`}
               </Link>
             </div>
           </div>
@@ -58,7 +59,7 @@ export default function Home() {
               }}
               className="stats-grid"
             >
-              <Stat figure="0" suffix="" label="customer documents sent to the cloud. Everything runs inside your walls" />
+              <Stat figure="0" suffix="" label="customer documents processed on this website. A pilot runs in your tenant" />
               <Stat figure="100" suffix="%" label="of AI outputs traced to the exact source text, or flagged for a person" />
               <Stat figure="7" suffix="" label="independent validation layers between a document and your books" />
               <Stat figure="60" prefix="<" suffix="sec" label="to turn a purchase order PDF into a validated, double-checked order" />
@@ -273,7 +274,7 @@ export default function Home() {
               <Principle
                 num="02"
                 title="Grounded in your business, deterministic where it counts."
-                body="Agents are trained on your documents, your terminology, your way of working. Retrieval answers cite their source rows. Prices and totals come from deterministic engines, never from a model's imagination."
+                body="Agents are grounded in your documents, your terminology, your way of working. Retrieval answers cite their source rows. Prices and totals come from deterministic engines, never from a model's imagination."
               />
               <Principle
                 num="03"
@@ -292,7 +293,43 @@ export default function Home() {
 
       <hr className="rule" />
 
-      {/* (07) Founder */}
+      {/* (07) Security answers */}
+      <section className="section">
+        <div className="container">
+          <RevealSection>
+            <div className="eyebrow" style={{ marginBottom: "1.25rem", display: "inline-flex", alignItems: "center" }}>
+              <span className="dot-mark" />
+              (07) · Before a security review
+            </div>
+            <h2
+              className="display"
+              style={{
+                fontSize: "clamp(1.75rem, 3.5vw, 2.5rem)",
+                maxWidth: "740px",
+                marginBottom: "2.5rem",
+              }}
+            >
+              Four answers, with no <em>certificate</em> implied.
+            </h2>
+          </RevealSection>
+          <RevealSection targets=".grid-2 > div">
+            <div className="grid-2">
+              {SECURITY_ANSWERS.map((item) => (
+                <div key={item.q} className="panel" style={{ padding: "1.5rem 1.75rem" }}>
+                  <h3 style={{ fontSize: "1.05rem", marginBottom: "0.65rem" }}>{item.q}</h3>
+                  <p style={{ color: "var(--ink-muted)", lineHeight: 1.65, fontSize: "0.95rem", margin: 0 }}>
+                    {item.a}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
+      <hr className="rule" />
+
+      {/* (08) Founder */}
       <section className="section">
         <div className="container">
           <RevealSection>
@@ -308,7 +345,7 @@ export default function Home() {
               <div>
                 <div className="eyebrow" style={{ display: "inline-flex", alignItems: "center" }}>
                   <span className="dot-mark" />
-                  (07) · Who you&rsquo;ll work with
+                  (08) · Who you&rsquo;ll work with
                 </div>
               </div>
               <div
@@ -361,7 +398,7 @@ export default function Home() {
                     also writes the code.
                   </p>
                   <Link href="/contact" className="btn-link">
-                    Book a free assessment
+                    {`See the ${PILOT_PRICE} pilot`}
                     <span aria-hidden>→</span>
                   </Link>
                 </div>
@@ -380,7 +417,7 @@ export default function Home() {
 
       <hr className="rule" />
 
-      {/* (08) Closing */}
+      {/* (09) Closing */}
       <section className="section">
         <div className="container">
           <RevealSection>
@@ -397,7 +434,7 @@ export default function Home() {
               <div style={{ maxWidth: "640px" }}>
                 <div className="eyebrow" style={{ marginBottom: "1.25rem", display: "inline-flex", alignItems: "center" }}>
                   <span className="dot-mark" />
-                  (08) · In practice
+                  (09) · In practice
                 </div>
                 <p
                   className="display"
@@ -421,7 +458,7 @@ export default function Home() {
                   <span aria-hidden>→</span>
                 </Link>
                 <Link href="/contact" className="btn-link">
-                  Book a free assessment
+                  {`See the ${PILOT_PRICE} pilot`}
                   <span aria-hidden>→</span>
                 </Link>
               </div>
@@ -438,12 +475,31 @@ export default function Home() {
   );
 }
 
+const SECURITY_ANSWERS = [
+  {
+    q: "Where does a prompt live?",
+    a: "In your tenant, with the agent that uses it. This website never receives your customer documents, quotes, or purchase orders.",
+  },
+  {
+    q: "Who can turn an agent off?",
+    a: "You can. External actions are draft-only: the agent does not send mail, and it does not promote its own CRM write. Remove the tool scope and that call stops.",
+  },
+  {
+    q: "What is in a run log?",
+    a: "Which agent ran, which tool it called, the outcome, and whether a person took over. Enough to reconstruct the run. This is not a signed, immutable audit product.",
+  },
+  {
+    q: "Do you have SOC 2?",
+    a: "No. A written agreement covers the engagement. The pilot runs in your tenant, so your existing controls still wrap it.",
+  },
+];
+
 const TICKER_ITEMS = [
   "EVERY AGENT OBSERVABLE",
   "GROUNDED OR IT ESCALATES",
   "ENTRA ID · AZURE AI",
   "RUNS ON YOUR HARDWARE",
-  "NO PER-SEAT FEES",
+  "FIXED-PRICE PILOT",
   "HUMAN HANDOFF BUILT IN",
   "EVERY ANSWER SHOWS ITS SOURCE",
 ];

@@ -23,6 +23,7 @@ export default function PrivacyPage() {
           <p>
             This is the same standard we hold our AI systems to: nothing collected that
             isn&rsquo;t needed, nothing shared that wasn&rsquo;t given for that purpose.
+            Customer documents for a pilot stay in your tenant. They are not uploaded here.
           </p>
           <div>
             <h2 style={{ fontSize: "1.15rem", color: "var(--ink)", marginBottom: "0.5rem" }}>
@@ -30,8 +31,8 @@ export default function PrivacyPage() {
             </h2>
             <p>
               The contact form asks for your name, email address, an optional phone
-              number, and your message. That&rsquo;s it. We don&rsquo;t use tracking
-              cookies, analytics scripts, or advertising pixels on this site.
+              number, and your message. That&rsquo;s it. We don&rsquo;t use analytics
+              scripts or advertising pixels on this site.
             </p>
           </div>
           <div>
@@ -39,10 +40,19 @@ export default function PrivacyPage() {
               What happens to it
             </h2>
             <p>
-              Your message is delivered to us by email through Resend, an email delivery
-              service, and kept as ordinary business correspondence. We use it to reply
-              to you and for nothing else. We never sell it, rent it, or share it with
-              anyone.
+              This site is hosted on Vercel. Your message is delivered to us by email
+              through Resend, an email delivery service, and kept as ordinary business
+              correspondence. We use it to reply to you and for nothing else. We never
+              sell it, rent it, or share it with anyone.
+            </p>
+          </div>
+          <div>
+            <h2 style={{ fontSize: "1.15rem", color: "var(--ink)", marginBottom: "0.5rem" }}>
+              Cookies
+            </h2>
+            <p>
+              The contact form does not set a cookie. We do not set a tracking cookie.
+              The host may set a cookie required to serve the site.
             </p>
           </div>
           <div>

@@ -169,7 +169,7 @@ next agent re-fetches via its own scoped tools`,
     problem: "Unit tests prove the code runs; they say nothing about whether the model is right.",
     decision:
       "Golden datasets with adversarial cases (prompt injection, keyword traps, unknown-sender POs) score triage accuracy with a confusion matrix, and PO extraction field-by-field — with expected nulls counted, so inventing a value for an absent fact is its own metric: fabricated, distinct from missed or wrong.",
-    payoff: "Model claims on this page are measurable. First live-keyed scores publish here when the keys land.",
+    payoff: "A pilot is accepted against a scored set you can re-run. This page does not publish a number that has not been measured.",
     snippet: String.raw`pnpm eval:triage → accuracy + confusion matrix (20 labeled, 6 adversarial)
 pnpm eval:po     → field accuracy, nulls counted:
                    fabricated / missed / wrong / nullsCorrect`,
